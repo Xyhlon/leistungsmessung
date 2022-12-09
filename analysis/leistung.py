@@ -16,6 +16,8 @@ def test_leistung_protokoll():
         "I": r"I",
         "a": r"a",
         "b": r"b",
+        "c": r"c",
+        "d": r"d",
         "p": r"P",
         "E": r"E_{\mathrm{kin}}",
     }
@@ -25,8 +27,10 @@ def test_leistung_protokoll():
         "I": r"\si{\ampere}",
         "E": r"\si{\mega\electronvolt}",
         "a": r"\si{\volt}",
-        "p": r"\si{\watt}",
         "b": r"\si{\ohm}",
+        "c": r"\si{\ampere}",
+        "d": r"\si{\siemens}",
+        "p": r"\si{\watt}",
     }
 
     P = Project("Leistung", global_variables=gv, global_mapping=gm, font=13)
@@ -61,7 +65,7 @@ def test_leistung_protokoll():
         I,
         p,
         label="Gemessene Daten",
-        style="#1cb2f5",
+        style="#FFA500",
         errors=True,
     )
 
@@ -70,7 +74,7 @@ def test_leistung_protokoll():
         x=I,
         y=p,
         eqn=p,
-        style=r"#1cb2f5",
+        style=r"#FFA500",
         label="Strom",
         offset=[0, 30],
         use_all_known=False,
@@ -81,7 +85,7 @@ def test_leistung_protokoll():
         add_fit_params=True,
         granularity=10000,
         # gof=True,
-        # scale_covar=True,
+        scale_covar=True,
     )
     print(P.data)
 
@@ -89,7 +93,7 @@ def test_leistung_protokoll():
     P.ax_legend_all(loc=4)
     ax = P.savefig(f"pIkennlinie.pdf")
 
-    p = a * U + b * U**2
+    p = c * U + d * U**2
 
     P.plot_data(
         ax,
@@ -106,17 +110,17 @@ def test_leistung_protokoll():
         y=p,
         eqn=p,
         style=r"#1cb2f5",
-        label="Strom",
+        label="Spannung",
         offset=[0, 30],
         use_all_known=False,
-        guess={"a": 10, "b": 18},
+        guess={"c": 10, "d": 18},
         bounds=[
-            {"name": "b", "min": 000, "max": 9000},
+            {"name": "c", "min": 000, "max": 9000},
         ],
         add_fit_params=True,
         granularity=10000,
         # gof=True,
-        # scale_covar=True,
+        scale_covar=True,
     )
     print(P.data)
 
