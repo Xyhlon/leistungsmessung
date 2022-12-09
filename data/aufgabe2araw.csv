@@ -2,5 +2,5 @@ wert,wert,wert,wert,wert,wert,wert,wert,wert
 I1,I2,I3,I4,U1,U2,U3,P1,P2 // FULL 120 I1,I2,I3 0.6A, I4 digital, U1,U2, 480V 5VpStrich, U3 Digital, P1, P2 240W
 0.46,0.48,0.47,0.00264,390,390,395,163,168 // Wirk sym Dreickschaltung 
 0.218,0.22,0.226,0.0111,228,228,224,73,70 // I1,I2,I3 0.24A , I4 digital, U1,U2 240V, P1,P2 120W Wirk sym Sternschaltung
-0.27,0.255,0.172,0.0924,230,230,224,73,70 // I1,I2 0.6A, I3 0.24A , I4 digital, U1,U2 240V, P1 60W, P2,P3 120W  asym Sternschaltung
+0.27,0.255,0.172,0.0925,230,230,224,19.5,82,55 // I1,I2 0.6A, I3 0.24A , I4 digital, U1,U2 240V, P1 60W, P2,P3 120W  asym Sternschaltung
 0.255,0.2525,0.184,0,202,225,261,16,88,58 // I1,I2 0.6A, I3 0.24A , I4 digital, U1,U2 240V, P1 60W, P2,P3 120W  asym Leiterbruch
