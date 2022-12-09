@@ -13,24 +13,48 @@ def test_leistung_protokoll():
     gm = {
         "t": r"t",
         "U": r"U",
+        "U1": r"U_1",
+        "U2": r"U_2",
+        "U3": r"U_3",
+        "U4": r"U_4",
+        "U5": r"U_5",
         "I": r"I",
+        "I1": r"I_1",
+        "I2": r"I_2",
+        "I3": r"I_3",
+        "I4": r"I_4",
         "a": r"a",
         "b": r"b",
         "c": r"c",
         "d": r"d",
         "p": r"P",
+        "p1": r"P_1",
+        "p2": r"P_2",
+        "p3": r"P_3",
         "E": r"E_{\mathrm{kin}}",
     }
     gv = {
         "t": r"\si{\second}",
         "U": r"\si{\volt}",
+        "U1": r"\si{\volt}",
+        "U2": r"\si{\volt}",
+        "U3": r"\si{\volt}",
+        "U4": r"\si{\volt}",
+        "U5": r"\si{\volt}",
         "I": r"\si{\ampere}",
+        "I1": r"\si{\ampere}",
+        "I2": r"\si{\ampere}",
+        "I3": r"\si{\ampere}",
+        "I4": r"\si{\ampere}",
         "E": r"\si{\mega\electronvolt}",
         "a": r"\si{\volt}",
         "b": r"\si{\ohm}",
         "c": r"\si{\ampere}",
         "d": r"\si{\siemens}",
         "p": r"\si{\watt}",
+        "p1": r"\si{\watt}",
+        "p2": r"\si{\watt}",
+        "p3": r"\si{\watt}",
     }
 
     P = Project("Leistung", global_variables=gv, global_mapping=gm, font=13)
@@ -87,7 +111,6 @@ def test_leistung_protokoll():
         # gof=True,
         scale_covar=True,
     )
-    print(P.data)
 
     ax.set_title(f"Leistungskennlinie von Strom")
     P.ax_legend_all(loc=4)
@@ -122,13 +145,22 @@ def test_leistung_protokoll():
         # gof=True,
         scale_covar=True,
     )
-    print(P.data)
 
     ax.set_title(f"Leistungskennlinie von Spannung")
     P.ax_legend_all(loc=4)
     ax = P.savefig(f"pUkennlinie.pdf")
+    # A2 Darstellung der Zählstatistik
+    P.vload()
+    filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe2.csv")
+    P.load_data(filepath, loadnew=True)
+
+    print(P.data)
     # A3 Darstellung der Zählstatistik
     P.vload()
+    filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3.csv")
+    P.load_data(filepath, loadnew=True)
+    P.data = P.raw_data
+    print(P.data)
 
 
 if __name__ == "__main__":
