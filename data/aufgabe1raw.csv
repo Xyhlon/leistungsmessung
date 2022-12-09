@@ -1,5 +1,5 @@
 wert,wert,wert
-U,I,P // Volt 120V 1VpStrich, Strom 0.24 A 0.002A strich, Power Strom 1A, Spannung 120V 1WpStrich
+U,I,p // Volt 120V 1VpStrich, Strom 0.24 A 0.002A strich, Power Strom 1A, Spannung 120V 1WpStrich
 0,0.056,0.5 // Macht keinen sinn
 20,0.106,2.5
 40,0.136,6.0
