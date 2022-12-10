@@ -35,18 +35,124 @@
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
+Um die ohmsche Last einer Glühlampe im Wechselstromkreis zu messen, wird folgender Versuchsaufbau aus \autoref{fig:aufbau_ohm} realisiert.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.5\textwidth]{./figures/aufbau_ohm.png}
+	\end{center}
+	\caption[Realer Versuchsaufbau für die Messung einer ohmschen Last]
+	{Realer Versuchsaufbau für die Messung einer ohmschen Last
+	1 \(\dots\) Transformator  \\
+	2 \(\dots\) seriell geschaltetes Strommessgerät  \\
+	3 \(\dots\) seriell geschaltetes Leistungsmessgerät mit parallelen Anschluss zum Verbraucher  \\
+	4 \(\dots\) ohmscher Verbraucher (Glühlampe)  \\
+	5 \(\dots\) parallel geschaltetes Spannungsmessgerät
+	}\label{fig:aufbau_ohm}
+\end{figure}
+
 
 \subsection{Symmetrische Last in Dreieckschaltung}
 
+Um die Wirkleistung von symmetrischen Verbrauchern in einer Dreiecksschaltung zu Messen, wird eine Aronschaltung
+ nach folgendem Schaltplan aus \autoref{fig:aufbau1} realisiert. 
+ Der tatsächliche Versuchsaufbau ist in \autoref{fig:aufbau1_echt} ersichtlich.
+
+ \begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.8\textwidth]{./figures/aufbau1.png}
+	\end{center}
+	\caption[Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung]
+	{Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung~\cite[]{leistungsmessungvorbereitung}  \\
+	$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A  \\
+	$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V  \\
+	$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher  \\
+	$P_i$ \(\dots\) Powermeter in Aronschaltung
+	}\label{fig:aufbau1}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = \textwidth]{./figures/aufbau1_echt.png}
+	\end{center}
+	\caption[Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung]
+	{Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung. (Bei den Kabeln wurde ein Farbschema eingehalten, um eine bessere Übersicht zu ermöglichen.) 
+	1 \(\dots\) Versorgungsspannung ($L_1$ rot, $L_2$ blau, $L_3$ gelb) \\
+	2 \(\dots\) seriell geschaltete Strommessgeräte  \\
+	3 \(\dots\) seriell geschaltete Leistungsmessgeräte mit parallelen Anschlüssen nach der Aronschaltung (grün)\\
+	4 \(\dots\) parallel geschaltete Spannungsmessgeräte über die entsprechenden Verbraucher (schwarz)\\
+	5 \(\dots\) symmetrisch verteilte ohmsche Verbraucher (Glühlampen)
+	
+	}\label{fig:aufbau1_echt}
+\end{figure}
 
 \subsection{Symmetrische Last in Sternschaltung}
+
+Um die Wirkleistung von symmetrischen Verbrauchern in einer Sternschaltung zu Messen, wird eine Aronschaltung
+nach folgendem Schaltplan aus \autoref{fig:aufbau2} realisiert. 
+Der tatsächliche Versuchsaufbau ist in \autoref{fig:aufbau2_echt} ersichtlich.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.8\textwidth]{./figures/aufbau2.png}
+	\end{center}
+	\caption[Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Sternschaltung]
+	{Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Sternschaltung~\cite[]{leistungsmessungvorbereitung}  \\
+	$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A  \\
+	$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V  \\
+	$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher  \\
+	$P_i$ \(\dots\) Powermeter in Aronschaltung
+	}\label{fig:aufbau2}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = \textwidth]{./figures/aufbau2_echt.png}
+	\end{center}
+	\caption[Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung]
+	{Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
+	Verbraucher in Dreiecksschaltung. (Bei den Kabeln wurde ein Farbschema eingehalten, um eine bessere Übersicht zu ermöglichen.) 
+	1 \(\dots\) Versorgungsspannung ($L_1$ rot, $L_2$ blau, $L_3$ gelb) \\
+	2 \(\dots\) seriell geschaltete Strommessgeräte  \\
+	3 \(\dots\) seriell geschaltete Leistungsmessgeräte mit parallelen Anschlüssen nach der Aronschaltung (grün)\\
+	4 \(\dots\) parallel geschaltete Spannungsmessgeräte über die entsprechenden Verbraucher (schwarz)\\
+	5 \(\dots\) symmetrisch verteilte ohmsche Verbraucher (Glühlampen) \\
+	6 \(\dots\) Strommessgerät zwischen Sternpunkt und Neutralleiter (grau)
+	
+	}\label{fig:aufbau2_echt}
+\end{figure}
 
 
 \subsection{Asymmetrische Last in Sternschaltung}
 
+Um eine asymmetrische Last zu erreichen, wird der Aufbau aus \autoref{fig:aufbau2} herangezogen, mit dem Unterschied, 
+dass die Glühlampen nicht gleichmäßig auf die Leiter aufgeteilt werden. Die gewählte Konfiguration ist in \autoref{fig:lampen_asym} ersichtlich.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = \textwidth]{./figures/lampen.png}
+	\end{center}
+	\caption[Entsprechende Konfiguration für eine asymmetrische Verteilung der Last]
+	{Entsprechende Konfiguration für eine asymmetrische Verteilung der Last mit folgenden Verteilungen auf den Strängen:
+	$L_1$ \(\dots\) 1 x \SI[]{60}{\watt} \\
+	$L_2$ \(\dots\) 2 x \SI[]{75}{\watt} \\
+	$L_3$ \(\dots\) 1 x \SI[]{75}{\watt} und 2 x \SI[]{60}{\watt}
+	}\label{fig:lampen_asym}
+\end{figure}
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
 
+
+Um einen Kabelbruch zu simulieren, wird der Aufbau aus \autoref{fig:aufbau2} herangezogen. Nun wird der Kontakt 
+des Neutralleiters unterbrochen, indem das graue Kabel, sichtbar in \autoref{fig:aufbau1_echt}, aus dem 
+Strompfad des Multimeters entfernt und in den Spannungsbereich gesteckt wird, um eine Spannungsmessung zu ermöglichen.
 
 \subsection{Wirkleistungsmessung}
 
