@@ -3,6 +3,7 @@ from sympy import exp, pi
 import numpy as np
 import pandas as pd
 import os
+import cmath
 
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
@@ -22,7 +23,7 @@ def test_leistung_protokoll():
         "I1": r"I_1",
         "I2": r"I_2",
         "I3": r"I_3",
-        "I4": r"I_4",
+        "I4": r"I_{31}",
         "a": r"a",
         "b": r"b",
         "c": r"c",
@@ -153,7 +154,66 @@ def test_leistung_protokoll():
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe2.csv")
     P.load_data(filepath, loadnew=True)
+    I1 = I1 + 0j
+    I2 = I2 * cmath.exp(cmath.pi / 3 * 2j)
+    I3 = I3 * cmath.exp(cmath.pi / 3 * 4j)
+    I31 = I3 - I1
+    I12 = I1 - I2
+    I23 = I2 - I3
+    U1 = U1 + 0j
+    U2 = U2 * cmath.exp(cmath.pi / 3 * 2j)
+    U3 = U3 * cmath.exp(cmath.pi / 3 * 4j)
+    U31 = U3 - U1
+    U12 = U1 - U2
+    U23 = U2 - U3
+    P.resolve(I1)
+    P.resolve(I2)
+    P.resolve(I3)
+    P.resolve(I12)
+    P.resolve(I23)
+    P.resolve(I31)
+    P.resolve(U1)
+    P.resolve(U2)
+    P.resolve(U3)
+    P.resolve(U12)
+    P.resolve(U23)
+    P.resolve(U31)
 
+    print(
+        P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+                "I12",
+                "I23",
+                "I31",
+                "U1",
+                "U2",
+                "U3",
+                "U12",
+                "U23",
+                "U31",
+            ]
+        ]
+    )
+    vecstuffen = np.stack((P.data.values.real, P.data.values.imag), axis=-1)
+    print(vecstuffen[0])
+    print(vecstuffen[0][:, 0])
+    print(vecstuffen[0][:, 1])
+    X = vecstuffen[0][4:7, 0]
+    Y = vecstuffen[0][4:7, 1]
+    print(X)
+    print(Y)
+    zz = np.zeros_like(X)
+    for i, x in enumerate(zz):
+        print(i, i // 3)
+        zz[i] = (i) // 3
+    ax.quiver(zz, zz, X, Y)
+
+    ax.set_title(f"Zeigerdiagramm")
+    P.ax_legend_all(loc=4)
+    ax = P.savefig(f"zeiger.pdf")
     print(P.data)
     # A3 Darstellung der Zählstatistik
     P.vload()
