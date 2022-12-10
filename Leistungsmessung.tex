@@ -115,9 +115,9 @@ Der tatsächliche Versuchsaufbau ist in \autoref{fig:aufbau2_echt} ersichtlich.
 		\includegraphics[width = \textwidth]{./figures/aufbau2_echt.png}
 	\end{center}
 	\caption[Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
-	Verbraucher in Dreiecksschaltung]
+	Verbraucher in Sternschaltung]
 	{Realer Versuchsaufbau für die Messung der Wirkleistung mit Aronschaltung für symmetrische
-	Verbraucher in Dreiecksschaltung. (Bei den Kabeln wurde ein Farbschema eingehalten, um eine bessere Übersicht zu ermöglichen.) 
+	Verbraucher in Sternschaltung. (Bei den Kabeln wurde ein Farbschema eingehalten, um eine bessere Übersicht zu ermöglichen.) 
 	1 \(\dots\) Versorgungsspannung ($L_1$ rot, $L_2$ blau, $L_3$ gelb) \\
 	2 \(\dots\) seriell geschaltete Strommessgeräte  \\
 	3 \(\dots\) seriell geschaltete Leistungsmessgeräte mit parallelen Anschlüssen nach der Aronschaltung (grün)\\
@@ -137,7 +137,7 @@ dass die Glühlampen nicht gleichmäßig auf die Leiter aufgeteilt werden. Die g
 		\includegraphics[width = 0.5\textwidth]{./figures/lampen.png}
 	\end{center}
 	\caption[Entsprechende Konfiguration für eine asymmetrische Verteilung der Last]
-	{Entsprechende Konfiguration für eine asymmetrische Verteilung der Last mit folgenden Verteilungen auf den Strängen:
+	{Entsprechende Konfiguration für eine asymmetrische Verteilung der Last mit folgenden Verteilungen auf den Strängen: \\
 	$L_1$ \(\dots\) 1 x \SI[]{60}{\watt} \\
 	$L_2$ \(\dots\) 2 x \SI[]{75}{\watt} \\
 	$L_3$ \(\dots\) 1 x \SI[]{75}{\watt} und 2 x \SI[]{60}{\watt}
@@ -155,14 +155,85 @@ Strompfad des Multimeters entfernt und in den Spannungsbereich gesteckt wird, um
 
 \subsection{Wirkleistungsmessung}
 
+Um die Wirkleistung von allgemeinen Verbrauchern in Sternschaltung zu bestimmen, wird die Schaltung
+nach folgendem Schaltplan aus \autoref{fig:aufbau3} aufgebaut. 
+Der tatsächliche Versuchsaufbau ist in \autoref{fig:aufbau3_echt} ersichtlich.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.8\textwidth]{./figures/aufbau3.png}
+	\end{center}
+	\caption[Schaltplan für die Messung der Wirkleistung für allgemeine
+	Verbraucher in Sternschaltung]
+	{Schaltplan für die Messung der Wirkleistung für allgemeine
+	Verbraucher in Sternschaltung~\cite[]{leistungsmessungvorbereitung}  \\
+	$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A  \\
+	$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V  \\
+	$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher  \\
+	$P_i$ \(\dots\) Powermeter}
+	\label{fig:aufbau3}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = \textwidth]{./figures/aufbau3_echt.png}
+	\end{center}
+	\caption[Realer Versuchsaufbau für die Messung der Wirkleistung für allgemeine
+	Verbraucher in Sternschaltung]
+	{Realer Versuchsaufbau für die Messung der Wirkleistung für allgemeine
+	Verbraucher in Sternschaltung. (Bei den Kabeln wurde ein Farbschema eingehalten, um eine bessere Übersicht zu ermöglichen.) 
+	1 \(\dots\) Versorgungsspannung ($L_1$ rot, $L_2$ blau, $L_3$ gelb) \\
+	2 \(\dots\) seriell geschaltete Strommessgeräte  \\
+	3 \(\dots\) seriell geschaltete Leistungsmessgeräte mit parallelen Anschlüssen zum Neutralleiter (grün)\\
+	4 \(\dots\) parallel geschaltete analoge Spannungsmessgeräte über die entsprechenden Verbraucher (schwarz)\\
+	5 \(\dots\) parallel geschaltete digitale Spannungsmessgeräte über die entsprechenden Verbraucher (schwarz/grün)\\
+	6 \(\dots\) Strommessgerät zwischen Sternpunkt und Neutralleiter (grau) \\
+	7 \(\dots\) Heizwiderstände \\
+	8 \(\dots\) ohmscher Verbraucher \\
+	9 \(\dots\) Kapazität (Kondensator) \\
+	10 \(\dots\) Induktivität (Spule) \\
+	11 \(\dots\) 2. Kapazität für Bonusaufgabe
+	
+	}\label{fig:aufbau3_echt}
+\end{figure}
+
+Für die Bonusaufgabe werden folgende Änderungen vorgenommen:
+
+\begin{itemize}
+	\item $L_1$ bleibt unverändert (Heizwiderstand)
+	\item $L_2$ Schaltung von einem Heizwiderstand und einem Kondensator mit parallel geschalteter Induktivität
+	\item $L_3$ Schaltung von einem Heizwiderstand und einem Kondensator
+\end{itemize}
 
 
 \subsection{Blindleistungsmessung}
 
+Um die Blindleistung eines allgemeinen Verbrauchers sichtbar zu machen, wird nun die Schaltung nach folgendem Schaltplan aus 
+\autoref{fig:aufbau4} aufgebaut, indem die grünen Kabel der Powermeter aus \autoref{fig:aufbau3_echt} entsprechend modifiziert werden.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.8\textwidth]{./figures/aufbau4.png}
+	\end{center}
+	\caption[Schaltplan für die Messung der Blindleistung für allgemeine
+	Verbraucher in Sternschaltung]
+	{Schaltplan für die Messung der Blindleistung für allgemeine
+	Verbraucher in Sternschaltung~\cite[]{leistungsmessungvorbereitung}  \\
+	$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A  \\
+	$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V  \\
+	$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher  \\
+	$P_i$ \(\dots\) Powermeter}
+	\label{fig:aufbau4}
+\end{figure}
 
 \subsection{Bau eines rudimentärern Asynchron-Drehstrommotors}
 
+Um den Bau eines rudimentären Asynchron-Drehstrommotors zu realisieren, werden 3 Spulen mit Eisenkern wie in 
+\autoref{fig:motor} um eine drehbar gelagerte Metallscheibe aufgestellt. Die Spulen werden mit vorgeschalteten 
+Heizwiderständen an die Versorgungsspannung geschlossen.
 
+%todo max bitte das Bild vom Motor
+%\label{fig:motor}
 
 
 
