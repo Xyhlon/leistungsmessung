@@ -249,14 +249,52 @@ Heizwiderständen an die Versorgungsspannung geschlossen.
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
+Um die Leistung der ohmschen Last im Wechselstromkreis zu messen, wird der Verbraucher, der in diesem Fall einer \SI[]{75}{\watt} 
+Glühbirne entspricht, wie in \autoref{fig:aufbau_ohm} ersichtlich, in den Stromkreis geschlossen. Dabei ist besonders darauf 
+zu achten, dass die Geräte richtig in den Stromkreis geschlossen sind. Bei einem negativen Zeigerausschlag müssen also die Kabel 
+vertauscht werden. Auch sollt bei den Geräten der richtige Messbereich ausgewählt werden, um sicherzustellen, dass die Geräte 
+nicht überlastet werden, aber dennoch ein genaues Ergebnis anzeigen. 
+
+Nun wird mithilfe des Schleifkontakts des Netzgeräts eine Ausgangsspannung von \SI[]{20}{\volt} erzeugt und diese kontinuierlich
+erhöht, bis schließlich ein Wert von \SI[]{240}{\volt} erreicht ist.
+%todo 2x oben unsicherheit angeben
+Die entsprechenden Werte der Messgeräte werden abgelesen und in folgender \autoref{tab:werte_ohm} aufgelistet.
+
+%todo \label{tab:erte_ohm}
+
 
 \subsection{Symmetrische Last in Dreieckschaltung}
+
+Um die Leistung eines symmetrischen Verbrauchs bei einer Dreiecksschaltung zu betrachten, wird ein Aufbau nach \autoref{fig:aufbau1}
+herangezogen. Dabei ist darauf zu achten, dass die Glühlampen symmetrisch auf die Stränge verteilt sind, sich also auf jeden 
+jeweils eine mit \SI[]{75}{\watt} und eine mit  \SI[]{60}{\watt} befindet.
+Alle abgelesenen Messwerte der Messgeräte sind in folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
+
+%todo \label{tab:werte_sym_dreieck}
 
 
 \subsection{Symmetrische Last in Sternschaltung}
 
+Nun wird die Schaltung insofern modifiziert, dass nun eine Sternschaltung vorliegt, wie in \autoref{fig:aufbau2} sichtbar.
+
+Alle abgelesenen Werte der Messgeräte sind in folgender \autoref{tab:werte_sym_stern} aufgelistet.
+
+%todo \label{tab:werte_sym_stern}
 
 \subsection{Asymmetrische Last in Sternschaltung}
+
+Nun werden die einzelnen Stränge verschieden stark beansprucht, indem die Glühlampen asymmetrisch auf die Stränge 
+verteilt werden. Dabei wird, wie bereits in \autoref{sec:versuchsanordnung} angeführt, folgende Konfiguration verwirklicht:
+
+\begin{itemize}
+	\item $L_1$ \(\dots\) 1 x \SI[]{60}{\watt} \\
+	\item $L_2$ \(\dots\) 2 x \SI[]{75}{\watt} \\
+	\item $L_3$ \(\dots\) 1 x \SI[]{75}{\watt} und 2 x \SI[]{60}{\watt}
+\end{itemize}
+
+Alle abgelesenen Werte der Messgeräte sind in folgender \autoref{tab:werte_asym_stern} aufgelistet.
+
+%todo \label{tab:werte_asym_stern}
 
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
