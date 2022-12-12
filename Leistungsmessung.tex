@@ -29,6 +29,87 @@
 
 \section{Grundlagen}\label{Grund}
 
+Für die Wirkleistung $P$ eines ohmschen Verbrauchers gilt unter Verwendung des Ohmschen Gesetzes, \autoref{eq:ohmschesgesetz}, folgender Zusammenhang:
+
+\begin{equation}
+	P = U \cdot I = I^2 \cdot R = \frac{U^2}{R}
+	\label{eq:wirkleistung}
+\end{equation}
+
+\begin{equation}
+	U = R \cdot I 
+	\label{eq:ohmschesgesetz}
+\end{equation}
+
+Dabei Beschreibt $U$ die Spannung, $I$ die Stromstärke und $R$ den ohmschen Widerstand.
+
+Werden im Wechselstromkreis nun Spulen oder Kondensatoren betrachtet, empfiehlt es sich komplexe Zahlen einzuführen,
+da hier die Impedanz $Z$ betrachtet werden muss, die sich nach folgender Formel berechnet:
+
+\begin{equation}
+	Z = R + iX
+	\label{eq:Impedanz}
+\end{equation}
+
+$R$ bezeichnet dabei den Realteil des Widerstands der entsprechenden Last und $X$ die entsprechende Reaktanz.
+Diese kann für Induktivitäten, $X_L$, und Kapazitäten, $X_C$, folgendermaßen berechnet werden:
+
+\begin{equation}
+	X_L = i\omega L
+	\label{eq:Reaktanzl}
+\end{equation}
+
+\begin{equation}
+	X_C = - \frac{i}{\omega C}
+	\label{eq:Reaktanzc}
+\end{equation}
+
+$L$ steht dabei für die Induktivität der Spule, $C$ für die Kapazität des Kondensators und $\omega$ für die 
+vorliegende Frequenz des Wechselstroms. 
+
+Mit der eingeführten Größe der Impedanz $Z$ kann nun das ohmsche Gesetz folgendermaßen verallgemeinert werden:
+
+\begin{equation}
+	U = Z \cdot I 
+	\label{eq:ohmschesgesetz_z}
+\end{equation}
+
+Die komplexen Spannungen und Ströme werden am übersichtlichsten in einem Zeigerdiagramm dargestellt. Dazu empfiehlt sich
+folgende Schreibweise:
+
+\begin{equation}
+	\underline{U} = U_{\textrm{eff}} \cdot e^{i(\omega t + \phi U)}
+	\label{eq:komplexespannung}
+\end{equation}
+
+\begin{equation}
+	\underline{I} = I_{\textrm{eff}} \cdot e^{i(\omega t + \phi I)}
+	\label{eq:komplexerstrom}
+\end{equation}
+$U_{\textrm{eff}}$ und $I_{\textrm{eff}}$ entsprechen dabei der jeweiligen Größe, wenn sie ein rein ohmsche Verbraucher, ohne 
+komplexe Anteile, wäre.
+
+Dadurch kann die erhaltene Wirkleistung $P$ folgendermaßen ausgedrückt werden:
+
+\begin{equation}
+	P = \textrm{Re}(\underline{U}\underline{I}^*)
+	\label{eq:wirkleistung}
+\end{equation}
+
+Weiters können auch die vom System tatsächlich aufgewendete Scheinleistung, $S$, und die nicht nutzbare Blindleistung, $Q$,
+berechnet werden.
+
+\begin{equation}
+	S = \sqrt[]{\underline{U}\underline{U}^*\underline{I}\underline{I}^*}
+	\label{eq:scheinleistung}
+\end{equation}
+
+\begin{equation}
+	Q = \textrm{Re}(\underline{U}\underline{I}^*)
+	\label{eq:blindleistung}
+\end{equation}
+
+%todo max schau amol ob die Grundlagen dir so passen weil es steht extra drin 1-1.5 Seiten also wollt i nit mehr schreiben
 
 \section{Versuchsanordnung}
 \label{sec:versuchsanordnung}
