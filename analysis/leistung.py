@@ -1,12 +1,44 @@
 from labtool_ex2 import Project
 from sympy import exp, pi
 import numpy as np
+from numpy.typing import NDArray
 import pandas as pd
+import matplotlib.pyplot as plt  # noqa
 import os
 import cmath
 
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
+
+
+def printVectorChain(vecs: NDArray, axes: plt.Axes):
+    """vectorChain is a (2,) array in the first row are the x coordinates of the vector which shall be concateted and in second row are the y coordinates"""
+    # vectorChain
+
+    v_off = np.zeros_like(vecs)
+    prev_vec = np.zeros_like(vecs[0])
+    print(prev_vec.shape, v_off.shape)
+    v_off = np.vstack([v_off, prev_vec])
+    for i, vec in enumerate(vecs):
+        v_off[i] = prev_vec
+        prev_vec += vec
+
+    vecs = np.vstack([vecs, prev_vec])
+
+    colors = ["#0fafaf"] * len(vecs)
+    colors[-1] = "#f00f0E"
+
+    axes.quiver(
+        v_off[:, 0],
+        v_off[:, 1],
+        vecs[:, 0],
+        vecs[:, 1],
+        angles="xy",
+        scale_units="xy",
+        scale=1,
+        facecolor=colors,
+        width=3e-3,
+    )
 
 
 def test_leistung_protokoll():
@@ -29,6 +61,7 @@ def test_leistung_protokoll():
         "c": r"c",
         "d": r"d",
         "p": r"P",
+        "m": r"P_0",
         "p1": r"P_1",
         "p2": r"P_2",
         "p3": r"P_3",
@@ -50,6 +83,7 @@ def test_leistung_protokoll():
         "E": r"\si{\mega\electronvolt}",
         "a": r"\si{\volt}",
         "b": r"\si{\ohm}",
+        "m": r"\si{\watt}",
         "c": r"\si{\ampere}",
         "d": r"\si{\siemens}",
         "p": r"\si{\watt}",
@@ -83,7 +117,7 @@ def test_leistung_protokoll():
     P.data["dp"][P.data["U"] < 121] = Pm1
     P.data["dp"][P.data["U"] > 121] = Pm2
 
-    p = a * I + b * I**2
+    p = a * I + b * I**2 + m
 
     P.plot_data(
         ax,
@@ -103,7 +137,7 @@ def test_leistung_protokoll():
         label="Strom",
         offset=[0, 30],
         use_all_known=False,
-        guess={"a": 10, "b": 18},
+        guess={"a": 10, "b": 18, "m": 0},
         bounds=[
             {"name": "b", "min": 000, "max": 9000},
         ],
@@ -117,7 +151,7 @@ def test_leistung_protokoll():
     P.ax_legend_all(loc=4)
     ax = P.savefig(f"pIkennlinie.pdf")
 
-    p = c * U + d * U**2
+    p = c * U + d * U**2 + m
 
     P.plot_data(
         ax,
@@ -137,7 +171,7 @@ def test_leistung_protokoll():
         label="Spannung",
         offset=[0, 30],
         use_all_known=False,
-        guess={"c": 10, "d": 18},
+        guess={"c": 10, "d": 18, "m": 0},
         bounds=[
             {"name": "c", "min": 000, "max": 9000},
         ],
@@ -179,37 +213,61 @@ def test_leistung_protokoll():
     P.resolve(U23)
     P.resolve(U31)
 
-    print(
-        P.data[
-            [
-                "I1",
-                "I2",
-                "I3",
-                "I12",
-                "I23",
-                "I31",
-                "U1",
-                "U2",
-                "U3",
-                "U12",
-                "U23",
-                "U31",
-            ]
-        ]
-    )
+    # print(
+    #     P.data[
+    #         [
+    #             "I1",
+    #             "I2",
+    #             "I3",
+    #             "I12",
+    #             "I23",
+    #             "I31",
+    #             "U1",
+    #             "U2",
+    #             "U3",
+    #             "U12",
+    #             "U23",
+    #             "U31",
+    #         ]
+    #     ]
+    # )
     vecstuffen = np.stack((P.data.values.real, P.data.values.imag), axis=-1)
-    print(vecstuffen[0])
-    print(vecstuffen[0][:, 0])
-    print(vecstuffen[0][:, 1])
-    X = vecstuffen[0][4:7, 0]
-    Y = vecstuffen[0][4:7, 1]
-    print(X)
-    print(Y)
-    zz = np.zeros_like(X)
-    for i, x in enumerate(zz):
-        print(i, i // 3)
-        zz[i] = (i) // 3
-    ax.quiver(zz, zz, X, Y)
+    # print(vecstuffen[0])
+    # print(vecstuffen[0][:, 0])
+    # print(vecstuffen[0][:, 1])
+    # X = vecstuffen[0][4:7, 0]
+    vecs = vecstuffen[0][4:7]
+    # print(vecs)
+    # Y = vecstuffen[0][4:7, 1]
+    # print(X)
+    # print(Y)
+    printVectorChain(vecs, ax)
+    # v_off = np.zeros_like(vecs)
+    # prev_vec = np.zeros_like(vecs[0])
+    # for i, vec in enumerate(vecs):
+    #     v_off[i] = prev_vec
+    #     prev_vec += vec
+    # print(v_off)
+    # x_off = v_off[:, 0]
+    # y_off = v_off[:, 1]
+    # print(x_off)
+    # print(y_off)
+
+    # x_off = np.zeros_like(X)
+    # y_off = np.zeros_like(X)
+    # prev_x = 0
+    # prev_y = 0
+    # for i, (x, y) in enumerate(zip(X, Y)):
+    #     x_off[i] = prev_x
+    #     y_off[i] = prev_y
+    #     prev_x += x
+    #     prev_y += y
+    # print(x_off)
+    # print(y_off)
+    # # for i, x in enumerate(zz):
+    # #     # print(i, i // 3)
+    # #     zz[i] = (i) // 3
+    # ax.quiver(x_off, y_off, X, Y, angles="xy", scale_units="xy", scale=1)
 
     ax.set_title(f"Zeigerdiagramm")
     P.ax_legend_all(loc=4)
@@ -220,7 +278,7 @@ def test_leistung_protokoll():
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3.csv")
     P.load_data(filepath, loadnew=True)
     P.data = P.raw_data
-    print(P.data)
+    # print(P.data)
 
 
 if __name__ == "__main__":
