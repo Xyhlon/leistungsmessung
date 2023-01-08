@@ -1,5 +1,5 @@
 from labtool_ex2 import Project
-from sympy import exp, pi
+from sympy import exp, pi, sqrt, Abs
 import numpy as np
 from numpy.typing import NDArray
 import pandas as pd
@@ -9,6 +9,94 @@ import cmath
 
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
+
+
+def plotComplexChain(vecs: NDArray, axes: plt.Axes):
+    v_off = np.cumsum(vecs)
+    vecs = np.hstack([vecs, v_off[-1]])
+    v_off[-1] = 0
+    v_off = np.hstack([np.zeros_like(v_off[0]), v_off])
+    colors = ["#0fafaf"] * len(vecs)
+    colors[-1] = "#f00f0E"
+    print(vecs)
+    print(v_off)
+    print(vecs.real)
+    print(vecs.imag)
+    print(np.abs(v_off))
+    print(np.angle(v_off))
+    # If scale_units is 'x' then the vector will be 0.5 x-axis units.
+    # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.quiver.html
+    axes.quiver(
+        np.angle(v_off),
+        np.abs(v_off),
+        vecs.real,
+        vecs.imag,
+        scale_units="y",
+        scale=2,
+        facecolor=colors,
+        width=5e-3,
+    )
+
+
+def VoltNorma(U):
+    klasse = 0.005  # 0.5%
+    if U < 120:
+        return klasse * 120 + 120 / 120
+    if U < 240:
+        return klasse * 240 + 240 / 120
+    if U < 480:
+        return klasse * 480 + 5
+    if U < 600:
+        return klasse * 600 + 600 / 120
+
+
+def AmpereNorma(I):
+    klasse = 0.015  # 1.5%
+    if I < 0.24:
+        return klasse * 0.24 + 0.24 / 120
+    if I < 0.6:
+        return klasse * 0.6 + 0.6 / 120
+    if I < 1.2:
+        return klasse * 1.2 + 1.2 / 120
+    if I < 2.4:
+        return klasse * 2.4 + 2.4 / 120
+    if I < 6:
+        return klasse * 6 + 6 / 120
+
+
+def AmpereDigital(I):
+    if I <= 0.020:
+        if I < 0.01:
+            return 0.01 * I + 0.00003
+
+        return 0.01 * I + 0.0003
+    if I <= 2:
+        return 0.018 * I + 0.003
+    if I > 2:
+        return 0.03 * I + 0.03
+
+
+def VoltDigital(U):
+    if U <= 200:
+        return 0.008 * U + 0.3
+    if U > 200:
+        return 0.012 * U + 3
+
+
+def PowerNorma(P):
+    klasse = 0.005  # 0.5%
+    if P < 120:
+        return 120 * klasse + 120 / 120
+    if P < 240:
+        return 240 * klasse + 240 / 120
+    if P < 480:
+        return 480 * klasse + 480 / 120
+    if P < 600:
+        return 600 * klasse + 600 / 120
+
+
+def PowerChauvin(P):
+    return P * 0.01
 
 
 def printVectorChain(vecs: NDArray, axes: plt.Axes):
@@ -27,6 +115,10 @@ def printVectorChain(vecs: NDArray, axes: plt.Axes):
 
     colors = ["#0fafaf"] * len(vecs)
     colors[-1] = "#f00f0E"
+    print(v_off[:, 0])
+    print(v_off[:, 1])
+    print(vecs[:, 0])
+    print(vecs[:, 1])
 
     axes.quiver(
         v_off[:, 0],
@@ -92,10 +184,11 @@ def test_leistung_protokoll():
         "p3": r"\si{\watt}",
     }
 
+    plt.rcParams["axes.axisbelow"] = True
     P = Project("Leistung", global_variables=gv, global_mapping=gm, font=13)
     P.output_dir = "./"
     P.figure.set_size_inches((8, 6))
-    ax = P.figure.add_subplot()
+    ax: plt.Axes = P.figure.add_subplot()
     Im1 = 0.015 * 0.24
     Im2 = 0.015 * 0.6
     Um1 = 0.005 * 120
@@ -188,12 +281,13 @@ def test_leistung_protokoll():
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe2.csv")
     P.load_data(filepath, loadnew=True)
+    P.print_table(I1, I2, I3, I4, U1, U2, U3, p1, p2, p3, name="alles")
     I1 = I1 + 0j
     I2 = I2 * cmath.exp(cmath.pi / 3 * 2j)
     I3 = I3 * cmath.exp(cmath.pi / 3 * 4j)
-    I31 = I3 - I1
-    I12 = I1 - I2
-    I23 = I2 - I3
+    I12 = sqrt(I1**2 - 3 * I4**2 / 4) - I4 / 2
+    I23 = sqrt(I3**2 - 3 * I4**2 / 4) - I4 / 2
+    I31 = I4
     U1 = U1 + 0j
     U2 = U2 * cmath.exp(cmath.pi / 3 * 2j)
     U3 = U3 * cmath.exp(cmath.pi / 3 * 4j)
@@ -231,42 +325,13 @@ def test_leistung_protokoll():
     #         ]
     #     ]
     # )
+    P.figure.clear()
+    polar_ax = P.figure.add_subplot(polar=True)
     vecstuffen = np.stack((P.data.values.real, P.data.values.imag), axis=-1)
-    # print(vecstuffen[0])
-    # print(vecstuffen[0][:, 0])
-    # print(vecstuffen[0][:, 1])
-    # X = vecstuffen[0][4:7, 0]
-    vecs = vecstuffen[0][4:7]
-    # print(vecs)
-    # Y = vecstuffen[0][4:7, 1]
-    # print(X)
-    # print(Y)
-    printVectorChain(vecs, ax)
-    # v_off = np.zeros_like(vecs)
-    # prev_vec = np.zeros_like(vecs[0])
-    # for i, vec in enumerate(vecs):
-    #     v_off[i] = prev_vec
-    #     prev_vec += vec
-    # print(v_off)
-    # x_off = v_off[:, 0]
-    # y_off = v_off[:, 1]
-    # print(x_off)
-    # print(y_off)
-
-    # x_off = np.zeros_like(X)
-    # y_off = np.zeros_like(X)
-    # prev_x = 0
-    # prev_y = 0
-    # for i, (x, y) in enumerate(zip(X, Y)):
-    #     x_off[i] = prev_x
-    #     y_off[i] = prev_y
-    #     prev_x += x
-    #     prev_y += y
-    # print(x_off)
-    # print(y_off)
-    # # for i, x in enumerate(zz):
-    # #     # print(i, i // 3)
-    # #     zz[i] = (i) // 3
+    # vecs = vecstuffen[0][4:7]
+    # print(P.data.values[0][4:7])
+    plotComplexChain(P.data.values[0][4:6], polar_ax)
+    # printVectorChain(vecs, polar_ax)
     # ax.quiver(x_off, y_off, X, Y, angles="xy", scale_units="xy", scale=1)
 
     ax.set_title(f"Zeigerdiagramm")
