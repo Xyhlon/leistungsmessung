@@ -5,27 +5,30 @@ import numpy as np
 from numpy.typing import NDArray
 import pandas as pd
 import matplotlib.pyplot as plt  # noqa
+import matplotlib.colors
 import os
 import cmath
 import math
+from colorsys import rgb_to_hsv, hsv_to_rgb
 
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
 
 
-def plotComplexChain(vecs: NDArray, axes: plt.Axes):
+def complementary(r, g, b):
+    """returns RGB components of complementary color"""
+    hsv = rgb_to_hsv(r, g, b)
+    return hsv_to_rgb((hsv[0] + 0.2) % 1, hsv[1], hsv[2])
+
+
+def plotComplexChain(vecs: NDArray, axes: plt.Axes, color: str = "#0fafaf", label=None):
     v_off = np.cumsum(vecs)
     vecs = np.hstack([vecs, v_off[-1]])
     v_off[-1] = 0
     v_off = np.hstack([np.zeros_like(v_off[0]), v_off])
-    colors = ["#0fafaf"] * len(vecs)
-    colors[-1] = "#f00f0E"
-    # print(vecs)
-    # print(v_off)
-    # print(vecs.real)
-    # print(vecs.imag)
-    # print(np.abs(v_off))
-    # print(np.angle(v_off))
+    rgb = matplotlib.colors.to_rgb(color)
+    colors = [rgb] * len(vecs)
+    colors[-1] = complementary(*rgb)
     # If scale_units is 'x' then the vector will be 0.5 x-axis units.
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.quiver.html
     axes.quiver(
@@ -36,6 +39,7 @@ def plotComplexChain(vecs: NDArray, axes: plt.Axes):
         scale_units="y",
         scale=2,
         facecolor=colors,
+        label=label,
         width=5e-3,
     )
 
@@ -72,9 +76,18 @@ def zeigerDreieck(axes, I, U):
         #     axes.figure.texts.append(label)
 
         # Plot Strand Current
-        plotComplexChain(np.hstack([strangstrom[0], -strangstrom[2]]), currentaxes)
-        plotComplexChain(np.hstack([strangstrom[1], -strangstrom[0]]), currentaxes)
-        plotComplexChain(np.hstack([strangstrom[2], -strangstrom[1]]), currentaxes)
+        plotComplexChain(
+            np.hstack([strangstrom[0], -strangstrom[2]]),
+            currentaxes,
+            color="#FFAA66",
+            label="Strangströme",
+        )
+        plotComplexChain(
+            np.hstack([strangstrom[1], -strangstrom[0]]), currentaxes, color="#FFAA66"
+        )
+        plotComplexChain(
+            np.hstack([strangstrom[2], -strangstrom[1]]), currentaxes, color="#FFAA66"
+        )
         # Plot Composite Current
 
         currentaxes.quiver(
@@ -112,6 +125,8 @@ def zeigerDreieck(axes, I, U):
             currentaxes.set_rlim([0, smax / osmax * ocmax])
             axes.set_rlim([0, smax])
 
+        yield currentaxes
+
 
 def zeigerStern(axes: plt.Axes, I, U):
     for strangstrom, strangspannung, compositespannung in zip(
@@ -143,9 +158,18 @@ def zeigerStern(axes: plt.Axes, I, U):
             currentaxes.set_rlim([0, smax / osmax * ocmax])
             axes.set_rlim([0, smax])
 
-        plotComplexChain(np.hstack([strangspannung[0], -strangspannung[1]]), axes)
-        plotComplexChain(np.hstack([strangspannung[1], -strangspannung[2]]), axes)
-        plotComplexChain(np.hstack([strangspannung[2], -strangspannung[0]]), axes)
+        plotComplexChain(
+            np.hstack([strangspannung[0], -strangspannung[1]]),
+            axes,
+            color="#35baf6",
+            label="Strangspannungen",
+        )
+        plotComplexChain(
+            np.hstack([strangspannung[1], -strangspannung[2]]), axes, color="#35baf6"
+        )
+        plotComplexChain(
+            np.hstack([strangspannung[2], -strangspannung[0]]), axes, color="#35baf6"
+        )
         axes.quiver(
             np.zeros_like(compositespannung),
             np.zeros_like(compositespannung),
@@ -168,6 +192,8 @@ def zeigerStern(axes: plt.Axes, I, U):
             width=5e-3,
             label="Strangströme",
         )
+
+        yield currentaxes
 
 
 def VoltNorma(U):
