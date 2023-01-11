@@ -1,5 +1,5 @@
 from labtool_ex2 import Project
-from sympy import exp, pi, sqrt, Abs, conjugate, pi
+from sympy import exp, pi, sqrt, Abs, conjugate, pi, acos
 from sympy import I as jj
 import numpy as np
 from numpy.typing import NDArray
@@ -54,26 +54,20 @@ def round_up(n, decimals=0):
 
 
 def zeigerDreieck(axes, I, U):
-    print(I)
+    currentaxes = axes.figure.add_axes(
+        axes.get_position(),
+        projection="polar",
+        label="twin",
+        frameon=False,
+        theta_direction=axes.get_theta_direction(),
+        theta_offset=axes.get_theta_offset(),
+        rlabel_position=180,
+    )
+    currentaxes.xaxis.set_visible(False)
+
     for leiterstrom, strangstrom, strangspannung in zip(
         I[["I1", "I2", "I3"]].values, I[["I12", "I23", "I31"]].values, U.values
     ):
-        currentaxes = axes.figure.add_axes(
-            axes.get_position(),
-            projection="polar",
-            label="twin",
-            frameon=False,
-            theta_direction=axes.get_theta_direction(),
-            theta_offset=axes.get_theta_offset(),
-            rlabel_position=180,
-        )
-        currentaxes.xaxis.set_visible(False)
-
-        # There should be a method for this, but there isn't... Pull request?
-        # currentaxes._r_label_position._t = (22.5 + 180, 0.0)
-
-        # for label in axes.get_yticklabels():
-        #     axes.figure.texts.append(label)
 
         # Plot Strand Current
         plotComplexChain(
@@ -129,23 +123,21 @@ def zeigerDreieck(axes, I, U):
 
 
 def zeigerStern(axes: plt.Axes, I, U):
+
+    currentaxes = axes.figure.add_axes(
+        axes.get_position(),
+        projection="polar",
+        label="twin",
+        frameon=False,
+        theta_direction=axes.get_theta_direction(),
+        theta_offset=axes.get_theta_offset(),
+        rlabel_position=180,
+    )
+    currentaxes.xaxis.set_visible(False)
+
     for strangstrom, strangspannung, compositespannung in zip(
         I.values, U[["U1", "U2", "U3"]].values, U[["U12", "U23", "U31"]].values
     ):
-        currentaxes = axes.figure.add_axes(
-            axes.get_position(),
-            projection="polar",
-            label="twin",
-            frameon=False,
-            theta_direction=axes.get_theta_direction(),
-            theta_offset=axes.get_theta_offset(),
-            rlabel_position=180,
-        )
-        currentaxes.xaxis.set_visible(False)
-
-        # There should be a method for this, but there isn't... Pull request?
-        for label in axes.get_yticklabels():
-            axes.figure.texts.append(label)
 
         cmax = abs(max(strangstrom))
         smax = abs(max(compositespannung))
@@ -263,7 +255,6 @@ def printVectorChain(vecs: NDArray, axes: plt.Axes):
 
     v_off = np.zeros_like(vecs)
     prev_vec = np.zeros_like(vecs[0])
-    # print(prev_vec.shape, v_off.shape)
     v_off = np.vstack([v_off, prev_vec])
     for i, vec in enumerate(vecs):
         v_off[i] = prev_vec
@@ -364,6 +355,7 @@ def test_leistung_protokoll():
         "Pgesc": r"\si{\watt}",
     }
 
+    pd.set_option("display.max_columns", None)
     plt.rcParams["axes.axisbelow"] = True
     P = Project("Leistung", global_variables=gv, global_mapping=gm, font=13)
     P.output_dir = "./"
@@ -458,6 +450,7 @@ def test_leistung_protokoll():
     ax.set_title(f"Leistungskennlinie von Spannung")
     P.ax_legend_all(loc=4)
     ax = P.savefig(f"pUkennlinie.pdf")
+
     # A2 Dreiecks Schaltung
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe2dreieck.csv")
@@ -477,13 +470,18 @@ def test_leistung_protokoll():
     P.data["dp3"] = p3.data.apply(PowerChauvin)
     P.print_table(I1, I2, I3, I4, U12, U23, U31, p1, p2, p3, name="aufgabe2dreieck")
     P.data.fillna(0, inplace=True)
-    I12 = (sqrt(I1**2 - 3 * I4**2 / 4) - I4 / 2) * cmath.exp(cmath.pi / 3 * 2j)
-    I23 = (sqrt(I3**2 - 3 * I4**2 / 4) - I4 / 2) * cmath.exp(cmath.pi / 3 * 0j)
-    I31 = I4 * cmath.exp(cmath.pi / 3 * 4j)
+    I12 = sqrt(I1**2 - 3 * I4**2 / 4) - I4 / 2
+    I23 = sqrt(I3**2 - 3 * I4**2 / 4) - I4 / 2
+    I31 = I4
     P.resolve(I12)
     P.resolve(I23)
     P.resolve(I31)
-    print(P.data)
+
+    P.print_table(I12, I23, I31, name="dreieckStrangStrome")
+
+    P.data.I31 = P.data.I31 * cmath.exp(cmath.pi / 3 * 4j)
+    P.data.I12 = P.data.I12 * cmath.exp(cmath.pi / 3 * 2j)
+    P.data.I23 = P.data.I23 * cmath.exp(cmath.pi / 3 * 0j)
 
     I1 = I1 * exp(pi / 2 * jj)
     I2 = I2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
@@ -512,8 +510,11 @@ def test_leistung_protokoll():
     P.data.p3c = abs(P.data.p3c)
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
+    P.resolve(Pges)
+    # print(P.data)
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerDreieck")
 
-    zeigerDreieck(
+    zeiger = zeigerDreieck(
         ax,
         I=P.data[
             [
@@ -534,9 +535,12 @@ def test_leistung_protokoll():
         ],
     )
 
+    currentaxes = next(zeiger)
+    # print(P.data)
+
     ax.set_title(f"Zeigerdiagramm von Dreieckschaltung")
-    P.ax_legend_all(loc=4)
-    ax = P.savefig(f"zeigerDreieck.pdf")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerDreieck.pdf", clear=False)
 
     # A2 Stern Schaltung
     P.vload()
@@ -559,15 +563,47 @@ def test_leistung_protokoll():
 
     # Export measurements
     P.print_table(I1, I2, I3, I4, U1, U2, U3, p1, p2, p3, name="aufgabe2stern")
-    # print(P.data)
     P.data.fillna(0, inplace=True)
-    # print(P.data)
+    gamma1 = acos((U1**2 + U3**2 - 400**2) / (2 * U1 * U3))
+    gamma2 = acos((U2**2 + U3**2 - 400**2) / (2 * U2 * U3))
+    gamma3 = acos((U2**2 + U1**2 - 400**2) / (2 * U2 * U1))
+    phi2 = acos((U2**2 + 400**2 - U3**2) / (2 * U2 * 400))
+    phi1 = acos((U1**2 + 400**2 - U2**2) / (2 * U1 * 400))
+    phi3 = acos((U3**2 + 400**2 - U1**2) / (2 * U3 * 400))
+    P.resolve(gamma1)
+    P.resolve(gamma2)
+    P.resolve(gamma3)
+    P.resolve(phi2)
+    P.resolve(phi1)
+    P.resolve(phi3)
+    print(P.data.gamma1 - np.pi * 2 / 3)
+    print(P.data.gamma2 - np.pi * 2 / 3)
+    print(P.data.gamma3 - np.pi * 2 / 3)
+    print(1 / 3 - P.data.phi1 / (2 * np.pi))
+    print(P.data.phi2 / np.pi)
+    print(2 / 3 - P.data.phi3 / (2 * np.pi))
+
     I1 = I1 * cmath.exp(cmath.pi / 2 * 1j)
     I2 = I2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
     I3 = I3 * cmath.exp(cmath.pi * 7 / 6 * 1j)
-    U1 = U1 * cmath.exp(cmath.pi / 2 * 1j)
-    U2 = U2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
-    U3 = U3 * cmath.exp(cmath.pi * 7 / 6 * 1j)
+    # U1 = U1 * cmath.exp(cmath.pi / 2 * 1j)
+    # U2 = U2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
+    # U3 = U3 * cmath.exp(cmath.pi * 7 / 6 * 1j)
+    P.data.U1 = P.data.U1 * np.exp((2 * np.pi / 3 - P.data.phi1) * 1j)
+    P.data.U2 = P.data.U2 * np.exp((-P.data.phi2) * 1j)
+    P.data.U3 = P.data.U3 * np.exp((4 * np.pi / 3 - P.data.phi3) * 1j)
+    U1N = 400 / np.sqrt(3) * cmath.exp(cmath.pi / 2 * 1j)
+    U2N = 400 / np.sqrt(3) * cmath.exp(cmath.pi * 11 / 6 * 1j)
+    U3N = 400 / np.sqrt(3) * cmath.exp(cmath.pi * 7 / 6 * 1j)
+    print(
+        np.asarray(
+            [
+                abs(P.data.U1.values[2] - U1N),
+                abs(P.data.U2.values[2] - U2N),
+                abs(P.data.U3.values[2] - U3N),
+            ]
+        ).mean()
+    )
 
     Pges = p1 + p2 + p3
     # U0 = 4.45
@@ -575,9 +611,7 @@ def test_leistung_protokoll():
     P.resolve(I1)
     P.resolve(I2)
     P.resolve(I3)
-    P.resolve(U1)
-    P.resolve(U2)
-    P.resolve(U3)
+    print(P.data)
 
     U31 = U3 - U1
     U12 = U1 - U2
@@ -597,10 +631,9 @@ def test_leistung_protokoll():
     P.data.p3c = abs(P.data.p3c)
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
-    pd.set_option("display.max_columns", None)
-    print(P.data)
 
-    zeigerStern(
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerSternAuf2")
+    zeiger = zeigerStern(
         ax,
         I=P.data[
             [
@@ -620,20 +653,73 @@ def test_leistung_protokoll():
             ]
         ],
     )
-    # plotComplexChain(P.data.values[0][4:6], ax)
 
-    ax.set_title(f"Zeigerdiagramm von Sternschaltung")
-    P.ax_legend_all(loc=4)
-    ax = P.savefig(f"zeigerStern.pdf")
-    pd.set_option("display.max_columns", None)
-    # print(P.data)
+    currentaxes = next(zeiger)
+    plotComplexChain(
+        P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+            ]
+        ].values[0],
+        axes=currentaxes,
+        color="#800000",
+        label="Strangstromsumme",
+    )
+    ax.set_title(f"Symmetische Sternschaltung")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerSternSym.pdf", clear=False)
+
+    ax.clear()
+    currentaxes.clear()
+    currentaxes = next(zeiger)
+
+    plotComplexChain(
+        P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+            ]
+        ].values[1],
+        axes=currentaxes,
+        color="#800000",
+        label="Strangstromsumme",
+    )
+    ax.set_title(f"Asymmetrische Sternschaltung ohne Bruch")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerSternAsymOhneBruch.pdf", clear=False)
+
+    ax.clear()
+    currentaxes.clear()
+    currentaxes = next(zeiger)
+    plotComplexChain(
+        np.hstack([-U1N, P.data.U1[2]]),
+        ax,
+        color="#5f9ea0",
+        label="$-U_{iN}+U_i = U_0$",
+    )
+    plotComplexChain(
+        np.hstack([-U2N, P.data.U2[2]]),
+        ax,
+        color="#5f9ea0",
+    )
+    plotComplexChain(
+        np.hstack([-U3N, P.data.U3[2]]),
+        ax,
+        color="#5f9ea0",
+    )
+
+    ax.set_title(f"Asymmetrische Sternschaltung mit Bruch")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerSternAsymBruch.pdf", clear=False)
 
     # A3 Darstellung der Zählstatistik
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3.csv")
     P.load_data(filepath, loadnew=True)
     P.data = P.raw_data
-    # print(P.data)
 
 
 if __name__ == "__main__":
