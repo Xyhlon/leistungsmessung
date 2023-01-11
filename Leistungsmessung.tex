@@ -10,7 +10,7 @@
 \ohead{FLAB 1 \\
 	Leistungsmessung}
 % Fußzeile
-\addbibresource{leistungsmessung.bib}
+% \addbibresource{leistungsmessung.bib}
 
 \begin{document}
 %todo deckblatt
@@ -35,7 +35,7 @@ Ohmschen Gesetzes, \autoref{eq:ohmschesgesetz}, folgender Zusammenhang:
 
 \begin{equation}
 	P = U \cdot I = I^2 \cdot R = \frac{U^2}{R}
-	\label{eq:wirkleistung}
+	\label{eq:leistung}
 \end{equation}
 
 \begin{equation}
@@ -349,27 +349,27 @@ verwendet.
 %todo max kann ma in da tabelle a umbrüche machen also bei de Inventarnummern zb dass ma platz kriegen?
 
 \begin{table}[H]
-\caption{Verwendete Geräte
-}
-\begin{tblr}{lllll}
-\textbf{Gerätetyp}          & \textbf{Hersteller} & \textbf{Typ}                        & \textbf{Inventar-Nr}             & \textbf{Anmerkung} \\
-Transformator & Thalheimer & LTS 606 & 0161469 & \\
-Box mit Versorgungsspannung & & & F1 & \\
-Strommessgerät & Norma & analog & {VII/1106/9 \\ VII/1106/6 \\ VII/1106/3} & 3 x \\
-Spannungsmessgerät & Norma & analog & {VII/1120/2 \\ VII/1120/1 E3} & 3 x \\
-Leistungsmessgerät & Norma & analog & F18 F19 & 2 x \\
-Leistungsmessgerät & {Chauvin \\ Arnoux} & analog & C.A.505 & \\
-Multimeter & UNI-T & UT51 & & 2 x \\
-Multimeter & METEX & M-3610B & & \\
-Glühbirnen & & {3x \SI{60}{\watt} \\ 3x \SI{75}{\watt}} & & \\
-Kondensator & & \SI{12}{\micro\farad} & G5 V & 2 x \\
-Spule & & & P & \\
-Heizwiderstand & & 3x \SI{230}{\volt} & JFR/158/13 & 3 x \\
-Bananenstecker & & & & \\
-Spule mit Eisenkern & & & & 3 x \\
-Metallscheibe auf Sockel & Hancaner & DT2234C & & \\
-\end{tabular}
-\label{tab:gerate}
+	\caption{Verwendete Geräte
+	}
+	\begin{tblr}{lllll}
+		\textbf{Gerätetyp}          & \textbf{Hersteller} & \textbf{Typ}          & \textbf{Inventar-Nr} & \textbf{Anmerkung} \\
+		Transformator               & Thalheimer          & LTS 606               & 0161469              &                    \\
+		Box mit Versorgungsspannung &                     &                       & F1                   &                    \\
+		Strommessgerät              & Norma               & analog                & {VII/1106/9                               \\ VII/1106/6 \\ VII/1106/3} & 3 x \\
+		Spannungsmessgerät          & Norma               & analog                & {VII/1120/2                               \\ VII/1120/1 E3} & 3 x \\
+		Leistungsmessgerät          & Norma               & analog                & F18 F19              & 2 x                \\
+		Leistungsmessgerät          & {Chauvin                                                                                \\ Arnoux} & analog & C.A.505 & \\
+		Multimeter                  & UNI-T               & UT51                  &                      & 2 x                \\
+		Multimeter                  & METEX               & M-3610B               &                      &                    \\
+		Glühbirnen                  &                     & {3x \SI{60}{\watt}                                                \\ 3x \SI{75}{\watt}} & & \\
+		Kondensator                 &                     & \SI{12}{\micro\farad} & G5 V                 & 2 x                \\
+		Spule                       &                     &                       & P                    &                    \\
+		Heizwiderstand              &                     & 3x \SI{230}{\volt}    & JFR/158/13           & 3 x                \\
+		Bananenstecker              &                     &                       &                      &                    \\
+		Spule mit Eisenkern         &                     &                       &                      & 3 x                \\
+		Metallscheibe auf Sockel    & Hancaner            & DT2234C               &                      &                    \\
+	\end{tblr}
+	\label{tab:gerate}
 \end{table}
 
 \section{Versuchsdurchführung und Messergebnisse}
@@ -393,7 +393,13 @@ Wert von \SI[]{240}{\volt} erreicht ist.
 Die entsprechenden Werte der Messgeräte werden abgelesen und in folgender
 \autoref{tab:werte_ohm} aufgelistet.
 
-%todo \label{tab:erte_ohm}
+%todo caption
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:werte_ohm}
+	\centering
+	\include{./tables/messreihe_aufgabe1_raw}
+\end{table}
 
 \subsection{Symmetrische Last in Dreieckschaltung}
 
@@ -404,7 +410,14 @@ sind, sich also auf jeden jeweils eine mit \SI[]{75}{\watt} und eine mit
 \SI[]{60}{\watt} befindet. Alle abgelesenen Messwerte der Messgeräte sind in
 folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
 
-%todo \label{tab:werte_sym_dreieck}
+%todo caption
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:werte_sym_dreieck}
+	\centering
+	\include{./tables/messreihe_aufgabe2dreieck_1}
+	\include{./tables/messreihe_aufgabe2dreieck_2}
+\end{table}
 
 \subsection{Symmetrische Last in Sternschaltung}
 
@@ -412,9 +425,17 @@ Nun wird die Schaltung insofern modifiziert, dass nun eine Sternschaltung
 vorliegt, wie in \autoref{fig:aufbau2} sichtbar.
 
 Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_sym_stern} aufgelistet.
+\autoref{tab:wert_stern} aufgelistet.
 
-%todo \label{tab:werte_sym_stern}
+%todo caption
+
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:wert_stern}
+	\centering
+	\include{./tables/messreihe_aufgabe2stern_1}
+	\include{./tables/messreihe_aufgabe2stern_2}
+\end{table}
 
 \subsection{Asymmetrische Last in Sternschaltung}
 
@@ -430,9 +451,7 @@ verwirklicht:
 \end{itemize}
 
 Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_asym_stern} aufgelistet.
-
-%todo \label{tab:werte_asym_stern}
+\autoref{tab:wert_stern} aufgelistet.
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
 
@@ -442,7 +461,7 @@ gemessen, indem das entsprechende Multimeter als Spannungsmessgerät
 umfunktioniert wird. Die so abgelesenen Werte der Messgeräte sind in folgender
 \autoref{tab:werte_asym_stern_bruch} aufgelistet.
 
-%todo \label{tab:werte_asym_stern_bruch}
+%todo caption
 
 \subsection{Wirkleistungsmessung}
 Um die Wirkleistung eines realen Verbrauchers zu bestimmen, werden auch
@@ -452,27 +471,27 @@ Schaltung integriert.
 Alle abgelesenen Werte der Messgeräte sind in folgender
 \autoref{tab:werte_wirkleistung} aufgelistet.
 
-%todo \label{tab:werte_wirkleistung}
+%todo caption
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:werte_wirkleistung}
+	\centering
+	\include{./tables/messreihe_aufgabe3mess_1}
+	\include{./tables/messreihe_aufgabe3mess_2}
+\end{table}
 
 Nun werden die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch folgende Werte,
-aus \autoref{tab:werte_wirkleistung_vertauscht} entstehen:
-
-%todo \label{tab:werte_wirkleistung_vertauscht}
+aus \autoref{tab:werte_wirkleistung} entstehen:
 
 Im Rahmen der Bonusaufgabe wird die Schaltung leicht modifiziert, wie bereits
 in \autoref{sec:versuchsanordnung} angeführt. Dabei ist darauf zu achten, dass
 am 2. Strang eine Parallelschaltung von Kapazität und Induktivität vorliegt.
 
 Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_wirkleistung_bonus} aufgelistet.
-
-%todo \label{tab:werte_wirkleistung_bonus}
+\autoref{tab:werte_wirkleistung} aufgelistet.
 
 Nun werden auch wieder die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch
-folgende Werte, aus \autoref{tab:werte_wirkleistung_vertauscht_bonus}
-entstehen:
-
-%todo \label{tab:werte_wirkleistung_vertauscht_bonus}
+folgende Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
 
 \subsection{Blindleistungsmessung}
 
@@ -480,28 +499,19 @@ Um die Blinddleistung der Schaltung messbar zu machen, müssen die parallelen
 Verbindungen der Powermeter, nach \autoref{fig:aufbau4} umgebaut werden.
 
 Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_blindleistung} aufgelistet.
-
-%todo \label{tab:werte_blindleistung}
+\autoref{tab:werte_wirkleistung} aufgelistet.
 
 Nun werden die Außenleiter $L_2$ und $L_3$ erneut vertauscht, wodurch folgende
-Werte, aus \autoref{tab:werte_blindleistung_vertauscht} entstehen:
-
-%todo \label{tab:werte_blindleistung_vertauscht}
+Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
 
 Im Rahmen der Bonusaufgabe wird auch die leicht modifizierte Schaltung mit der
 Parallelschaltung von Kapazität und Induktivität am 2. Strang aufgebaut.
 
 Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_blindleistung_bonus} aufgelistet.
-
-%todo \label{tab:werte_blindleistung_bonus}
+\autoref{tab:werte_wirkleistung} aufgelistet.
 
 Nun werden auch wieder die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch
-folgende Werte, aus \autoref{tab:werte_blindleistung_vertauscht_bonus}
-entstehen:
-
-%todo \label{tab:werte_blindleistung_vertauscht_bonus}
+folgende Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
 
 \subsection{Bau eines rudimentärern Asynchron-Drehstrommotors}
 
@@ -568,10 +578,40 @@ seife erreicht.
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/pUkennlinie.pdf}
+	\end{center}
+	\caption[Energiespektrum der $\gamma$-Strahlung einer \ch{^{226}_{88}Ra} Probe]{
+		Aufgezeichnetes Gammaspektrum der \ch{^{226}_{88}Ra} Quelle und dessen
+		Zerfallsprodukten, mit ausgemessen und markierten Energiepeaks.
+	}\label{fig:pUkennlinie}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/pIkennlinie.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:pIkennlinie}
+\end{figure}
 \subsection{Symmetrische Last in Dreieckschaltung}
 
-\subsection{Symmetrische Last in Sternschaltung}
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:powerDreieck}
+	\centering
+	\include{./tables/messreihe_powerDreieck}
+\end{table}
 
+\subsection{Sternschaltungen}
+
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:powerStern}
+	\centering
+	\include{./tables/messreihe_powerSternAuf2}
+\end{table}
 \subsection{Asymmetrische Last in Sternschaltung}
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
@@ -584,7 +624,7 @@ seife erreicht.
 
 \newpage
 
-\printbibliography
+% \printbibliography
 \listoffigures
 \listoftables
 \end{document}
