@@ -382,7 +382,7 @@ def test_leistung_protokoll():
     P.data["dp"][P.data["U"] < 121] = Pm1
     P.data["dp"][P.data["U"] > 121] = Pm2
 
-    P.print_table(U, I, p, name="aufgabe1_raw")
+    P.print_table(U, I, p, name="aufgabe1_raw", inline_units=True)
     p = a * I + b * I**2 + m
 
     P.plot_data(
@@ -457,6 +457,7 @@ def test_leistung_protokoll():
     P.load_data(filepath, loadnew=True)
     P.figure.clear()
     ax = P.figure.add_subplot(polar=True)
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
 
     P.data["dI1"] = I1.data.apply(AmpereNorma)
     P.data["dI2"] = I2.data.apply(AmpereNorma)
@@ -468,7 +469,24 @@ def test_leistung_protokoll():
     P.data["dp1"] = p1.data.apply(PowerNorma)
     P.data["dp2"] = p2.data.apply(PowerNorma)
     P.data["dp3"] = p3.data.apply(PowerChauvin)
-    P.print_table(I1, I2, I3, I4, U12, U23, U31, p1, p2, p3, name="aufgabe2dreieck")
+    P.print_table(
+        I1,
+        I2,
+        I3,
+        I4,
+        name="aufgabe2dreieck_1",
+        inline_units=True,
+    )
+
+    P.print_table(
+        U12,
+        U23,
+        U31,
+        p1,
+        p2,
+        name="aufgabe2dreieck_2",
+        inline_units=True,
+    )
     P.data.fillna(0, inplace=True)
     I12 = sqrt(I1**2 - 3 * I4**2 / 4) - I4 / 2
     I23 = sqrt(I3**2 - 3 * I4**2 / 4) - I4 / 2
@@ -477,7 +495,7 @@ def test_leistung_protokoll():
     P.resolve(I23)
     P.resolve(I31)
 
-    P.print_table(I12, I23, I31, name="dreieckStrangStrome")
+    P.print_table(I12, I23, I31, name="dreieckStrangStrome", inline_units=True)
 
     P.data.I31 = P.data.I31 * cmath.exp(cmath.pi / 3 * 4j)
     P.data.I12 = P.data.I12 * cmath.exp(cmath.pi / 3 * 2j)
@@ -511,8 +529,7 @@ def test_leistung_protokoll():
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
     P.resolve(Pges)
-    # print(P.data)
-    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerDreieck")
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerDreieck", inline_units=True)
 
     zeiger = zeigerDreieck(
         ax,
@@ -536,7 +553,6 @@ def test_leistung_protokoll():
     )
 
     currentaxes = next(zeiger)
-    # print(P.data)
 
     ax.set_title(f"Zeigerdiagramm von Dreieckschaltung")
     P.ax_legend_all(loc=0)
@@ -548,6 +564,7 @@ def test_leistung_protokoll():
     P.load_data(filepath, loadnew=True)
     P.figure.clear()
     ax = P.figure.add_subplot(polar=True)
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
 
     # Calculate the Errors
     P.data["dI1"] = I1.data.apply(AmpereNorma)
@@ -557,12 +574,14 @@ def test_leistung_protokoll():
     P.data["dU1"] = U1.data.apply(VoltNorma)
     P.data["dU2"] = U2.data.apply(VoltNorma)
     P.data["dU3"] = U3.data.apply(VoltDigital)
-    P.data["dp1"] = p1.data.apply(PowerNorma)
+    P.data["dp1"] = p1.data.apply(PowerChauvin)
     P.data["dp2"] = p2.data.apply(PowerNorma)
-    P.data["dp3"] = p3.data.apply(PowerChauvin)
+    P.data["dp3"] = p3.data.apply(PowerNorma)
 
     # Export measurements
-    P.print_table(I1, I2, I3, I4, U1, U2, U3, p1, p2, p3, name="aufgabe2stern")
+    P.print_table(I1, I2, I3, I4, name="aufgabe2stern_1", inline_units=True)
+    P.print_table(U1, U2, U3, p1, p2, p3, name="aufgabe2stern_2", inline_units=True)
+
     P.data.fillna(0, inplace=True)
     gamma1 = acos((U1**2 + U3**2 - 400**2) / (2 * U1 * U3))
     gamma2 = acos((U2**2 + U3**2 - 400**2) / (2 * U2 * U3))
@@ -576,12 +595,12 @@ def test_leistung_protokoll():
     P.resolve(phi2)
     P.resolve(phi1)
     P.resolve(phi3)
-    print(P.data.gamma1 - np.pi * 2 / 3)
-    print(P.data.gamma2 - np.pi * 2 / 3)
-    print(P.data.gamma3 - np.pi * 2 / 3)
-    print(1 / 3 - P.data.phi1 / (2 * np.pi))
-    print(P.data.phi2 / np.pi)
-    print(2 / 3 - P.data.phi3 / (2 * np.pi))
+    # print(P.data.gamma1 - np.pi * 2 / 3)
+    # print(P.data.gamma2 - np.pi * 2 / 3)
+    # print(P.data.gamma3 - np.pi * 2 / 3)
+    # print(1 / 3 - P.data.phi1 / (2 * np.pi))
+    # print(P.data.phi2 / np.pi)
+    # print(2 / 3 - P.data.phi3 / (2 * np.pi))
 
     I1 = I1 * cmath.exp(cmath.pi / 2 * 1j)
     I2 = I2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
@@ -611,7 +630,6 @@ def test_leistung_protokoll():
     P.resolve(I1)
     P.resolve(I2)
     P.resolve(I3)
-    print(P.data)
 
     U31 = U3 - U1
     U12 = U1 - U2
@@ -632,7 +650,7 @@ def test_leistung_protokoll():
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
 
-    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerSternAuf2")
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerSternAuf2", inline_units=True)
     zeiger = zeigerStern(
         ax,
         I=P.data[
@@ -673,6 +691,7 @@ def test_leistung_protokoll():
 
     ax.clear()
     currentaxes.clear()
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
     currentaxes = next(zeiger)
 
     plotComplexChain(
@@ -693,20 +712,21 @@ def test_leistung_protokoll():
 
     ax.clear()
     currentaxes.clear()
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
     currentaxes = next(zeiger)
     plotComplexChain(
-        np.hstack([-U1N, P.data.U1[2]]),
+        np.hstack([P.data.U1[2], -U1N]),
         ax,
         color="#5f9ea0",
-        label="$-U_{iN}+U_i = U_0$",
+        label="$U_i - U_{iN} = U_0$",
     )
     plotComplexChain(
-        np.hstack([-U2N, P.data.U2[2]]),
+        np.hstack([P.data.U2[2], -U2N]),
         ax,
         color="#5f9ea0",
     )
     plotComplexChain(
-        np.hstack([-U3N, P.data.U3[2]]),
+        np.hstack([P.data.U3[2], -U3N]),
         ax,
         color="#5f9ea0",
     )
@@ -719,7 +739,40 @@ def test_leistung_protokoll():
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3.csv")
     P.load_data(filepath, loadnew=True)
-    P.data = P.raw_data
+    P.data = P.raw_data.droplevel("type", axis=1)
+    P.vload()
+    P.data["dI1"] = I1.data.apply(AmpereNorma)
+    P.data["dI2"] = I2.data.apply(AmpereNorma)
+    P.data["dI3"] = I3.data.apply(AmpereNorma)
+    P.data["dI4"] = I4.data.apply(AmpereDigital)
+    P.data["dU1"] = U1.data.apply(VoltNorma)
+    P.data["dU2"] = U2.data.apply(VoltNorma)
+    P.data["dU3"] = U3.data.apply(VoltNorma)
+    P.data["dU4"] = U4.data.apply(VoltDigital)
+    P.data["dU5"] = U5.data.apply(VoltDigital)
+    P.data["dp1"] = p1.data.apply(PowerChauvin)
+    P.data["dp2"] = p2.data.apply(PowerNorma)
+    P.data["dp3"] = p3.data.apply(PowerNorma)
+    P.print_table(
+        I1,
+        I2,
+        I3,
+        I4,
+        U1,
+        U2,
+        inline_units=True,
+        name="aufgabe3mess_1",
+    )
+    P.print_table(
+        U3,
+        U4,
+        U5,
+        p1,
+        p2,
+        p3,
+        inline_units=True,
+        name="aufgabe3mess_2",
+    )
 
 
 if __name__ == "__main__":
