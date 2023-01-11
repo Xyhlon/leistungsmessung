@@ -396,7 +396,10 @@ Die entsprechenden Werte der Messgeräte werden abgelesen und in folgender
 
 %todo caption
 \begin{table}[H]
-	\caption{Stuffing
+	\caption[Gemessene Werte bei der Variation der ohmschen Last]{Gemessene Werte bei der Variation der ohmschen Last \\
+	$U \dots$ gemessene Spannung in V \\
+	$I \dots$ gemessener Strom in A \\
+	$P \dots$ gemessene Leistung in W
 	}\label{tab:werte_ohm}
 	\centering
 	\include{./tables/messreihe_aufgabe1_raw}
@@ -413,7 +416,12 @@ folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
 
 %todo caption
 \begin{table}[H]
-	\caption{Stuffing
+	\caption[Abgelesene Werte bei symmetrischer Belastung in Dreiecksschaltung]
+	{Abgelesene Werte bei symmetrischer Belastung in Dreiecksschaltung\\
+	$I_i \dots$ gemessener Strom am i-ten Strang in A \\
+	$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A \\
+	$U_{ij} \dots$ gemessene Spannung zwischen den Strängen i und j in V \\
+	$P_{i}^M \dots$ gemessene Wirkleistungen in W (für genaue Bezeichnung siehe \autoref{fig:aufbau1})
 	}\label{tab:werte_sym_dreieck}
 	\centering
 	\include{./tables/messreihe_aufgabe2dreieck_1}
@@ -425,13 +433,21 @@ folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
 Nun wird die Schaltung insofern modifiziert, dass nun eine Sternschaltung
 vorliegt, wie in \autoref{fig:aufbau2} sichtbar.
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
+Der besseren Übersicht halber, sind alle abgelesenen Werte der Messgeräte für die Sternschaltung in folgender
 \autoref{tab:wert_stern} aufgelistet.
 
-%todo caption
+%todo bei bruch fehlt die Spannung in der 3. Zeile ist wert was ich dir am montag gesagt habe
 
 \begin{table}[H]
-	\caption{Stuffing
+	\caption[Abgelesene Werte bei Sternschaltung]
+	{Abgelesene Werte bei Sternschaltung\\
+	1. Zeile \dots symmetrische Belastung\\
+	2. Zeile \dots asymmetrische Belastung\\
+	3. Zeile \dots asymmetrische Belastung mit simulierten Kabelbruch\\
+	$I_i \dots$ gemessener Strom am i-ten Strang in A \\
+	$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A \\
+	$U_{i} \dots$ gemessene Spannung am i-ten Strang in V \\
+	$P_{i}^M \dots$ gemessene Wirkleistungen in W (für genaue Bezeichnung siehe \autoref{fig:aufbau2})
 	}\label{tab:wert_stern}
 	\centering
 	\include{./tables/messreihe_aufgabe2stern_1}
@@ -451,8 +467,8 @@ verwirklicht:
 	\item $L_3$ \(\dots\) 1 x \SI[]{75}{\watt} und 2 x \SI[]{60}{\watt}
 \end{itemize}
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:wert_stern} aufgelistet.
+Alle abgelesenen Werte der Messgeräte sind, wie bereits erwähnt, in folgender
+\autoref{tab:wert_stern} in der 2. Zeile angefügt.
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
 
@@ -460,59 +476,65 @@ Um nun einen Kabelbruch zu simulieren, wird die Verbindung des Neutralleiters
 unterbrochen. Zusätzlich wird nun auch der Spannungsabfall an jener Stelle
 gemessen, indem das entsprechende Multimeter als Spannungsmessgerät
 umfunktioniert wird. Die so abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_asym_stern_bruch} aufgelistet.
+\autoref{tab:werte_stern} in der 3. Zeile aufgelistet.
 
-%todo caption
 
 \subsection{Wirkleistungsmessung}
 Um die Wirkleistung eines realen Verbrauchers zu bestimmen, werden auch
 Kapazitäten und Induktivitäten, wie in \autoref{fig:aufbau3} sichtbar, in die
 Schaltung integriert.
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_wirkleistung} aufgelistet.
+Es sind, der besseren übersicht halber, wieder alle erhaltenen Werte für die nächsten Aufgaben in 
+\autoref{tab:werte_wirkleistung} aufgelistet. Die gemessenen Werte der realen Verbraucher sind dabei in der
+1. Zeile sichtbar.
 
 %todo caption
 \begin{table}[H]
-	\caption{Stuffing
+	\caption[Abgelesene Werte für die Bestimmung der Wirkleistung]
+	{Abgelesene Werte für die Bestimmung der Wirkleistung\\
+	1. Zeile \dots Wirkleistung eines realen Verbrauchers\\
+	2. Zeile \dots Wirkleistung eines realen Verbrauchers mit vertauschten Außenleitern\\
+	3. Zeile \dots Wirkleistung bei modifizierter Schaltung\\
+	4. Zeile \dots Blindleistung eines realen Verbrauchers\\
+	5. Zeile \dots Blindleistung eines realen Verbrauchers mit vertauschten Außenleitern\\
+	6. Zeile \dots Blindleistung bei modifizierter Schaltung\\
+	$I_i \dots$ gemessener Strom am i-ten Strang in A \\
+	$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A \\
+	$U_{i} \dots$ gemessene Spannung am i-ten Strang in V \\
+	$P_{i}^M \dots$ gemessene Wirkleistungen in W (für genaue Bezeichnung siehe \autoref{fig:aufbau3})
 	}\label{tab:werte_wirkleistung}
 	\centering
 	\include{./tables/messreihe_aufgabe3mess_1}
 	\include{./tables/messreihe_aufgabe3mess_2}
 \end{table}
 
-Nun werden die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch folgende Werte,
-aus \autoref{tab:werte_wirkleistung} entstehen:
+Nun werden die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch die Werte,
+aus der 2.Zeile der \autoref{tab:werte_wirkleistung} entstehen.
 
 Im Rahmen der Bonusaufgabe wird die Schaltung leicht modifiziert, wie bereits
 in \autoref{sec:versuchsanordnung} angeführt. Dabei ist darauf zu achten, dass
 am 2. Strang eine Parallelschaltung von Kapazität und Induktivität vorliegt.
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
+Alle abgelesenen Werte der Messgeräte sind in der 3. Zeile in 
 \autoref{tab:werte_wirkleistung} aufgelistet.
-
-Nun werden auch wieder die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch
-folgende Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
 
 \subsection{Blindleistungsmessung}
 
-Um die Blinddleistung der Schaltung messbar zu machen, müssen die parallelen
+Um die Blindleistung der Schaltung messbar zu machen, müssen die parallelen
 Verbindungen der Powermeter, nach \autoref{fig:aufbau4} umgebaut werden.
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
+Alle abgelesenen Werte der Messgeräte sind in der 4. Zeile in
 \autoref{tab:werte_wirkleistung} aufgelistet.
 
-Nun werden die Außenleiter $L_2$ und $L_3$ erneut vertauscht, wodurch folgende
-Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
+Nun werden die Außenleiter $L_2$ und $L_3$ erneut vertauscht, wodurch die
+Werte aus Zeile 5, aus \autoref{tab:werte_wirkleistung} entstehen.
 
 Im Rahmen der Bonusaufgabe wird auch die leicht modifizierte Schaltung mit der
 Parallelschaltung von Kapazität und Induktivität am 2. Strang aufgebaut.
 
-Alle abgelesenen Werte der Messgeräte sind in folgender
+Alle abgelesenen Werte der Messgeräte sind in der 6. Zeile von 
 \autoref{tab:werte_wirkleistung} aufgelistet.
 
-Nun werden auch wieder die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch
-folgende Werte, aus \autoref{tab:werte_wirkleistung} entstehen:
 
 \subsection{Bau eines rudimentärern Asynchron-Drehstrommotors}
 
