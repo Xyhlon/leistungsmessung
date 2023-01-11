@@ -330,23 +330,26 @@ entsprechend modifiziert werden.
 	\label{fig:aufbau4}
 \end{figure}
 
-\subsection{Bau eines rudimentärern Asynchron-Drehstrommotors}
+\subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
 
 Um den Bau eines rudimentären Asynchron-Drehstrommotors zu realisieren, werden
 3 Spulen mit Eisenkern wie in \autoref{fig:motor} um eine drehbar gelagerte
 Metallscheibe aufgestellt. Die Spulen werden mit vorgeschalteten
 Heizwiderständen an die Versorgungsspannung geschlossen.
 
-%todo max bitte das Bild vom Motor
-%\label{fig:motor}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/motor.jpg}
+	\end{center}
+	\caption[Drehzahlmessung des rudimentären Asynchron-Drehstrommotors]{ Drehzahlmessung
+		des rudimentären Asynchron-Drehstrommotors.
+	}\label{fig:motor}
+\end{figure}
 
-\section{Geräteliste}
-\label{sec:geraeteliste}
+\section{Geräteliste}\label{sec:geraeteliste}
 
 Für den Versuch werden die in \autoref{tab:gerate} aufgelisteten Geräte
 verwendet.
-
-%todo max kann ma in da tabelle a umbrüche machen also bei de Inventarnummern zb dass ma platz kriegen?
 
 \begin{table}[H]
 	\caption{Verwendete Geräte
@@ -368,12 +371,10 @@ verwendet.
 		Bananenstecker              &                     &                       &                      &                    \\
 		Spule mit Eisenkern         &                     &                       &                      & 3 x                \\
 		Metallscheibe auf Sockel    & Hancaner            & DT2234C               &                      &                    \\
-	\end{tblr}
-	\label{tab:gerate}
+	\end{tblr}\label{tab:gerate}
 \end{table}
 
-\section{Versuchsdurchführung und Messergebnisse}
-\label{sec:versuchsdurchfuehrung_messergebnisse}
+\section{Versuchsdurchführung und Messergebnisse}\label{sec:versuchsdurchfuehrung_messergebnisse}
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
@@ -533,23 +534,85 @@ konnte war 1691 Umdrehungen.
 \label{sec:auswertung}
 
 \subsection{ohmsche Last in Wechselstromkreis}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/pUkennlinie.pdf}
+	\end{center}
+	\caption[Energiespektrum der $\gamma$-Strahlung einer \ch{^{226}_{88}Ra} Probe]{
+		Aufgezeichnetes Gammaspektrum der \ch{^{226}_{88}Ra} Quelle und dessen
+		Zerfallsprodukten, mit ausgemessen und markierten Energiepeaks.
+	}\label{fig:pUkennlinie}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/pIkennlinie.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:pIkennlinie}
+\end{figure}
 
 \subsection{Symmetrische Last in Dreieckschaltung}
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:powerDreieck}
+	\centering
+	\include{./tables/messreihe_powerDreieck}
+\end{table}
 
-\subsection{Symmetrische Last in Sternschaltung}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/zeigerDreieck.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:zeigerDreieck}
+\end{figure}
 
-\subsection{Asymmetrische Last in Sternschaltung}
+\subsection{Sternschaltungen}
 
-\subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:powerStern}
+	\centering
+	\include{./tables/messreihe_powerSternAuf2}
+\end{table}
 
-\subsection{Wirkleistungsmessung}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternSym.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:zeigerSternSym}
+\end{figure}
 
-\subsection{Blindleistungsmessung}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymOhneBruch.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:zeigerSternAsymOhneBruch}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymBruch.pdf}
+	\end{center}
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	}\label{fig:zeigerSternAsymBruch}
+\end{figure}
+
+\subsection{Wirk- und Blindleistungsmessung bei allgemeiner Last im Dreiphasennetz}
+
+\begin{table}[H]
+	\caption{Stuffing
+	}\label{tab:powerStern}
+	\centering
+	% \include{./tables/}
+\end{table}
 
 \subsection{Bau eines rudimentärern Asynchron-Drehstrommotors}
 
-\section{Diskussion}
-\label{sec:diskussion}
+\section{Diskussion}\label{sec:diskussion}
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
@@ -573,45 +636,14 @@ beachtlich gesteigert werden konnte. Dies wurde vor allem durch feine
 Anpassungen der Eisenkerne und auch eine Schmierung der Metallscheibe durch
 seife erreicht.
 
-\section{Zusammenfassung}
-\label{sec:zusammenfassung}
+\section{Zusammenfassung}\label{sec:zusammenfassung}
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width = 0.95\textwidth]{figures/pUkennlinie.pdf}
-	\end{center}
-	\caption[Energiespektrum der $\gamma$-Strahlung einer \ch{^{226}_{88}Ra} Probe]{
-		Aufgezeichnetes Gammaspektrum der \ch{^{226}_{88}Ra} Quelle und dessen
-		Zerfallsprodukten, mit ausgemessen und markierten Energiepeaks.
-	}\label{fig:pUkennlinie}
-\end{figure}
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[width = 0.95\textwidth]{figures/pIkennlinie.pdf}
-	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
-	}\label{fig:pIkennlinie}
-\end{figure}
 \subsection{Symmetrische Last in Dreieckschaltung}
-
-\begin{table}[H]
-	\caption{Stuffing
-	}\label{tab:powerDreieck}
-	\centering
-	\include{./tables/messreihe_powerDreieck}
-\end{table}
 
 \subsection{Sternschaltungen}
 
-\begin{table}[H]
-	\caption{Stuffing
-	}\label{tab:powerStern}
-	\centering
-	\include{./tables/messreihe_powerSternAuf2}
-\end{table}
 \subsection{Asymmetrische Last in Sternschaltung}
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
