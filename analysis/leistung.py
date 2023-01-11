@@ -11,6 +11,7 @@ import cmath
 import math
 from colorsys import rgb_to_hsv, hsv_to_rgb
 
+plt.PolarAxes
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
 
@@ -61,7 +62,7 @@ def zeigerDreieck(axes, I, U):
         frameon=False,
         theta_direction=axes.get_theta_direction(),
         theta_offset=axes.get_theta_offset(),
-        rlabel_position=180,
+        rlabel_position=170,
     )
     currentaxes.xaxis.set_visible(False)
 
@@ -69,6 +70,11 @@ def zeigerDreieck(axes, I, U):
         I[["I1", "I2", "I3"]].values, I[["I12", "I23", "I31"]].values, U.values
     ):
 
+        # currentaxes.set_rlabel_position(170)
+        # currentaxes.set_ylabel("I", rotation=0)
+        # axes.set_rlabel_position(22.5)
+        # axes.set_ylabel("U", rotation=0)
+        # axes.set_xlabel("$\\phi$")
         # Plot Strand Current
         plotComplexChain(
             np.hstack([strangstrom[0], -strangstrom[2]]),
@@ -131,13 +137,21 @@ def zeigerStern(axes: plt.Axes, I, U):
         frameon=False,
         theta_direction=axes.get_theta_direction(),
         theta_offset=axes.get_theta_offset(),
-        rlabel_position=180,
+        rlabel_position=170,
     )
     currentaxes.xaxis.set_visible(False)
 
     for strangstrom, strangspannung, compositespannung in zip(
         I.values, U[["U1", "U2", "U3"]].values, U[["U12", "U23", "U31"]].values
     ):
+        # print(currentaxes._r_label_position)
+        # currentaxes.set_rlabel_position(70)
+        # currentaxes._r_label_position.invalidate()
+        # print(currentaxes._r_label_position)
+        # currentaxes.set_ylabel("I", rotation=0)
+        # axes.set_rlabel_position(22.5)
+        # axes.set_ylabel("U", rotation=0)
+        axes.set_xlabel("$\\phi$")
 
         cmax = abs(max(strangstrom))
         smax = abs(max(compositespannung))

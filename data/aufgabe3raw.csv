@@ -1,8 +1,8 @@
 wert,wert,wert,wert,wert,wert,wert,wert,wert,wert,wert,wert
 I1,I2,I3,I4,U1,U2,U3,U4,U5,P1,P2,P3// I1 2.4A 120, I2 0.6 120, I3 2.4 120, I4 digital, U1,U2 240V 120, U3 120V 120, U4,U5 digital, P1 Neu 120W 120, P2 120W 120, P3 600W 120
 1.54,0.3275,1.5,1.53,229,212,84,215,76.3,74,69,345 // Sternschaltung Wirkleistung Allgemeiner 
-1.56,0.3375,1.5,1.53,230,213,84.5,215,46.2,0.5,48,116 // Anderungen P1 60W 120, P3 120W 120 Sternschaltung Blind Allgemeiner
 1.56,0.33,1.49,0.984,230,213,84.5,214,46.1,75,70,340 // Anderungen P3 480W 120 Sternschaltung Wirk Allgemeiner Vertauschung
-1.56,0.335,1.5,0.978,230,213,84.5,214,46,-0.5,-49,-124 // Anderungen P1 60W 120, P3 120W 120 Sternschaltung Blind Allgemeiner Vertauschung
 1.56,1.53,0.775,1.145,230,217,53,201,109.1,75,69,86 // Anderungen I2 2.4, I3 1.2, P1 120W 120, P2 600W 120, P3 120W Bonus Wirk
+1.56,0.3375,1.5,1.53,230,213,84.5,215,46.2,0.5,48,116 // Anderungen P1 60W 120, P3 120W 120 Sternschaltung Blind Allgemeiner
+1.56,0.335,1.5,0.978,230,213,84.5,214,46,-0.5,-49,-124 // Anderungen P1 60W 120, P3 120W 120 Sternschaltung Blind Allgemeiner Vertauschung
 1.56,1.52,0.775,1.140,230,217,53,201,108.8,1,140,270 // Anderungen zu ober P1 60W 120, P2 240W 120, P3 480W Bonus Blind
