@@ -69,7 +69,6 @@ def zeigerDreieck(axes, I, U):
     for leiterstrom, strangstrom, strangspannung in zip(
         I[["I1", "I2", "I3"]].values, I[["I12", "I23", "I31"]].values, U.values
     ):
-
         # currentaxes.set_rlabel_position(170)
         # currentaxes.set_ylabel("I", rotation=0)
         # axes.set_rlabel_position(22.5)
@@ -151,6 +150,8 @@ def zeigerStern(axes: plt.Axes, I, U):
         # currentaxes.set_ylabel("I", rotation=0)
         # axes.set_rlabel_position(22.5)
         # axes.set_ylabel("U", rotation=0)
+        currentaxes.set_rgrids([5, 10], angle=22)
+        axes.set_rgrids([5, 10], angle=22)
         axes.set_xlabel("$\\phi$")
 
         cmax = abs(max(strangstrom))
@@ -263,39 +264,6 @@ def PowerChauvin(P):
     return P * 0.01
 
 
-def printVectorChain(vecs: NDArray, axes: plt.Axes):
-    """vectorChain is a (2,) array in the first row are the x coordinates of the vector which shall be concateted and in second row are the y coordinates"""
-    # vectorChain
-
-    v_off = np.zeros_like(vecs)
-    prev_vec = np.zeros_like(vecs[0])
-    v_off = np.vstack([v_off, prev_vec])
-    for i, vec in enumerate(vecs):
-        v_off[i] = prev_vec
-        prev_vec += vec
-
-    vecs = np.vstack([vecs, prev_vec])
-
-    colors = ["#0fafaf"] * len(vecs)
-    colors[-1] = "#f00f0E"
-    # print(v_off[:, 0])
-    # print(v_off[:, 1])
-    # print(vecs[:, 0])
-    # print(vecs[:, 1])
-
-    axes.quiver(
-        v_off[:, 0],
-        v_off[:, 1],
-        vecs[:, 0],
-        vecs[:, 1],
-        angles="xy",
-        scale_units="xy",
-        scale=1,
-        facecolor=colors,
-        width=3e-3,
-    )
-
-
 def test_leistung_protokoll():
     # zLuft / cps zPapier / cps zKunststoff / cps zAlu0_8 / cps zAlu1_5 / cps
     gm = {
@@ -307,8 +275,8 @@ def test_leistung_protokoll():
         "U12": r"U_{12}",
         "U23": r"U_{23}",
         "U31": r"U_{31}",
-        "U4": r"U_4",
-        "U5": r"U_5",
+        "U4": r"U_{R3}",
+        "U5": r"U_{L}",
         "I": r"I",
         "I1": r"I_1",
         "I2": r"I_2",
@@ -326,11 +294,19 @@ def test_leistung_protokoll():
         "p1": r"P_1^{M}",
         "p2": r"P_2^{M}",
         "p3": r"P_3^{M}",
+        "q1": r"Q_1^{M}",
+        "q2": r"Q_2^{M}",
+        "q3": r"Q_3^{M}",
         "p1c": r"P_1^{C}",
         "p2c": r"P_2^{C}",
         "p3c": r"P_3^{C}",
+        "q1c": r"Q_1^{C}",
+        "q2c": r"Q_2^{C}",
+        "q3c": r"Q_3^{C}",
         "Pges": r"P_{ges}^{M}",
+        "Qges": r"Q_{ges}^{M}",
         "Pgesc": r"P_{ges}^{C}",
+        "Qgesc": r"Q_{ges}^{C}",
         "E": r"E_{\mathrm{kin}}",
     }
     gv = {
@@ -365,8 +341,16 @@ def test_leistung_protokoll():
         "p1c": r"\si{\watt}",
         "p2c": r"\si{\watt}",
         "p3c": r"\si{\watt}",
+        "q1c": r"\si{\Var}",
+        "q2c": r"\si{\Var}",
+        "q3c": r"\si{\Var}",
+        "q1": r"\si{\Var}",
+        "q2": r"\si{\Var}",
+        "q3": r"\si{\Var}",
         "Pges": r"\si{\watt}",
         "Pgesc": r"\si{\watt}",
+        "Qgesc": r"\si{\Var}",
+        "Qges": r"\si{\Var}",
     }
 
     pd.set_option("display.max_columns", None)
@@ -622,6 +606,8 @@ def test_leistung_protokoll():
     # U1 = U1 * cmath.exp(cmath.pi / 2 * 1j)
     # U2 = U2 * cmath.exp(cmath.pi * 11 / 6 * 1j)
     # U3 = U3 * cmath.exp(cmath.pi * 7 / 6 * 1j)
+    # TODO
+
     P.data.U1 = P.data.U1 * np.exp((2 * np.pi / 3 - P.data.phi1) * 1j)
     P.data.U2 = P.data.U2 * np.exp((-P.data.phi2) * 1j)
     P.data.U3 = P.data.U3 * np.exp((4 * np.pi / 3 - P.data.phi3) * 1j)
@@ -748,6 +734,8 @@ def test_leistung_protokoll():
     ax.set_title(f"Asymmetrische Sternschaltung mit Bruch")
     P.ax_legend_all(loc=0)
     P.savefig(f"zeigerSternAsymBruch.pdf", clear=False)
+    ax.clear()
+    currentaxes.clear()
 
     # A3 Darstellung der Zählstatistik
     P.vload()
@@ -767,6 +755,11 @@ def test_leistung_protokoll():
     P.data["dp1"] = p1.data.apply(PowerChauvin)
     P.data["dp2"] = p2.data.apply(PowerNorma)
     P.data["dp3"] = p3.data.apply(PowerNorma)
+    P.gm["U1"] = "U_{1}"
+    P.gm["U2"] = "U_{R2}"
+    P.gm["U3"] = "U_{C}"
+    P.gm["U4"] = "U_{R3}"
+    P.gm["U5"] = "U_{L}"
     P.print_table(
         I1,
         I2,
@@ -787,6 +780,222 @@ def test_leistung_protokoll():
         inline_units=True,
         name="aufgabe3mess_2",
     )
+
+    P.vload()
+    filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3leistung.csv")
+    P.load_data(filepath, loadnew=True)
+    P.data = P.raw_data.droplevel("type", axis=1)
+    P.vload()
+    P.data["dI1"] = I1.data.apply(AmpereNorma)
+    P.data["dI2"] = I2.data.apply(AmpereNorma)
+    P.data["dI3"] = I3.data.apply(AmpereNorma)
+    P.data["dI4"] = I4.data.apply(AmpereDigital)
+    P.data["dU1"] = U1.data.apply(VoltNorma)
+    P.data["dU2"] = U2.data.apply(VoltNorma)
+    P.data["dU3"] = U3.data.apply(VoltNorma)
+    P.data["dU4"] = U4.data.apply(VoltDigital)
+    P.data["dU5"] = U5.data.apply(VoltDigital)
+    P.data["dp1"] = p1.data.apply(PowerChauvin)
+    P.data["dp2"] = p2.data.apply(PowerNorma)
+    P.data["dp3"] = p3.data.apply(PowerNorma)
+
+    U23 = sqrt(U2**2 + U3**2)
+    U12 = sqrt(U4**2 + U5**2)
+    P.resolve(U23)
+    P.resolve(U12)
+
+    p1c = I1 * U1
+    p2c = I2 * U2
+    p3c = I3 * U4
+
+    q1c = I1 * 0
+    dq1c = I1 * 0
+    q2c = I2 * U3
+    q3c = I3 * U5
+    print(p1c)
+    print(p2c)
+    print(p3c)
+    print(q1c)
+    print(q2c)
+    print(q3c)
+
+    P.resolve(p1c)
+    P.resolve(p2c)
+    P.resolve(p3c)
+    P.resolve(q1c)
+    P.inject_err(dq1c)
+
+    P.resolve(q2c)
+    P.resolve(q3c)
+
+    Pges = p1 + p2 + p3
+    Pgesc = p1c + p2c + p3c
+    Qgesc = q1c + q2c + q3c
+    P.resolve(Pges)
+    P.resolve(Pgesc)
+    P.resolve(Qgesc)
+    P.print_table(
+        p1c,
+        p1,
+        p2c,
+        p2,
+        p3c,
+        p3,
+        inline_units=True,
+        name="aufgabe3power_1_1",
+    )
+
+    P.print_table(
+        q1c,
+        q2c,
+        q3c,
+        Qgesc,
+        Pgesc,
+        Pges,
+        inline_units=True,
+        name="aufgabe3power_2_1",
+    )
+
+    print(P.data)
+
+    P.vload()
+    filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3blind.csv")
+    P.load_data(filepath, loadnew=True)
+    P.data = P.raw_data.droplevel("type", axis=1)
+    P.vload()
+    P.data["dI1"] = I1.data.apply(AmpereNorma)
+    P.data["dI2"] = I2.data.apply(AmpereNorma)
+    P.data["dI3"] = I3.data.apply(AmpereNorma)
+    P.data["dI4"] = I4.data.apply(AmpereDigital)
+    P.data["dU1"] = U1.data.apply(VoltNorma)
+    P.data["dU2"] = U2.data.apply(VoltNorma)
+    P.data["dU3"] = U3.data.apply(VoltNorma)
+    P.data["dU4"] = U4.data.apply(VoltDigital)
+    P.data["dU5"] = U5.data.apply(VoltDigital)
+    P.data["dq1"] = q1.data.apply(PowerChauvin)
+    P.data["dq2"] = q2.data.apply(PowerNorma)
+    P.data["dq3"] = q3.data.apply(PowerNorma)
+    q1 = q1 / (-(3**0.5))
+    q2 = q2 / (-(3**0.5))
+    q3 = q3 / (-(3**0.5))
+
+    U23 = sqrt(U2**2 + U3**2)
+    U12 = sqrt(U4**2 + U5**2)
+    P.resolve(U23)
+    P.resolve(U12)
+
+    p1c = I1 * U1
+    p2c = I2 * U2
+    p3c = I3 * U4
+
+    q1c = I1 * 0
+    dq1c = I1 * 0
+    q2c = I2 * U3
+    q3c = I3 * U5
+
+    P.resolve(p1c)
+    P.resolve(p2c)
+    P.resolve(p3c)
+
+    P.resolve(q1c)
+    P.resolve(q2c)
+    P.resolve(q3c)
+
+    P.inject_err(dq1c)
+
+    P.resolve(q1)
+    P.resolve(q2)
+    P.resolve(q3)
+
+    Qges = q1 + q2 + q3
+    Pgesc = p1c + p2c + p3c
+    Qgesc = q1c + q2c + q3c
+    P.resolve(Qges)
+    P.resolve(Pgesc)
+    P.resolve(Qgesc)
+    P.print_table(
+        q1c,
+        q1,
+        q2c,
+        q2,
+        q3c,
+        q3,
+        inline_units=True,
+        name="aufgabe3power_1_2",
+    )
+
+    P.print_table(
+        p1c,
+        p2c,
+        p3c,
+        Pgesc,
+        Qgesc,
+        Qges,
+        inline_units=True,
+        name="aufgabe3power_2_2",
+    )
+
+    I1 = I1 * cmath.exp(cmath.pi * 0 * 1j)
+    I2 = I2 * cmath.exp(cmath.pi * 2 / 3 * 1j)
+    I3 = I3 * cmath.exp(cmath.pi * 4 / 3 * 1j)
+    U1 = U1 * cmath.exp(cmath.pi * 0 * 1j)
+    U2 = U2 * cmath.exp(cmath.pi * 2 / 3 * 1j)
+    U3 = U3 * cmath.exp(cmath.pi * (2 / 3 - 0.5) * 1j)
+    U4 = U4 * cmath.exp(cmath.pi * 4 / 3 * 1j)
+    U5 = U5 * cmath.exp(cmath.pi * (4 / 3 + 0.5) * 1j)
+    P.resolve(I1)
+    P.resolve(I2)
+    P.resolve(I3)
+    P.resolve(U1)
+    P.resolve(U2)
+    P.resolve(U3)
+    P.resolve(U4)
+    P.resolve(U5)
+
+    U31 = U4 + U5 - U1
+    U12 = U1 - (U2 + U3)
+    U23 = (U2 + U3) - (U4 + U5)
+    P.resolve(U31)
+    P.resolve(U12)
+    P.resolve(U23)
+    print(P.data)
+
+    zeiger = zeigerStern(
+        ax,
+        I=P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+            ]
+        ],
+        U=P.data[
+            [
+                "U12",
+                "U23",
+                "U31",
+                "U1",
+                "U2",
+                "U3",
+            ]
+        ],
+    )
+    currentaxes = next(zeiger)
+    plotComplexChain(
+        P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+            ]
+        ].values[0],
+        axes=currentaxes,
+        color="#800000",
+        label="Strangstromsumme",
+    )
+    ax.set_title(f"Realler Verbraucher Sternschaltung")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerSternReal.pdf", clear=False)
 
 
 if __name__ == "__main__":
