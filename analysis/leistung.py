@@ -842,6 +842,8 @@ def test_leistung_protokoll():
         p3c,
         p3,
         inline_units=True,
+        table_type="tblr-x",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
         name="aufgabe3power_1_1",
     )
 
@@ -853,6 +855,8 @@ def test_leistung_protokoll():
         Pgesc,
         Pges,
         inline_units=True,
+        table_type="tblr-x",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
         name="aufgabe3power_2_1",
     )
 
@@ -921,6 +925,8 @@ def test_leistung_protokoll():
         q3c,
         q3,
         inline_units=True,
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        table_type="tblr-x",
         name="aufgabe3power_1_2",
     )
 
@@ -932,6 +938,8 @@ def test_leistung_protokoll():
         Qgesc,
         Qges,
         inline_units=True,
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        table_type="tblr-x",
         name="aufgabe3power_2_2",
     )
 
