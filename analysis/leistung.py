@@ -333,7 +333,7 @@ def test_leistung_protokoll():
         "b": r"\si{\ohm}",
         "m": r"\si{\watt}",
         "c": r"\si{\ampere}",
-        "d": r"\si{\siemens}",
+        "d": r"\si{\ohm}",
         "p": r"\si{\watt}",
         "p1": r"\si{\watt}",
         "p2": r"\si{\watt}",
@@ -382,6 +382,7 @@ def test_leistung_protokoll():
 
     P.print_table(U, I, p, name="aufgabe1_raw", inline_units=True)
     p = a * I + b * I**2 + m
+    P.print_expr(p)
 
     P.plot_data(
         ax,
@@ -415,7 +416,8 @@ def test_leistung_protokoll():
     P.ax_legend_all(loc=4)
     ax = P.savefig(f"pIkennlinie.pdf")
 
-    p = c * U + d * U**2 + m
+    p = c * U + U**2 / d + m
+    P.print_expr(p)
 
     P.plot_data(
         ax,
@@ -843,7 +845,7 @@ def test_leistung_protokoll():
         p3,
         inline_units=True,
         table_type="tblr-x",
-        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize}{cyan7},",
         name="aufgabe3power_1_1",
     )
 
@@ -856,11 +858,11 @@ def test_leistung_protokoll():
         Pges,
         inline_units=True,
         table_type="tblr-x",
-        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize}{cyan7},",
         name="aufgabe3power_2_1",
     )
 
-    print(P.data)
+    # print(P.data)
 
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3blind.csv")
@@ -925,7 +927,7 @@ def test_leistung_protokoll():
         q3c,
         q3,
         inline_units=True,
-        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize}{blue7},",
         table_type="tblr-x",
         name="aufgabe3power_1_2",
     )
@@ -938,7 +940,7 @@ def test_leistung_protokoll():
         Qgesc,
         Qges,
         inline_units=True,
-        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize}{blue7},",
         table_type="tblr-x",
         name="aufgabe3power_2_2",
     )
@@ -966,7 +968,7 @@ def test_leistung_protokoll():
     P.resolve(U31)
     P.resolve(U12)
     P.resolve(U23)
-    print(P.data)
+    # print(P.data)
 
     zeiger = zeigerStern(
         ax,
