@@ -561,17 +561,50 @@ konnte war 1691 Umdrehungen.
 
 %todo wert richtig angegeben?
 
-\section{Auswertung}
-\label{sec:auswertung}
+\section{Auswertung}\label{sec:auswertung}
+
+Um zu sehen wie sich die Unsicherheit der Messungen bis in die Ergebnisse
+fortpflanzt, ist erweiterte Gauss-Methode verwendet worden. Die Grundlagen
+dieser Methode stammen von den Powerpointfolien von
+GUM~\cite{WolfgangKessel2004}. Für die Auswertung ist die Progammiersprache
+Python im speziellen die Pakete \verb#labtool-ex2#, \verb#pandas#,
+\verb#sympy#, \verb#lmfit# zur Hilfe genommen worden. \verb#lmfit# wurde für
+das Fitten hergenommen, \verb#sympy# wurde für symbolische Manipulation
+hergenommen und die restlichen Pakete für leichters handhaben der Daten. Dies
+wurde aber alles durch \verb#labtool-ex2# abstrahiert.
+
+Um höchstmögliche Genauigkeit zu garantieren wird erst bei der Darstellung der
+Wert in Tabellen gerundet.
 
 \subsection{ohmsche Last in Wechselstromkreis}
+Die Daten der Spannungen, Ströme und Leistungen wurde aus
+\autoref{tab:werte_ohm} entnommen und die Leistung $P$ wurde einmal mit der
+Spannung $U$ und einmal mit dem Strom $I$ gefittet.
+
+Folgende \autoref{eq:fitstrom} wurde verwendet um die stromabhängigkeit von $P$
+zu fitten:
+\begin{equation}
+	P(I) = I^{2} b + I a + P_0
+	\label{eq:fitstrom}
+\end{equation}
+
+Zudem wurde, \autoref{eq:fitstrom}, verwendet um die spannungsabhängigkeit von
+$P$ zu fitten:
+
+\begin{equation}
+	P(U) = \frac{U^{2}}{d} + U c + P_0
+	\label{eq:fitspannung}
+\end{equation}
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/pUkennlinie.pdf}
 	\end{center}
-	\caption[Energiespektrum der $\gamma$-Strahlung einer \ch{^{226}_{88}Ra} Probe]{
-		Aufgezeichnetes Gammaspektrum der \ch{^{226}_{88}Ra} Quelle und dessen
-		Zerfallsprodukten, mit ausgemessen und markierten Energiepeaks.
+	\caption[Spannungsabhängige Leistungskurve einer Glühbirne]{ Diese Graphik beinhaltet
+		den quadratischen Fit der gemessen Leistungswerte $P$ über die Spannung $U$
+		einer Glühbirne, die Werte sind aus \autoref{tab:werte_ohm} entnommen worden.
+		Hierbei ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ ist lineare
+		Fitparameter und $P_0$ ist der Ordinatenschnitt.
 	}\label{fig:pUkennlinie}
 \end{figure}
 
@@ -579,11 +612,48 @@ konnte war 1691 Umdrehungen.
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/pIkennlinie.pdf}
 	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	\caption[Stromabhängige Leistungskurve einer Glühbirne]{Diese Graphik beinhaltet den
+		quadratischen Fit der gemessen Leistungswerte $P$ über die Spannung $U$ einer
+		Glühbirne, die Werte sind aus \autoref{tab:werte_ohm} entnommen worden. Hierbei
+		ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ ist lineare
+		Fitparameter und $P_0$ ist der Ordinatenschnitt.
 	}\label{fig:pIkennlinie}
 \end{figure}
 
-\subsection{Symmetrische Last in Dreieckschaltung}
+\subsection{Symmetrische Last in Dreieckschaltung}\label{sec:ausw_dreieck}
+
+Aufgrund der symmetrischen Last lassen sich die Beträge aller Strangströme
+$I_{ij}$ mit dem Wissen über die Beträge der Leiterströmen $I_i$ und einem der
+Strangströme hier $I_{31}$ bestimmen. Dies lässt sich durch die Komplexe
+Vektoraddition der Strangströme berechnen. Dies folgende Umformungen können
+gemacht werden da die Winkelverschiebung der Ohmschen Strangströme zu den
+Leiterströmen bekannt sind.
+
+\begin{align}
+	i_{i}           & = \sum_{j} i_{ij} (1-\delta_{ij})                                                    \\
+	I_{i}           & = |\sum_{j} i_{ij} (1-\delta_{ij})|                                                  \\
+	\implies I_{12} & = \sqrt{I_1^2-\frac{3I_{31}^2}{4}}-\frac{I_{31}^2}{2}                                \\
+	\implies I_{23} & = \sqrt{I_3^2-\frac{3I_{31}^2}{4}}-\frac{I_{31}^2}{2}\label{eq:complexstromaddition}
+\end{align}
+
+Mittel dieser Gleichungen lassen sich nun die Beträge der Strangströme
+bestimmen.
+\begin{table}[H]
+	\caption[Errechnete Strangströme bei der Dreiecksschaltung]{ Errechnete Strangströme
+		einer symmetrisch ohmsch-belasteten Dreiecksschaltung, siehe
+		\autoref{fig:aufbau1}. Zur Berechnung wurde \autoref{eq:complexstromaddition}
+		und die Daten aus \autoref{tab:werte_sym_dreieck} entnommen. \\
+		$I_{ij} \dots$ errechnete Strangströme vom i-ten zum j-ten Leiter in \si{\ampere}.
+	}\label{tab:strangStromDreieck}
+	\centering
+	\include{./tables/messreihe_dreieckStrangStrome}
+\end{table}
+
+Mittels der Strangströme (\autoref{tab:strangStromDreieck}) und der
+Strangspannungen $U_{ij}$ (\autoref{tab:werte_sym_dreieck}) und der
+\autoref{eq:leistung} lassen sich die Verbraucherleistungen der Stränge $P_i$
+finden.
+
 \begin{table}[H]
 	\caption[Errechnete Leistungen bei der Dreiecksschaltung]{ Errechnete Leistungen bei der
 		Dreiecksschaltung                                      \\
@@ -595,15 +665,28 @@ konnte war 1691 Umdrehungen.
 	\include{./tables/messreihe_powerDreieck}
 \end{table}
 
+Damit die Rechnungen in \autoref{eq:complexstromaddition} besser
+nachzuvollziehen sind wurde von dieser Dreieckschaltung ein Zeigerdiagramm
+erstellt.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerDreieck.pdf}
 	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	\caption[Zeigerdiagramm einer sysmetrisch ohmsch-belastete Dreieckschaltung]{ Dieses
+		Diagramm widerspiegelt die Schaltung, aus \autoref{fig:aufbau1} und wurde mit
+		den Werten aus \autoref{tab:strangStromDreieck}, \autoref{tab:werte_ohm}
+		erstellt.
 	}\label{fig:zeigerDreieck}
 \end{figure}
 
 \subsection{Sternschaltungen}
+
+Analog wie in \autoref{sec:ausw_dreieck} werden mittels auch die Strangströme
+$I_j$ und Strangspannungen $U_j$ die Verbraucherleistungen der nächsten drei
+Sternschaltungen berechnet. Desweitern wird auch mittels der gemessen
+Leistungswerte $P_i^M$, \autoref{tab:wert_stern}, die gesamte
+Verbraucherleistung bestimmt $P_{ges}^{M}$.
 
 \begin{table}[H]
 	\caption[Errechnete Leistungen bei der Sternschaltung]{Errechnete Leistungen bei der
@@ -619,19 +702,29 @@ konnte war 1691 Umdrehungen.
 	\include{./tables/messreihe_powerSternAuf2}
 \end{table}
 
+Nun wird auch die symmetrisch ohmsch-belastete Sternschaltungen als
+Zeigerdiagramm dargestellt. Die hierfür verwendeten Werte sind der
+\autoref{tab:wert_stern} entnommen worden, zudem wurde die Phasenverschiebung
+zwischen den Leitern als \SI{120}{\degree} vom Stromnetz angenommen.
+
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternSym.pdf}
 	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	\caption[Zeigerdiagramm einer symmetrisch ohmsch-belastete Sternschaltung]{ Hey
 	}\label{fig:zeigerSternSym}
 \end{figure}
+
+Nun galt es mittels des Zeigerdiagramms der asymmetrischen ohmsch-belasteten
+Sternschaltungen ohne Neutralleiterbruch den Neutralleiterstrom $I_0$ zu
+bestimmen. Dies wurde durch Addition der Strangströme bewirktstelligt.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymOhneBruch.pdf}
 	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung ohne
+		Neutralleiterbruch]{ Hey
 	}\label{fig:zeigerSternAsymOhneBruch}
 \end{figure}
 
@@ -639,7 +732,8 @@ konnte war 1691 Umdrehungen.
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymBruch.pdf}
 	\end{center}
-	\caption[Stromabhängige Leistungskurve einer Glühbirne]{ Hey
+	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung mit
+		Neutralleiterbruch]{ Hey
 	}\label{fig:zeigerSternAsymBruch}
 \end{figure}
 
@@ -647,8 +741,9 @@ konnte war 1691 Umdrehungen.
 
 \begin{table}[H]
 	\caption[Errechnete Werte für die Wirk- und Scheinleistungen bei allgemeiner Last]
-	{Errechnete Werte für die Wirk- und Scheinleistungen, sowie gegenüberstellung
-		mit dem gemessenen Wert bei allgemeiner Last, jeweils pro Block:                              \\
+	{\footnotesize Errechnete Werte für die Wirk- und Scheinleistungen, sowie
+		gegenüberstellung mit dem gemessenen Wert bei allgemeiner Last, jeweils pro
+		Block:                                                                                        \\
 		1. Zeile \dots entsprechende Parameter bei Versuchsaufbau nach
 		\autoref{fig:aufbau3}                                                                         \\
 		2. Zeile \dots entsprechende Parameter bei Versuchsaufbau mit vertauschten
