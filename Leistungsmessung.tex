@@ -463,7 +463,7 @@ die Sternschaltung in folgender \autoref{tab:wert_stern} aufgelistet.
 	\include{./tables/messreihe_aufgabe2stern_2}
 \end{table}
 
-\subsection{Asymmetrische Last in Sternschaltung}
+\subsection{Asymmetrische Last in Sternschaltung}\label{sec:vers_asy_stern_ohne}
 
 Nun werden die einzelnen Stränge verschieden stark beansprucht, indem die
 Glühlampen asymmetrisch auf die Stränge verteilt werden. Dabei wird, wie
@@ -479,7 +479,7 @@ verwirklicht:
 Alle abgelesenen Werte der Messgeräte sind, wie bereits erwähnt, in folgender
 \autoref{tab:wert_stern} in der 2. Zeile angefügt.
 
-\subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
+\subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}\label{sec:vers_asy_stern_mit}
 
 Um nun einen Kabelbruch zu simulieren, wird die Verbindung des Neutralleiters
 unterbrochen. Zusätzlich wird nun auch der Spannungsabfall an jener Stelle
@@ -711,29 +711,57 @@ zwischen den Leitern als \SI{120}{\degree} vom Stromnetz angenommen.
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternSym.pdf}
 	\end{center}
-	\caption[Zeigerdiagramm einer symmetrisch ohmsch-belastete Sternschaltung]{ Hey
+	\caption[Zeigerdiagramm einer symmetrisch ohmsch-belastete Sternschaltung]{Dieses
+		Diagramm widerspiegelt die Schaltung, aus \autoref{fig:aufbau2} j und wurde mit
+		den Werten aus \autoref{tab:wert_stern} erstellt.
 	}\label{fig:zeigerSternSym}
+	%  Hier ist kein Neutralleiterstrom durch Stromaddition ersichtlich
 \end{figure}
 
 Nun galt es mittels des Zeigerdiagramms der asymmetrischen ohmsch-belasteten
 Sternschaltungen ohne Neutralleiterbruch den Neutralleiterstrom $I_0$ zu
-bestimmen. Dies wurde durch Addition der Strangströme bewirktstelligt.
+bestimmen. Dies wurde durch Addition der Strangströme bewerkstelligt.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymOhneBruch.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung ohne
-		Neutralleiterbruch]{ Hey
+		Neutralleiterbruch]{Dieses Diagramm widerspiegelt die asymmetrische
+		Sternschaltung mit einem Aufbau, wie in \autoref{fig:aufbau2} ersichtlich.
+		Diese wurde, wie in \autoref{sec:vers_asy_stern_ohne} erklärt, modifiziert.
+		Damit hier ist durch die Vektoraddition der Strangströme der Neutralleiterstrom
+		$I_0$ grünlich dargestellt worden. Die Werte stammen aus
+		\autoref{tab:wert_stern}.
 	}\label{fig:zeigerSternAsymOhneBruch}
 \end{figure}
+
+Dazu ergänzend wurde auch der Leiterbruch des asymmetrischen ohmsch-belasteten
+Sternschaltungen als Zeigerdiagramm dargestellt, damit die
+Sternpunktsverschiebung visualisiert wird. Damit die Phasenverschiebung der
+Strangspannungen $U_i$ bestimmt werden konnte ist der Kosinussatz, beim Dreieck
+der Vektoraddition der $u_i$ zu den Dreieckspannungen $u_{ij} = u_i-u_j =
+	400\exp(i\frac{2\pi\cdot(j)}{3}\pi)$, angewendet worden. Schlussendlich konnte
+durch die Addition der Strangspannungen $u_i$ mit den Spannungen vom Leiter zu
+Neutralleiter $u_{jN} =
+	\frac{400}{\sqrt{3}}\exp(i\frac{2\pi\cdot(j+\frac{3}{2})}{3}\pi)$ die
+Sternpunktsverschiebung $U_0$ mittels der \autoref{fig:zeigerSternAsymBruch}
+bestimmt werden. Dies ist für alle Drei möglich Spannungsadditionen durch
+geführt worden, deshalb sind drei Neutralleiterspannungen $U_0$ in
+\autoref{fig:zeigerSternAsymBruch} ersichtlich.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymBruch.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung mit
-		Neutralleiterbruch]{ Hey
+		Neutralleiterbruch]{Dieses Diagramm widerspiegelt eine asymmetrische
+		Sternschaltung mit Neutralleiterbruch mit einem Aufbau, wie in
+		\autoref{fig:aufbau2} ersichtlich. Diese wurde, wie in
+		\autoref{sec:vers_asy_stern_mit} erklärt, modifiziert. Damit hier ist durch die
+		Vektoraddition der Strangspannungen $U_i$ und der Spannungen vom Leiter zum
+		Neutralleiter $U_{iN}$ die Neutralleiterspannungen $U_0$ in der Farbe Lavendel
+		dargestellt worden. Die Werte stammen aus \autoref{tab:wert_stern}.
 	}\label{fig:zeigerSternAsymBruch}
 \end{figure}
 
