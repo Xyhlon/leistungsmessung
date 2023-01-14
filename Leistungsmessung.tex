@@ -403,7 +403,6 @@ Bei dem vom Leistungsmessungsgerät abgelesenen Wert ist dabei besonders darauf
 zu achten, ob das Gerät über die Verbindung für \SI{1}{\ampere} oder
 \SI{5}{\ampere} verwendet wird.
 
-%todo caption
 \begin{table}[H]
 	\caption[Gemessene Werte bei der Variation der ohmschen Last]{Gemessene Werte bei der
 		Variation der ohmschen Last       \\
@@ -424,7 +423,6 @@ sind, sich also auf jeden jeweils eine mit \SI[]{75}{\watt} und eine mit
 \SI[]{60}{\watt} befindet. Alle abgelesenen Messwerte der Messgeräte sind in
 folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
 
-%todo caption
 \begin{table}[H]
 	\caption[Abgelesene Werte bei symmetrischer Belastung in Dreiecksschaltung] {Abgelesene
 		Werte bei symmetrischer Belastung in Dreiecksschaltung                     \\
@@ -445,8 +443,6 @@ vorliegt, wie in \autoref{fig:aufbau2} sichtbar.
 
 Der besseren Übersicht halber, sind alle abgelesenen Werte der Messgeräte für
 die Sternschaltung in folgender \autoref{tab:wert_stern} aufgelistet.
-
-%todo bei bruch fehlt die Spannung in der 3. Zeile ist wert was ich dir am montag gesagt habe
 
 \begin{table}[H]
 	\caption[Abgelesene Werte bei Sternschaltung] {Abgelesene Werte bei Sternschaltung                                        \\
@@ -515,6 +511,7 @@ gemessenen Werte der realen Verbraucher sind dabei in der 1. Zeile sichtbar.
 	}\label{tab:werte_wirkleistung}
 	\centering
 	\include{./tables/messreihe_aufgabe3mess_1}
+	\vskip -25.3pt
 	\include{./tables/messreihe_aufgabe3mess_2}
 \end{table}
 
@@ -877,10 +874,35 @@ Hier ist keine Auswertung von Nöten.
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
+Wie in \autoref{fig:pIkennlinie} und \autoref{fig:pUkennlinie} ersichtlich
+lässt sich das Verhalten der Leistung gut durch beide quadratischen Funktionen
+$P(I)$ (\autoref{eq:fitstrom}) und $P(U)$ (\autoref{eq:fitspannung})
+beschreiben. Jedoch wenn die Fitparameter der Fits sich anschaut ist klar
+ersichtlich, dass $P(U)$ das Verhalten physikalisch Akkurater, da der Bais
+$P_0$ hier kleiner ist. Zudem ist ein leichter Trend in den Bildern zu
+erkennen, dass bei höherer Temperatur der Widerstandswert steigt. Da die Lampe
+vorgewärmt wurde ist dies jedoch kaum ersichtlich. Durch Höhere Leistung wird
+mit einer Verzögerung auch der Metalldraht in der Glühbirne erhitzt, welcher
+sich wie ein PTC verhaltet und höherer Temperatur an Widerstand zunimmt.
+
 \subsection{Symmetrische Last in Dreieckschaltung vs in Sternschaltung}
 % • Bauen Sie weiterhin unter symmetrischer Last eine Sternschaltung nach Abb. 2 auf und
 % messen abermals die Verbraucherleistungen.
 % • Welche Unterschiede sind f¨ur die beiden Verkettungen zu beobachten?
+
+Wie zu erwarten ist der Leistungwert der Dreieckschaltung höher als bei der
+Sternschaltung. Das Verhältnis der Leistungen sollte bei einem idealen ohmschen
+symmetrischen Belastung zwischen Dreieckschaltung und Sternschaltung 3
+betragen.
+
+\begin{equation}
+	\frac{P_{ges\triangle}^M}{P_{ges\star}^M} = \num{2.31(7)}
+\end{equation}
+
+Wie man sieht ist dieser Wert kleiner als 3, was mit dem gemessenen und
+gefitteten Leistungsverhalten einer Glühbirne erklären ist. Die Glühbirnen
+verhalten sich nicht wie ein idealer ohmsche Last sondern werden weniger
+Leitfähig zunehmender Leistung zu.
 
 \subsection{Sternschaltung sym. vs asym. vs asym. mit Bruch}
 % • Welchen Unterschied k¨onnen Sie beim Vergleich der beiden Gesamtleistungen jeder Mes-
@@ -899,6 +921,14 @@ Hier ist keine Auswertung von Nöten.
 % pro Messreihe entweder getrennt in ein Strom- und ein Spannungsdiagramm erfolgen,
 % oder beides zusammengefasst in ein Diagramm dargestellt werden.
 % • Errechnen Sie aus den gemessenen Leistungen die am gesamten Verbraucher abfallenden
+Durch die Vertauschung der Leiter L2 \& L3 ist der Nullleiterstrom $I_0$
+gesunkten, alle anderen Größen bleiben dabei unverändert. Da die
+Phasenverschiebung zwischen den Leitern bei den Blindwiderständen vom
+Kondensator und Spule einen Unterschied in der Phasenverschiebung der Ströme
+auch verursacht, demzufolge ändert sich auch die Summe der Strangströme, das
+beschriebene Verhalten ist in \autoref{fig:zeigerSternReal} zu sehen.
+
+% TODO Messfehler Q_3 Matthias
 
 \subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
 % • Realisieren Sie mittels drei Spulen samt Eisenkern mit vorgeschalteten Heizwiderst¨anden
