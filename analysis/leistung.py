@@ -28,8 +28,6 @@ def plotComplexChain(vecs: NDArray, axes: plt.Axes, color: str = "#0fafaf", labe
     v_off = np.hstack([np.zeros_like(v_off[0]), v_off])
     rgb = matplotlib.colors.to_rgb(color)
     colors = [rgb] * len(vecs)
-    print(v_off)
-    print(vecs)
     if len(vecs) > 2:
         colors[-1] = complementary(*rgb)
     # If scale_units is 'x' then the vector will be 0.5 x-axis units.
@@ -967,6 +965,14 @@ def test_leistung_protokoll():
         options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize}{blue7},",
         table_type="tblr-x",
         name="aufgabe3power_2_2",
+    )
+
+    P.print_table(
+        SgC,
+        SgM,
+        inline_units=True,
+        options=r"cells={font=\footnotesize},row{1}={font=\mathversion{bold}\footnotesize},",
+        name="aufgabe3_scheinleistung",
     )
 
     # phi1 = atan(U3 / U2)
