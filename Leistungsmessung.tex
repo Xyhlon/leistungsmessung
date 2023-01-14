@@ -119,7 +119,6 @@ $S$, und die nicht nutzbare Blindleistung, $Q$, berechnet werden.
 	\label{eq:blindleistung}
 \end{equation}
 
-%todo max schau amol ob die Grundlagen dir so passen weil es steht extra drin 1-1.5 Seiten also wollt i nit mehr schreiben
 
 \section{Versuchsanordnung}
 \label{sec:versuchsanordnung}
@@ -335,6 +334,7 @@ entsprechend modifiziert werden.
 	\label{fig:aufbau4}
 \end{figure}
 
+\newpage
 \subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
 
 Um den Bau eines rudimentären Asynchron-Drehstrommotors zu realisieren, werden
@@ -351,6 +351,7 @@ Heizwiderständen an die Versorgungsspannung geschlossen.
 	}\label{fig:motor}
 \end{figure}
 
+\newpage
 \section{Geräteliste}\label{sec:geraeteliste}
 
 Für den Versuch werden die in \autoref{tab:gerate} aufgelisteten Geräte
@@ -378,7 +379,7 @@ verwendet.
 		{Metallscheibe auf                                                                                            \\ Sockel} & Hancaner & DT2234C & & \\
 	\end{tblr}\label{tab:gerate}
 \end{table}
-
+\newpage
 \section{Versuchsdurchführung und Messergebnisse}\label{sec:versuchsdurchfuehrung_messergebnisse}
 
 \subsection{ohmsche Last in Wechselstromkreis}
@@ -393,9 +394,9 @@ ausgewählt werden, um sicherzustellen, dass die Geräte nicht überlastet werde
 aber dennoch ein genaues Ergebnis anzeigen.
 
 Nun wird mithilfe des Schleifkontakts des Netzgeräts eine Ausgangsspannung von
-\SI[]{20}{\volt} erzeugt und diese kontinuierlich erhöht, bis schließlich ein
-Wert von \SI[]{240}{\volt} erreicht ist.
-%todo 2x oben unsicherheit angeben
+\SI[]{20.0(6)}{\volt} erzeugt und diese kontinuierlich erhöht, bis schließlich ein
+Wert von \SI[]{240.0(12)}{\volt} erreicht ist.
+
 Die entsprechenden Werte der Messgeräte werden abgelesen und in folgender
 \autoref{tab:werte_ohm} aufgelistet.
 
@@ -419,7 +420,7 @@ zu achten, ob das Gerät über die Verbindung für \SI{1}{\ampere} oder
 Um die Leistung eines symmetrischen Verbrauchs bei einer Dreiecksschaltung zu
 betrachten, wird ein Aufbau nach \autoref{fig:aufbau1} herangezogen. Dabei ist
 darauf zu achten, dass die Glühlampen symmetrisch auf die Stränge verteilt
-sind, sich also auf jeden jeweils eine mit \SI[]{75}{\watt} und eine mit
+sind, sich also auf jedem jeweils eine mit \SI[]{75}{\watt} und eine mit
 \SI[]{60}{\watt} befindet. Alle abgelesenen Messwerte der Messgeräte sind in
 folgender \autoref{tab:werte_sym_dreieck} aufgelistet.
 
@@ -472,7 +473,7 @@ verwirklicht:
 	\item $L_3$ \(\dots\) 1 x \SI[]{75}{\watt} und 2 x \SI[]{60}{\watt}
 \end{itemize}
 
-Alle abgelesenen Werte der Messgeräte sind, wie bereits erwähnt, in folgender
+Alle abgelesenen Werte der Messgeräte sind, wie bereits erwähnt, in
 \autoref{tab:wert_stern} in der 2. Zeile angefügt.
 
 \subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}\label{sec:vers_asy_stern_mit}
@@ -480,8 +481,8 @@ Alle abgelesenen Werte der Messgeräte sind, wie bereits erwähnt, in folgender
 Um nun einen Kabelbruch zu simulieren, wird die Verbindung des Neutralleiters
 unterbrochen. Zusätzlich wird nun auch der Spannungsabfall an jener Stelle
 gemessen, indem das entsprechende Multimeter als Spannungsmessgerät
-umfunktioniert wird. Die so abgelesenen Werte der Messgeräte sind in folgender
-\autoref{tab:werte_stern} in der 3. Zeile aufgelistet.
+umfunktioniert wird. Die so abgelesenen Werte der Messgeräte sind in
+\autoref{tab:wert_stern} in der 3. Zeile aufgelistet.
 
 \subsection{Wirkleistungsmessung}
 Um die Wirkleistung eines realen Verbrauchers zu bestimmen, werden auch
@@ -492,28 +493,7 @@ Es sind, der besseren übersicht halber, wieder alle erhaltenen Werte für die
 nächsten Aufgaben in \autoref{tab:werte_wirkleistung} aufgelistet. Die
 gemessenen Werte der realen Verbraucher sind dabei in der 1. Zeile sichtbar.
 
-%todo max schau bitte schnell ob richtig und verständlich
-\begin{table}[H]
-	\caption[Abgelesene Werte für die Bestimmung der Wirkleistung] {Abgelesene Werte für die
-		Bestimmung der Wirkleistung                                                \\
-		1. Zeile \dots Wirkleistung eines realen Verbrauchers                      \\
-		2. Zeile \dots Wirkleistung eines realen Verbrauchers mit vertauschten
-		Außenleitern                                                               \\
-		3. Zeile \dots Wirkleistung bei modifizierter Schaltung                    \\
-		4. Zeile \dots Blindleistung eines realen Verbrauchers                     \\
-		5. Zeile \dots Blindleistung eines realen Verbrauchers mit vertauschten
-		Außenleitern                                                               \\
-		6. Zeile \dots Blindleistung bei modifizierter Schaltung                   \\
-		$I_i \dots$ gemessener Strom am i-ten Strang in A                          \\
-		$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A \\
-		$U_{i} \dots$ gemessene Spannung am i-ten Strang in V                      \\
-		$P_{i}^M \dots$ gemessene Wirkleistungen am i-ten Strang in W
-	}\label{tab:werte_wirkleistung}
-	\centering
-	\include{./tables/messreihe_aufgabe3mess_1}
-	\vskip -25.3pt
-	\include{./tables/messreihe_aufgabe3mess_2}
-\end{table}
+
 
 Nun werden die Außenleiter $L_2$ und $L_3$ vertauscht, wodurch die Werte, aus
 der 2.Zeile der \autoref{tab:werte_wirkleistung} entstehen.
@@ -524,6 +504,30 @@ am 2. Strang eine Parallelschaltung von Kapazität und Induktivität vorliegt.
 
 Alle abgelesenen Werte der Messgeräte sind in der 3. Zeile in
 \autoref{tab:werte_wirkleistung} aufgelistet.
+
+\begin{table}[H]
+	\caption[Abgelesene Werte für die Bestimmung der Wirkleistung] {\footnotesize Abgelesene Werte für die
+		Bestimmung der Wirkleistung, bei den Bezeichnungen der Bauteile ist zu beachten, dass sich Zeile 3 und 6
+		auf die Bonusaufgabe beziehen und daher andere Bauteile verwendet werden.\\
+		1. Zeile \dots Aufbau für die Messung der Wirkleistung eines realen Verbrauchers                      \\
+		2. Zeile \dots Aufbau für die Messung der Wirkleistung Wirkleistung eines realen Verbrauchers mit vertauschten
+		Außenleitern                                                               \\
+		3. Zeile \dots Aufbau für die Messung der Wirkleistung Wirkleistung bei modifizierter Schaltung                    \\
+		4. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung eines realen Verbrauchers                     \\
+		5. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung eines realen Verbrauchers mit vertauschten
+		Außenleitern                                                               \\
+		6. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung bei modifizierter Schaltung                   \\
+		$I_i \dots$ gemessener Strom am i-ten Strang in A                          \\
+		$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A \\
+		$U_{i} \dots$ gemessener Spannungsabfall am i-ten Bauteil in V nach \autoref{fig:aufbau3}                      \\
+		$P_{i}^M \dots$ gemessene Wirkleistungen am i-ten Strang in W
+	}\label{tab:werte_wirkleistung}
+	\centering
+	\include{./tables/messreihe_aufgabe3mess_1}
+	\vskip -25.3pt
+	\include{./tables/messreihe_aufgabe3mess_2}
+\end{table}
+
 
 \subsection{Blindleistungsmessung}
 
@@ -554,9 +558,8 @@ und Drahtdicke leicht verschieden sind.
 Die Anzahl der Umdrehungen wird dabei mithilfe eines digitalen Zählers
 bestimmt, der anhand eines Laserstrahls die Markierung auf der Metallscheibe
 wahrnimmt. Die maximale Drehzahl, die mithilfe des Aufbaus realisiert werden
-konnte war 1691 Umdrehungen.
-
-%todo wert richtig angegeben?
+konnte war \SI{1691(2)}{\per\min} Umdrehungen.
+%todo per min nicht richtig
 
 \section{Auswertung}\label{sec:auswertung}
 
@@ -575,7 +578,7 @@ Wert in Tabellen gerundet.
 
 \subsection{ohmsche Last in Wechselstromkreis}
 Die Daten der Spannungen, Ströme und Leistungen wurde aus
-\autoref{tab:werte_ohm} entnommen und die Leistung $P$ wurde einmal mit der
+\autoref{tab:werte_ohm} entnommen, die Leistung $P$ wurde einmal mit der
 Spannung $U$ und einmal mit dem Strom $I$ gefittet.
 
 Folgende \autoref{eq:fitstrom} wurde verwendet um die stromabhängigkeit von $P$
@@ -595,7 +598,7 @@ $P$ zu fitten:
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width = 0.95\textwidth]{figures/pUkennlinie.pdf}
+		\includegraphics[width = 0.85\textwidth]{figures/pUkennlinie.pdf}
 	\end{center}
 	\caption[Spannungsabhängige Leistungskurve einer Glühbirne]{ Diese Graphik beinhaltet
 		den quadratischen Fit der gemessen Leistungswerte $P$ über die Spannung $U$
@@ -610,20 +613,22 @@ $P$ zu fitten:
 		\includegraphics[width = 0.95\textwidth]{figures/pIkennlinie.pdf}
 	\end{center}
 	\caption[Stromabhängige Leistungskurve einer Glühbirne]{Diese Graphik beinhaltet den
-		quadratischen Fit der gemessen Leistungswerte $P$ über die Spannung $U$ einer
+		quadratischen Fit der gemessen Leistungswerte $P$ über den Strom $I$ einer
 		Glühbirne, die Werte sind aus \autoref{tab:werte_ohm} entnommen worden. Hierbei
 		ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ ist lineare
 		Fitparameter und $P_0$ ist der Ordinatenschnitt.
 	}\label{fig:pIkennlinie}
 \end{figure}
+%todo erklärung von a und b
+
 
 \subsection{Symmetrische Last in Dreieckschaltung}\label{sec:ausw_dreieck}
 
 Aufgrund der symmetrischen Last lassen sich die Beträge aller Strangströme
 $I_{ij}$ mit dem Wissen über die Beträge der Leiterströmen $I_i$ und einem der
 Strangströme hier $I_{31}$ bestimmen. Dies lässt sich durch die Komplexe
-Vektoraddition der Strangströme berechnen. Dies folgende Umformungen können
-gemacht werden da die Winkelverschiebung der Ohmschen Strangströme zu den
+Vektoraddition der Strangströme berechnen. Die folgenden Umformungen können
+gemacht werden, da die Winkelverschiebung der Ohmschen Strangströme zu den
 Leiterströmen bekannt sind.
 
 \begin{align}
@@ -633,8 +638,9 @@ Leiterströmen bekannt sind.
 	\implies I_{23} & = \sqrt{I_3^2-\frac{3I_{31}^2}{4}}-\frac{I_{31}^2}{2}\label{eq:complexstromaddition}
 \end{align}
 
-Mittel dieser Gleichungen lassen sich nun die Beträge der Strangströme
+Mit diesen Gleichungen lassen sich nun die Beträge der Strangströme
 bestimmen.
+
 \begin{table}[H]
 	\caption[Errechnete Strangströme bei der Dreiecksschaltung]{ Errechnete Strangströme
 		einer symmetrisch ohmsch-belasteten Dreiecksschaltung, siehe
@@ -646,8 +652,8 @@ bestimmen.
 	\include{./tables/messreihe_dreieckStrangStrome}
 \end{table}
 
-Mittels der Strangströme (\autoref{tab:strangStromDreieck}) und der
-Strangspannungen $U_{ij}$ (\autoref{tab:werte_sym_dreieck}) und der
+Mittels der Strangströme (\autoref{tab:strangStromDreieck}), der
+Strangspannungen $U_{ij}$ (\autoref{tab:werte_sym_dreieck}) und
 \autoref{eq:leistung} lassen sich die Verbraucherleistungen der Stränge $P_i$
 finden.
 
@@ -663,7 +669,7 @@ finden.
 \end{table}
 
 Damit die Rechnungen in \autoref{eq:complexstromaddition} besser
-nachzuvollziehen sind wurde von dieser Dreieckschaltung ein Zeigerdiagramm
+nachvollziehbar sind, wurde von dieser Dreieckschaltung ein Zeigerdiagramm
 erstellt.
 
 \begin{figure}[H]
@@ -671,7 +677,7 @@ erstellt.
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerDreieck.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer sysmetrisch ohmsch-belastete Dreieckschaltung]{ Dieses
-		Diagramm widerspiegelt die Schaltung, aus \autoref{fig:aufbau1} und wurde mit
+		Diagramm spiegelt die Schaltung, aus \autoref{fig:aufbau1} wieder und wurde mit
 		den Werten aus \autoref{tab:strangStromDreieck}, \autoref{tab:werte_ohm}
 		erstellt.
 	}\label{fig:zeigerDreieck}
@@ -679,9 +685,9 @@ erstellt.
 
 \subsection{Sternschaltungen}\label{sec:aus_stern}
 
-Analog wie in \autoref{sec:ausw_dreieck} werden mittels auch die Strangströme
+Analog wie in \autoref{sec:ausw_dreieck} werden durch die Strangströme
 $I_j$ und Strangspannungen $U_j$ die Verbraucherleistungen der nächsten drei
-Sternschaltungen berechnet. Desweitern wird auch mittels der gemessen
+Sternschaltungen berechnet. Desweitern wird auch durch die gemessenen
 Leistungswerte $P_i^M$, \autoref{tab:wert_stern}, die gesamte
 Verbraucherleistung bestimmt $P_{ges}^{M}$.
 
@@ -709,14 +715,14 @@ zwischen den Leitern als \SI{120}{\degree} vom Stromnetz angenommen.
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternSym.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer symmetrisch ohmsch-belastete Sternschaltung]{Dieses
-		Diagramm widerspiegelt die Schaltung, aus \autoref{fig:aufbau2} j und wurde mit
+		Diagramm spiegelt die Schaltung, aus \autoref{fig:aufbau2} wieder und wurde mit
 		den Werten aus \autoref{tab:wert_stern} erstellt.
 	}\label{fig:zeigerSternSym}
 	%  Hier ist kein Neutralleiterstrom durch Stromaddition ersichtlich
 \end{figure}
 
-Nun galt es mittels des Zeigerdiagramms der asymmetrischen ohmsch-belasteten
-Sternschaltungen ohne Neutralleiterbruch den Neutralleiterstrom $I_0$ zu
+Nun galt es, mittels des Zeigerdiagramms der asymmetrischen ohmsch-belasteten
+Sternschaltungen ohne Neutralleiterbruch, den Neutralleiterstrom $I_0$ zu
 bestimmen. Dies wurde durch Addition der Strangströme bewerkstelligt.
 
 \begin{figure}[H]
@@ -724,8 +730,8 @@ bestimmen. Dies wurde durch Addition der Strangströme bewerkstelligt.
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymOhneBruch.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung ohne
-		Neutralleiterbruch]{Dieses Diagramm widerspiegelt die asymmetrische
-		Sternschaltung mit einem Aufbau, wie in \autoref{fig:aufbau2} ersichtlich.
+		Neutralleiterbruch]{Dieses Diagramm spiegelt die asymmetrische
+		Sternschaltung mit einem Aufbau, wie in \autoref{fig:aufbau2} ersichtlich, wieder.
 		Diese wurde, wie in \autoref{sec:vers_asy_stern_ohne} erklärt, modifiziert.
 		Hier ist durch die Vektoraddition der Strangströme der Neutralleiterstrom $I_0$
 		grünlich dargestellt worden. Die Werte stammen aus \autoref{tab:wert_stern}.
@@ -742,8 +748,8 @@ durch die Addition der Strangspannungen $u_i$ mit den Spannungen vom Leiter zu
 Neutralleiter $u_{jN} =
 	\frac{400}{\sqrt{3}}\exp(i\frac{2\pi\cdot(j+\frac{3}{2})}{3}\pi)$ die
 Sternpunktsverschiebung $U_0$ mittels der \autoref{fig:zeigerSternAsymBruch}
-bestimmt werden. Dies ist für alle Drei möglich Spannungsadditionen durch
-geführt worden, deshalb sind drei Neutralleiterspannungen $U_0$ in
+bestimmt werden. Dies ist für alle Drei möglichen Spannungsadditionen durchgeführt 
+worden, deshalb sind drei Neutralleiterspannungen $U_0$ in
 \autoref{fig:zeigerSternAsymBruch} ersichtlich.
 
 \begin{figure}[H]
@@ -751,9 +757,9 @@ geführt worden, deshalb sind drei Neutralleiterspannungen $U_0$ in
 		\includegraphics[width = 0.95\textwidth]{figures/zeigerSternAsymBruch.pdf}
 	\end{center}
 	\caption[Zeigerdiagramm einer asymmetrisch ohmsch-belastete Sternschaltung mit
-		Neutralleiterbruch]{Dieses Diagramm widerspiegelt eine asymmetrische
+		Neutralleiterbruch]{Dieses Diagramm spiegelt eine asymmetrische
 		Sternschaltung mit Neutralleiterbruch mit einem Aufbau, wie in
-		\autoref{fig:aufbau2} ersichtlich. Diese wurde, wie in
+		\autoref{fig:aufbau2} ersichtlich, wieder. Diese wurde, wie in
 		\autoref{sec:vers_asy_stern_mit} erklärt, modifiziert. Hier ist durch die
 		Vektoraddition der Strangspannungen $U_i$ und der Spannungen vom Leiter zum
 		Neutralleiter $U_{iN}$ die Neutralleiterspannungen $U_0$ in der Farbe Lavendel
@@ -766,12 +772,12 @@ geführt worden, deshalb sind drei Neutralleiterspannungen $U_0$ in
 Analog wie in \autoref{sec:aus_stern} sind die Verbraucherleistung $P_i^C$,
 durch Multiplikation der Strangströme $I_i$ und der Strangspannungen bestimmt
 worden. Zudem wurden auch die Verbraucherblindleistungen $Q_i^C$ bestimmt indem
-auch die $I_i$ und die $U_i$ mit einander multipliziert worden sind. Jedoch ist
-der Unterschied in der Berechnung, dass bei den $P_i^C$ nur die Reellen Anteile
-der Strangspannungen $U_i$ zur Berechnung genommen werden heist Spannungen über
+auch die $I_i$ und die $U_i$ miteinander multipliziert worden sind. Jedoch ist
+der Unterschied in der Berechnung, dass bei den $P_i^C$ nur die reellen Anteile
+der Strangspannungen $U_i$, also die Spannungen über
 die Widerstände und bei den $Q_i^C$ nur die Imaginären Anteile der
-Strangspannungen $U_i$ (Kondensator- \& Indukturspannungen der Stränge) zur
-Berechnung genommen werden. Des Weiteren wurden auch die gesamt
+Strangspannungen $U_i$ (Kondensator- \& Indukturspannungen der Stränge), zur
+Berechnung genommen werden. Des Weiteren wurden auch die gesamte
 Verbraucherleistung $P_{ges}$ und die gesamt Verbraucherblindleistung $Q_{ges}$
 bestimmt. Einmal durch die Summation der gemessenen Verbraucherleistung $P_i^M$
 und der gemessenen Verbraucherblindleistung $Q_i^M$ (aus
@@ -790,15 +796,15 @@ errechneten Werte ($P_i^C$ \& $Q_i^C$).
 		3. Zeile \dots entsprechende Parameter bei Versuchsaufbau bei modifizierter
 		Schaltung                                                                                     \\
 		$P_i^C \dots$ Errechnete Wirkleistung am i-ten Strang in W (im 1. Block aus den
-		gemessenen Werten der Wirkleistung, im 4. Block aus den gemessenen Werten der Scheinleistung) \\
+		gemessenen Werten der Wirkleistung, im 4. Block aus den gemessenen Werten der Blindleistung) \\
 		$P_i^M \dots$ Gemessene Wirkleistung am i-ten Strang in W                                     \\
 		$P_{ges}^C \dots$ Errechnete gesamte Wirkleistung in W                                        \\
 		$P_{ges}^M \dots$ Gemessene gesamte Wirkleistung in W                                         \\
-		$Q_i^C \dots$ Errechnete Scheinleistung am i-ten Strang in W (im 2. Block aus den
-		gemessenen Werten der Scheinleistung, im 3. Block aus den gemessenen Werten der Wirkleistung) \\
-		$Q_i^M \dots$ Gemessene Scheinleistung am i-ten Strang in W                                   \\
-		$Q_{ges}^C \dots$ Errechnete gesamte Scheinleistung in W                                      \\
-		$Q_{ges}^M \dots$ Gemessene gesamte Scheinleistung in W
+		$Q_i^C \dots$ Errechnete Blindleistung am i-ten Strang in W (im 2. Block aus den
+		gemessenen Werten der Blindleistung, im 3. Block aus den gemessenen Werten der Wirkleistung) \\
+		$Q_i^M \dots$ Gemessene Blindleistung am i-ten Strang in W                                   \\
+		$Q_{ges}^C \dots$ Errechnete gesamte Blindleistung in W                                      \\
+		$Q_{ges}^M \dots$ Gemessene gesamte Blindleistung in W
 	}\label{tab:powerAufgabe3}
 	\include{./tables/messreihe_aufgabe3power_1_1}
 	\vskip -25.3pt
@@ -809,13 +815,13 @@ errechneten Werte ($P_i^C$ \& $Q_i^C$).
 	\include{./tables/messreihe_aufgabe3power_2_2}
 \end{table}
 
-Schlussendlich kann mit den $P_{ges}$ und den gesamt $Q_{ges}$ die gesamte
+Schlussendlich kann mit den $P_{ges}$ und $Q_{ges}$ die gesamte
 Scheinleistung mit Pythagoras berechnet werden.
 
 \begin{table}[H]
 	\caption[Errechnete Werte für die Scheinleistungen bei allgemeiner Last] { Errechnete
 		Werte für die Scheinleistungen, sowie gegenüberstellung mit dem gemessenen Wert
-		bei allgemeiner Last, jeweils pro Block:                        \\
+		bei allgemeiner Last                        \\
 		1. Zeile $\dots$ entsprechende Parameter bei Versuchsaufbau nach
 		\autoref{fig:aufbau3}                                           \\
 		2. Zeile $\dots$ entsprechende Parameter bei Versuchsaufbau mit vertauschten
@@ -841,8 +847,9 @@ Spannungen zu finden wurde der Satz von Pythagoras verwendet, dies ist auch in
 		\includegraphics[width = 0.48\textwidth]{figures/zeigerSternRealVertauscht.pdf}
 	\end{center}
 	\caption[Zeigerdiagramme einer real-belastete Sternschaltung und dessen vertauschten
-		Leiter]{Diese Diagramme widerspiegeln die real-belastete Sternschaltung mit
-		einem Aufbau, wie in \autoref{fig:aufbau3} ersichtlich. Wobei beim Vertauschten
+		Leiter]{Diese Diagramme spiegeln die real-belastete Sternschaltung mit
+		einem Aufbau, wie in \autoref{fig:aufbau3} ersichtlich, wieder, wobei beim 
+		Zeigerdiagramm mit der Überschrift Vertauscht
 		die Leiter 2 und 3 vertauscht wurden. Hier ist durch die Vektoraddition der
 		Strangströme der Neutralleiterstrom $I_0$ grünlich dargestellt worden. Die
 		Werte stammen aus \autoref{tab:werte_wirkleistung}.
@@ -877,13 +884,13 @@ Hier ist keine Auswertung von Nöten.
 Wie in \autoref{fig:pIkennlinie} und \autoref{fig:pUkennlinie} ersichtlich
 lässt sich das Verhalten der Leistung gut durch beide quadratischen Funktionen
 $P(I)$ (\autoref{eq:fitstrom}) und $P(U)$ (\autoref{eq:fitspannung})
-beschreiben. Jedoch wenn die Fitparameter der Fits sich anschaut ist klar
-ersichtlich, dass $P(U)$ das Verhalten physikalisch Akkurater, da der Bais
+beschreiben. Bei der Betrachtung der Fitparameter des Fits ist klar
+ersichtlich, dass $P(U)$ das Verhalten physikalisch akkurater darstellt, da der Bais
 $P_0$ hier kleiner ist. Zudem ist ein leichter Trend in den Bildern zu
 erkennen, dass bei höherer Temperatur der Widerstandswert steigt. Da die Lampe
 vorgewärmt wurde ist dies jedoch kaum ersichtlich. Durch Höhere Leistung wird
 mit einer Verzögerung auch der Metalldraht in der Glühbirne erhitzt, welcher
-sich wie ein PTC verhaltet und höherer Temperatur an Widerstand zunimmt.
+sich wie ein PTC verhält und bei höherer Temperatur an Widerstand zunimmt.
 
 \subsection{Symmetrische Last in Dreieckschaltung vs in Sternschaltung}
 % • Bauen Sie weiterhin unter symmetrischer Last eine Sternschaltung nach Abb. 2 auf und
@@ -891,7 +898,7 @@ sich wie ein PTC verhaltet und höherer Temperatur an Widerstand zunimmt.
 % • Welche Unterschiede sind f¨ur die beiden Verkettungen zu beobachten?
 
 Wie zu erwarten ist der Leistungwert der Dreieckschaltung höher als bei der
-Sternschaltung. Das Verhältnis der Leistungen sollte bei einem idealen ohmschen
+Sternschaltung. Das Verhältnis der Leistungen sollte bei einer idealen ohmschen
 symmetrischen Belastung zwischen Dreieckschaltung und Sternschaltung 3
 betragen.
 
@@ -899,10 +906,10 @@ betragen.
 	\frac{P_{ges\triangle}^M}{P_{ges\star}^M} = \num{2.31(7)}
 \end{equation}
 
-Wie man sieht ist dieser Wert kleiner als 3, was mit dem gemessenen und
-gefitteten Leistungsverhalten einer Glühbirne erklären ist. Die Glühbirnen
-verhalten sich nicht wie ein idealer ohmsche Last sondern werden weniger
-Leitfähig zunehmender Leistung zu.
+Die Berechnung zeigt, dass dieser Wert kleiner als 3 ist, was mit dem gemessenen und
+gefitteten Leistungsverhalten einer Glühbirne erklärbar ist. Die Glühbirnen
+verhalten sich nicht wie eine ideale ohmsche Last sondern werden weniger
+Leitfähig mit zunehmender Leistung.
 
 \subsection{Sternschaltung sym. vs asym. vs asym. mit Bruch}
 % • Welchen Unterschied k¨onnen Sie beim Vergleich der beiden Gesamtleistungen jeder Mes-
@@ -912,12 +919,32 @@ Leitfähig zunehmender Leistung zu.
 % aufgenommenen Spannungen (mit U0) f¨ur den unsymmetrischen Fall mit Spannungs-
 % messger¨at im Neutralleiter .
 % – Vergleichen Sie die beiden gemessenen Werte mit den beiden sich aus der Zeichnung
-\begin{align}
-	U_{0_{Zeiger}} = \SI{36(7)}{\volt}
-	U_{0}^M = \SI{40.8(7)}{\volt}
-	I_{0_{Zeiger}} = \SI{0.09(4)}{\ampere}
-	I_{0}^M = \SI{0.092(5)}{\ampere}
-\end{align}
+
+Auch der Vergleich der Helligkeit der unterschiedlichen Glühlampen, zeigt die gleichmäßigere
+Verteilung der Leisstungen. Unter echten Bedingungen im Labor war dies bei allen Lampen klar
+ersichtlich, am aufgezeichneten Foto aus \autoref{fig:diskussion} kommt dies jedoch nicht
+klar zur geltung und lässt sich am ehesten noch bei der rechten unteren Lampe erkennen.
+Besser ersichtlich ist diese Verteilung bei den Messwerten aus \autoref{tab:powerStern}.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width = 0.48\textwidth]{figures/erstes.png}
+		\includegraphics[width = 0.48\textwidth]{figures/zweistes.png}
+	\end{center}
+	\caption[Leistungsverteilung bei Leiterbruch]
+	{Leistungsverteilung bei Leiterbruch, Links ohne-, rechts mit Leiterbruch
+	}\label{fig:diskussion}
+\end{figure}
+
+Die errechneten Werte für den Strom und die Spannung sind beide im Fehlerintervall der 
+gemessenen Größen enthalten, was auch in folgender Auflistung ersichtlich ist.
+
+\begin{align*}
+	U_{0_{Zeiger}} &= \SI{36(7)}{\volt}\\
+	U_{0}^M &= \SI{40.8(7)}{\volt}\\
+	I_{0_{Zeiger}} &= \SI{0.09(4)}{\ampere}\\
+	I_{0}^M &= \SI{0.092(5)}{\ampere}
+\end{align*}
 
 \subsection{Allgemeine Last in Sternschaltung}
 % • Vertauschen Sie die Außenleiter L2 und L3 und notieren Sie die eventuell auftretende
@@ -927,14 +954,21 @@ Leitfähig zunehmender Leistung zu.
 % pro Messreihe entweder getrennt in ein Strom- und ein Spannungsdiagramm erfolgen,
 % oder beides zusammengefasst in ein Diagramm dargestellt werden.
 % • Errechnen Sie aus den gemessenen Leistungen die am gesamten Verbraucher abfallenden
+
 Durch die Vertauschung der Leiter L2 \& L3 ist der Nullleiterstrom $I_0$
-gesunkten, alle anderen Größen bleiben dabei unverändert. Da die
+gesunkten. Alle anderen Größen bleiben dabei unverändert. Da die
 Phasenverschiebung zwischen den Leitern bei den Blindwiderständen vom
-Kondensator und Spule einen Unterschied in der Phasenverschiebung der Ströme
-auch verursacht, demzufolge ändert sich auch die Summe der Strangströme, das
+Kondensator und Spule auch einen Unterschied in der Phasenverschiebung der Ströme
+verursacht, ändert sich demzufolge auch die Summe der Strangströme. Das
 beschriebene Verhalten ist in \autoref{fig:zeigerSternReal} zu sehen.
 
-% TODO Messfehler Q_3 Matthias
+
+Die errechneten Leistungen stimmen mit den gemessenen Werten immer überein,
+außer beim der Bonusaufgabe.
+Hier wird ersichtlich, dass sich der gemessene Wert der Blindleistung $Q_3$ um 
+den Faktotor 2 von dem 
+rechnerisch ermittelten unterscheidet. Dies kann zum Beispiel auf einen Skalenfehler
+beim entsprechenden analogen Messgerät zurückzuführen sein.
 
 \subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
 % • Realisieren Sie mittels drei Spulen samt Eisenkern mit vorgeschalteten Heizwiderst¨anden
@@ -943,10 +977,11 @@ beschriebene Verhalten ist in \autoref{fig:zeigerSternReal} zu sehen.
 % • Diskutieren Sie die prinzipielle Funktionsweise eines Asynchron- Drehstrommotors und
 
 Nach Absprache mit dem Betreuer war der bisherige Rekord für die maximale
-Drehzahl bisher 680 Umdrehungen pro Minute, was mit unserem Ergebnis von 1691
+Drehzahl bisher 680 Umdrehungen pro Minute, was mit unserem Ergebnis von \SI{1691(2)}{\per\min}
 beachtlich gesteigert werden konnte. Dies wurde vor allem durch feine
 Anpassungen der Eisenkerne und auch eine Schmierung der Metallscheibe durch
 Seife erreicht.
+%todo per min
 
 \section{Zusammenfassung}\label{sec:zusammenfassung}
 
