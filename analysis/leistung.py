@@ -1,5 +1,5 @@
 from labtool_ex2 import Project
-from sympy import exp, pi, sqrt, Abs, conjugate, pi, acos
+from sympy import exp, pi, sqrt, Abs, conjugate, pi, acos, asin, atan
 from sympy import I as jj
 import numpy as np
 from numpy.typing import NDArray
@@ -11,7 +11,6 @@ import cmath
 import math
 from colorsys import rgb_to_hsv, hsv_to_rgb
 
-plt.PolarAxes
 # pyright: reportUnboundVariable=false
 # pyright: reportUndefinedVariable=false
 
@@ -29,7 +28,10 @@ def plotComplexChain(vecs: NDArray, axes: plt.Axes, color: str = "#0fafaf", labe
     v_off = np.hstack([np.zeros_like(v_off[0]), v_off])
     rgb = matplotlib.colors.to_rgb(color)
     colors = [rgb] * len(vecs)
-    colors[-1] = complementary(*rgb)
+    print(v_off)
+    print(vecs)
+    if len(vecs) > 2:
+        colors[-1] = complementary(*rgb)
     # If scale_units is 'x' then the vector will be 0.5 x-axis units.
     # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.quiver.html
     axes.quiver(
@@ -90,8 +92,8 @@ def zeigerDreieck(axes, I, U):
         # Plot Composite Current
 
         currentaxes.quiver(
-            np.zeros_like(leiterstrom),
-            np.zeros_like(leiterstrom),
+            np.zeros_like(leiterstrom, dtype=float),
+            np.zeros_like(leiterstrom, dtype=float),
             leiterstrom.real,
             leiterstrom.imag,
             scale_units="y",
@@ -102,8 +104,8 @@ def zeigerDreieck(axes, I, U):
         )
         # Plot Strand Voltages
         axes.quiver(
-            np.zeros_like(strangspannung),
-            np.zeros_like(strangspannung),
+            np.zeros_like(strangspannung, dtype=float),
+            np.zeros_like(strangspannung, dtype=float),
             strangspannung.real,
             strangspannung.imag,
             scale_units="y",
@@ -150,8 +152,6 @@ def zeigerStern(axes: plt.Axes, I, U):
         # currentaxes.set_ylabel("I", rotation=0)
         # axes.set_rlabel_position(22.5)
         # axes.set_ylabel("U", rotation=0)
-        currentaxes.set_rgrids([5, 10], angle=22)
-        axes.set_rgrids([5, 10], angle=22)
         axes.set_xlabel("$\\phi$")
 
         cmax = abs(max(strangstrom))
@@ -161,7 +161,11 @@ def zeigerStern(axes: plt.Axes, I, U):
         if cmax / ocmax > smax / osmax:
             currentaxes.set_rlim([0, cmax])
             axes.set_rlim([0, cmax / ocmax * osmax])
+            # currentaxes.set_rgrids([0, cmax], angle=22)
+            # axes.set_rgrids([0, cmax / ocmax * osmax], angle=80)
         else:
+            # currentaxes.set_rgrids([0, smax / osmax * ocmax], angle=22)
+            # axes.set_rgrids([0, smax], angle=22)
             currentaxes.set_rlim([0, smax / osmax * ocmax])
             axes.set_rlim([0, smax])
 
@@ -178,8 +182,8 @@ def zeigerStern(axes: plt.Axes, I, U):
             np.hstack([strangspannung[2], -strangspannung[0]]), axes, color="#35baf6"
         )
         axes.quiver(
-            np.zeros_like(compositespannung),
-            np.zeros_like(compositespannung),
+            np.zeros_like(compositespannung, dtype=float),
+            np.zeros_like(compositespannung, dtype=float),
             compositespannung.real,
             compositespannung.imag,
             scale_units="y",
@@ -189,8 +193,8 @@ def zeigerStern(axes: plt.Axes, I, U):
             label="Dreieckspannungen",
         )
         currentaxes.quiver(
-            np.zeros_like(strangstrom),
-            np.zeros_like(strangstrom),
+            np.zeros_like(strangstrom, dtype=float),
+            np.zeros_like(strangstrom, dtype=float),
             strangstrom.real,
             strangstrom.imag,
             scale_units="y",
@@ -303,10 +307,14 @@ def test_leistung_protokoll():
         "q1c": r"Q_1^{C}",
         "q2c": r"Q_2^{C}",
         "q3c": r"Q_3^{C}",
+        "phi1": r"\phi_1",
+        "phi2": r"\phi_2",
         "Pges": r"P_{ges}^{M}",
         "Qges": r"Q_{ges}^{M}",
         "Pgesc": r"P_{ges}^{C}",
         "Qgesc": r"Q_{ges}^{C}",
+        "SgM": r"S_{ges}^{M}",
+        "SgC": r"S_{ges}^{C}",
         "E": r"E_{\mathrm{kin}}",
     }
     gv = {
@@ -347,10 +355,14 @@ def test_leistung_protokoll():
         "q1": r"\si{\Var}",
         "q2": r"\si{\Var}",
         "q3": r"\si{\Var}",
+        "phi1": r"\si{\degree}",
+        "phi2": r"\si{\degree}",
         "Pges": r"\si{\watt}",
         "Pgesc": r"\si{\watt}",
         "Qgesc": r"\si{\Var}",
         "Qges": r"\si{\Var}",
+        "SgM": r"\si{\VA}",
+        "SgC": r"\si{\VA}",
     }
 
     pd.set_option("display.max_columns", None)
@@ -529,7 +541,6 @@ def test_leistung_protokoll():
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
     P.resolve(Pges)
-    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerDreieck", inline_units=True)
 
     zeiger = zeigerDreieck(
         ax,
@@ -557,6 +568,8 @@ def test_leistung_protokoll():
     ax.set_title(f"Zeigerdiagramm von Dreieckschaltung")
     P.ax_legend_all(loc=0)
     P.savefig(f"zeigerDreieck.pdf", clear=False)
+
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerDreieck", inline_units=True)
 
     # A2 Stern Schaltung
     P.vload()
@@ -652,7 +665,6 @@ def test_leistung_protokoll():
     Pgesc = p1c + p2c + p3c
     P.resolve(Pgesc)
 
-    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerSternAuf2", inline_units=True)
     zeiger = zeigerStern(
         ax,
         I=P.data[
@@ -738,13 +750,17 @@ def test_leistung_protokoll():
     P.savefig(f"zeigerSternAsymBruch.pdf", clear=False)
     ax.clear()
     currentaxes.clear()
+    P.print_table(p1c, p2c, p3c, Pgesc, Pges, name="powerSternAuf2", inline_units=True)
 
-    # A3 Darstellung der Zählstatistik
+    # A3 Darstellung
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3.csv")
     P.load_data(filepath, loadnew=True)
     P.data = P.raw_data.droplevel("type", axis=1)
     P.vload()
+    P.figure.clear()
+    P.figure.set_size_inches(5, 5)
+    ax = P.figure.add_subplot(polar=True)
     P.data["dI1"] = I1.data.apply(AmpereNorma)
     P.data["dI2"] = I2.data.apply(AmpereNorma)
     P.data["dI3"] = I3.data.apply(AmpereNorma)
@@ -812,7 +828,7 @@ def test_leistung_protokoll():
 
     q1c = I1 * 0
     dq1c = I1 * 0
-    q2c = I2 * U3
+    q2c = -I2 * U3
     q3c = I3 * U5
     print(p1c)
     print(p2c)
@@ -836,6 +852,9 @@ def test_leistung_protokoll():
     P.resolve(Pges)
     P.resolve(Pgesc)
     P.resolve(Qgesc)
+    P.data = P.data.u.com
+    pmesges = Pges.data
+    P.data = P.data.u.sep
     P.print_table(
         p1c,
         p1,
@@ -862,8 +881,6 @@ def test_leistung_protokoll():
         name="aufgabe3power_2_1",
     )
 
-    # print(P.data)
-
     P.vload()
     filepath = os.path.join(os.path.dirname(__file__), "../data/aufgabe3blind.csv")
     P.load_data(filepath, loadnew=True)
@@ -881,9 +898,9 @@ def test_leistung_protokoll():
     P.data["dq1"] = q1.data.apply(PowerChauvin)
     P.data["dq2"] = q2.data.apply(PowerNorma)
     P.data["dq3"] = q3.data.apply(PowerNorma)
-    q1 = q1 / (-(3**0.5))
-    q2 = q2 / (-(3**0.5))
-    q3 = q3 / (-(3**0.5))
+    q1 = q1 / ((3**0.5))
+    q2 = q2 / ((3**0.5))
+    q3 = q3 / ((3**0.5))
 
     U23 = sqrt(U2**2 + U3**2)
     U12 = sqrt(U4**2 + U5**2)
@@ -896,7 +913,7 @@ def test_leistung_protokoll():
 
     q1c = I1 * 0
     dq1c = I1 * 0
-    q2c = I2 * U3
+    q2c = -I2 * U3
     q3c = I3 * U5
 
     P.resolve(p1c)
@@ -919,6 +936,13 @@ def test_leistung_protokoll():
     P.resolve(Qges)
     P.resolve(Pgesc)
     P.resolve(Qgesc)
+    P.data = P.data.u.com
+    P.data["Pges"] = pmesges
+    P.data = P.data.u.sep
+    SgC = sqrt(Pgesc**2 + Qgesc**2)
+    SgM = sqrt(Pges**2 + Qges**2)
+    P.resolve(SgC)
+    P.resolve(SgM)
     P.print_table(
         q1c,
         q1,
@@ -945,14 +969,21 @@ def test_leistung_protokoll():
         name="aufgabe3power_2_2",
     )
 
+    # phi1 = atan(U3 / U2)
+    # phi2 = atan(-U5 / U4)
+    phi1 = asin(U3 / 230)
+    phi2 = asin(-U5 / 230)
+    P.resolve(phi1)
+    P.resolve(phi2)
+
     I1 = I1 * cmath.exp(cmath.pi * 0 * 1j)
-    I2 = I2 * cmath.exp(cmath.pi * 2 / 3 * 1j)
-    I3 = I3 * cmath.exp(cmath.pi * 4 / 3 * 1j)
+    I2 = I2 * cmath.exp(((cmath.pi * 2 / 3) - phi1.data.values[0]) * 1j)
+    I3 = I3 * cmath.exp(((cmath.pi * 4 / 3) - phi2.data.values[0]) * 1j)
     U1 = U1 * cmath.exp(cmath.pi * 0 * 1j)
-    U2 = U2 * cmath.exp(cmath.pi * 2 / 3 * 1j)
-    U3 = U3 * cmath.exp(cmath.pi * (2 / 3 - 0.5) * 1j)
-    U4 = U4 * cmath.exp(cmath.pi * 4 / 3 * 1j)
-    U5 = U5 * cmath.exp(cmath.pi * (4 / 3 + 0.5) * 1j)
+    U2 = U2 * cmath.exp(((cmath.pi * 2 / 3) - phi1.data.values[0]) * 1j)
+    U3 = U3 * cmath.exp(((cmath.pi * (2 / 3 + 0.5)) - phi1.data.values[0]) * 1j)
+    U4 = U4 * cmath.exp(((cmath.pi * 4 / 3) - phi2.data.values[0]) * 1j)
+    U5 = U5 * cmath.exp(((cmath.pi * (4 / 3 - 0.5)) - phi2.data.values[0]) * 1j)
     P.resolve(I1)
     P.resolve(I2)
     P.resolve(I3)
@@ -968,29 +999,116 @@ def test_leistung_protokoll():
     P.resolve(U31)
     P.resolve(U12)
     P.resolve(U23)
-    # print(P.data)
+    # ax.quiver(
+    #     np.zeros_like(compositespannung, dtype=float),
+    #     np.zeros_like(compositespannung, dtype=float),
+    #     compositespannung.real,
+    #     compositespannung.imag,
+    #     scale_units="y",
+    #     scale=2,
+    #     facecolor="#0022ee",
+    #     width=5e-3,
+    #     label="Dreieckspannungen",
+    # )
 
-    zeiger = zeigerStern(
-        ax,
-        I=P.data[
+    # zeiger = zeigerStern(
+    #     ax,
+    #     I=P.data[
+    #         [
+    #             "I1",
+    #             "I2",
+    #             "I3",
+    #         ]
+    #     ],
+    #     U=P.data[
+    #         [
+    #             "U12",
+    #             "U23",
+    #             "U31",
+    #             "U1",
+    #             "U2",
+    #             "U3",
+    #         ]
+    #     ],
+    # )
+    # currentaxes = next(zeiger)
+    currentaxes = ax.figure.add_axes(
+        ax.get_position(),
+        projection="polar",
+        label="twin",
+        frameon=False,
+        theta_direction=ax.get_theta_direction(),
+        theta_offset=ax.get_theta_offset(),
+        rlabel_position=170,
+    )
+    currentaxes.xaxis.set_visible(False)
+    ax.clear()
+    currentaxes.clear()
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
+
+    strangstrom = P.data[
+        [
+            "I1",
+            "I2",
+            "I3",
+        ]
+    ].values[0]
+    cmax = abs(max(strangstrom))
+    # smax = abs(max(compositespannung))
+    smax = 230
+    ocmax = 10 ** orderOfMagnitude(cmax)
+    osmax = 10 ** orderOfMagnitude(smax)
+    if cmax / ocmax > smax / osmax:
+        currentaxes.set_rlim([0, cmax])
+        ax.set_rlim([0, cmax / ocmax * osmax])
+        # currentaxes.set_rgrids([0, cmax], angle=22)
+        # ax.set_rgrids([0, cmax / ocmax * osmax], angle=80)
+    else:
+        # currentaxes.set_rgrids([0, smax / osmax * ocmax], angle=22)
+        # ax.set_rgrids([0, smax], angle=22)
+        currentaxes.set_rlim([0, smax / osmax * ocmax])
+        ax.set_rlim([0, smax])
+    currentaxes.quiver(
+        np.zeros_like(strangstrom, dtype=float),
+        np.zeros_like(strangstrom, dtype=float),
+        strangstrom.real,
+        strangstrom.imag,
+        scale_units="y",
+        scale=2,
+        facecolor="#FFAA66",
+        width=5e-3,
+        label="Strangströme",
+    )
+    plotComplexChain(
+        P.data[
             [
-                "I1",
-                "I2",
-                "I3",
-            ]
-        ],
-        U=P.data[
-            [
-                "U12",
-                "U23",
-                "U31",
-                "U1",
                 "U2",
                 "U3",
             ]
-        ],
+        ].values[0],
+        axes=ax,
+        color="#35baf6",
+        label="Strangspannungen",
     )
-    currentaxes = next(zeiger)
+    plotComplexChain(
+        P.data[
+            [
+                "U4",
+                "U5",
+            ]
+        ].values[0],
+        axes=ax,
+        color="#35baf6",
+    )
+    plotComplexChain(
+        P.data[
+            [
+                "U1",
+            ]
+        ].values[0],
+        axes=ax,
+        color="#35baf6",
+    )
     plotComplexChain(
         P.data[
             [
@@ -1006,6 +1124,103 @@ def test_leistung_protokoll():
     ax.set_title(f"Realler Verbraucher Sternschaltung")
     P.ax_legend_all(loc=0)
     P.savefig(f"zeigerSternReal.pdf", clear=False)
+    ax.clear()
+    currentaxes.clear()
+    ax.set_xticks(np.pi / 180.0 * np.linspace(0, 360, 12, endpoint=False))
+
+    I2 = I2 * cmath.exp((cmath.pi * 2 / 3) * 1j)
+    I3 = I3 * cmath.exp(-(cmath.pi * 2 / 3) * 1j)
+    U2 = U2 * cmath.exp((cmath.pi * 2 / 3) * 1j)
+    U3 = U3 * cmath.exp((cmath.pi * 2 / 3) * 1j)
+    U4 = U4 * cmath.exp(-(cmath.pi * 2 / 3) * 1j)
+    U5 = U5 * cmath.exp(-(cmath.pi * 2 / 3) * 1j)
+    P.resolve(I1)
+    P.resolve(I2)
+    P.resolve(I3)
+    P.resolve(U1)
+    P.resolve(U2)
+    P.resolve(U3)
+    P.resolve(U4)
+    P.resolve(U5)
+
+    strangstrom = P.data[
+        [
+            "I1",
+            "I2",
+            "I3",
+        ]
+    ].values[1]
+    cmax = abs(max(strangstrom))
+    # smax = abs(max(compositespannung))
+    smax = 230
+    ocmax = 10 ** orderOfMagnitude(cmax)
+    osmax = 10 ** orderOfMagnitude(smax)
+    if cmax / ocmax > smax / osmax:
+        currentaxes.set_rlim([0, cmax])
+        ax.set_rlim([0, cmax / ocmax * osmax])
+        # currentaxes.set_rgrids([0, cmax], angle=22)
+        # ax.set_rgrids([0, cmax / ocmax * osmax], angle=80)
+    else:
+        # currentaxes.set_rgrids([0, smax / osmax * ocmax], angle=22)
+        # ax.set_rgrids([0, smax], angle=22)
+        currentaxes.set_rlim([0, smax / osmax * ocmax])
+        ax.set_rlim([0, smax])
+    currentaxes.quiver(
+        np.zeros_like(strangstrom, dtype=float),
+        np.zeros_like(strangstrom, dtype=float),
+        strangstrom.real,
+        strangstrom.imag,
+        scale_units="y",
+        scale=2,
+        facecolor="#FFAA66",
+        width=5e-3,
+        label="Strangströme",
+    )
+    plotComplexChain(
+        P.data[
+            [
+                "U2",
+                "U3",
+            ]
+        ].values[1],
+        axes=ax,
+        color="#35baf6",
+        label="Strangspannungen",
+    )
+    plotComplexChain(
+        P.data[
+            [
+                "U4",
+                "U5",
+            ]
+        ].values[1],
+        axes=ax,
+        color="#35baf6",
+    )
+    plotComplexChain(
+        P.data[
+            [
+                "U1",
+            ]
+        ].values[1],
+        axes=ax,
+        color="#35baf6",
+    )
+    plotComplexChain(
+        P.data[
+            [
+                "I1",
+                "I2",
+                "I3",
+            ]
+        ].values[1],
+        axes=currentaxes,
+        color="#800000",
+        label="Strangstromsumme",
+    )
+    ax.set_title(f"Realler Verbraucher Sternschaltung Vertauscht")
+    P.ax_legend_all(loc=0)
+    P.savefig(f"zeigerSternRealVertauscht.pdf", clear=False)
 
 
 if __name__ == "__main__":
