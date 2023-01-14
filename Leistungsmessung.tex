@@ -10,7 +10,7 @@
 \ohead{FLAB 1 \\
 	Leistungsmessung}
 % Fußzeile
-% \addbibresource{leistungsmessung.bib}
+\addbibresource{leistung.bib}
 
 \DeclareSIUnit\px{px}
 \DeclareSIUnit\strich{|||}
@@ -19,7 +19,7 @@
 
 \begin{document}
 %todo deckblatt
-%\includepdf{./deckblatt3.pdf}
+\includepdf{./deckblatt.pdf}
 \tableofcontents
 \newpage
 
@@ -121,8 +121,7 @@ $S$, und die nicht nutzbare Blindleistung, $Q$, berechnet werden.
 
 %todo max schau amol ob die Grundlagen dir so passen weil es steht extra drin 1-1.5 Seiten also wollt i nit mehr schreiben
 
-\section{Versuchsanordnung}
-\label{sec:versuchsanordnung}
+\section{Versuchsanordnung}\label{sec:versuchsanordnung}
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
@@ -130,10 +129,9 @@ Um die ohmsche Last einer Glühlampe im Wechselstromkreis zu messen, wird
 folgender Versuchsaufbau aus \autoref{fig:aufbau_ohm} realisiert.
 
 \begin{figure}[H]
-	\begin{center}
-		\includegraphics[width = 0.5\textwidth]{./figures/aufbau_ohm.png}
-	\end{center}
-	\caption[Realer Versuchsaufbau für die Messung einer ohmschen Last] {Realer
+	\centering
+	\includegraphics[width = 0.5\linewidth]{./figures/aufbau_ohm.png}
+	\caption[Realer Versuchsaufbau für die Messung einer ohmschen Last]{Realer
 		Versuchsaufbau für die Messung einer ohmschen Last \\
 		1 \(\dots\) Transformator                          \\
 		2 \(\dots\) seriell geschaltetes Strommessgerät    \\
@@ -158,7 +156,7 @@ zu Messen, wird die Aronschaltung nach folgendem Schaltplan aus
 	\caption[Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
 		Verbraucher in Dreiecksschaltung] {Schaltplan für die Messung der Wirkleistung
 		mit Aronschaltung für symmetrische Verbraucher in
-		Dreiecksschaltung~\cite[]{leistungsmessungvorbereitung}                          \\
+		Dreiecksschaltung~\cite[]{herbert_leistungsmessung_nodate}                       \\
 		$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A   \\
 		$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V \\
 		$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher       \\
@@ -200,7 +198,7 @@ Messen, wird die Aronschaltung nach folgendem Schaltplan aus
 	\caption[Schaltplan für die Messung der Wirkleistung mit Aronschaltung für symmetrische
 		Verbraucher in Sternschaltung] {Schaltplan für die Messung der Wirkleistung mit
 		Aronschaltung für symmetrische Verbraucher in
-		Sternschaltung~\cite[]{leistungsmessungvorbereitung}                             \\
+		Sternschaltung~\cite[]{herbert_leistungsmessung_nodate}                          \\
 		$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A   \\
 		$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V \\
 		$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher       \\
@@ -270,7 +268,7 @@ bestimmen, wird die Schaltung nach folgendem Schaltplan aus
 	\end{center}
 	\caption[Schaltplan für die Messung der Wirkleistung für allgemeine Verbraucher in
 		Sternschaltung] {Schaltplan für die Messung der Wirkleistung für allgemeine
-		Verbraucher in Sternschaltung~\cite[]{leistungsmessungvorbereitung}              \\
+		Verbraucher in Sternschaltung~\cite[]{herbert_leistungsmessung_nodate}           \\
 		$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A   \\
 		$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V \\
 		$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher       \\
@@ -326,7 +324,7 @@ entsprechend modifiziert werden.
 	\end{center}
 	\caption[Schaltplan für die Messung der Blindleistung für allgemeine Verbraucher in
 		Sternschaltung] {Schaltplan für die Messung der Blindleistung für allgemeine
-		Verbraucher in Sternschaltung~\cite[]{leistungsmessungvorbereitung}              \\
+		Verbraucher in Sternschaltung~\cite[]{herbert_leistungsmessung_nodate}           \\
 		$I_i$ \(\dots\) entsprechende Ströme gemessen mit entsprechenden Amperemeter A   \\
 		$U_i$ \(\dots\) entsprechende Spannungen gemessen mit entsprechenden Voltmeter V \\
 		$R_i$ \(\dots\) entsprechender Widerstand durch die jeweiligen Verbraucher       \\
@@ -563,12 +561,13 @@ konnte war 1691 Umdrehungen.
 Um zu sehen wie sich die Unsicherheit der Messungen bis in die Ergebnisse
 fortpflanzt, ist erweiterte Gauss-Methode verwendet worden. Die Grundlagen
 dieser Methode stammen von den Powerpointfolien von
-GUM~\cite{WolfgangKessel2004}. Für die Auswertung ist die Progammiersprache
-Python im speziellen die Pakete \verb#labtool-ex2#, \verb#pandas#,
-\verb#sympy#, \verb#lmfit# zur Hilfe genommen worden. \verb#lmfit# wurde für
-das Fitten hergenommen, \verb#sympy# wurde für symbolische Manipulation
-hergenommen und die restlichen Pakete für leichters handhaben der Daten. Dies
-wurde aber alles durch \verb#labtool-ex2# abstrahiert.
+GUM~\cite{wolfgang_kessel_isobipm-gum_2004}. Für die Auswertung ist die
+Progammiersprache Python im speziellen die Pakete \verb#labtool-ex2#,
+\verb#pandas#, \verb#sympy#, \verb#lmfit# zur Hilfe genommen worden.
+\verb#lmfit# wurde für das Fitten hergenommen, \verb#sympy# wurde für
+symbolische Manipulation hergenommen und die restlichen Pakete für leichters
+handhaben der Daten. Dies wurde aber alles durch \verb#labtool-ex2#
+abstrahiert.
 
 Um höchstmögliche Genauigkeit zu garantieren wird erst bei der Darstellung der
 Wert in Tabellen gerundet.
@@ -968,7 +967,7 @@ Seife erreicht.
 
 \newpage
 
-% \printbibliography
+\printbibliography
 \listoffigures
 \listoftables
 \end{document}
