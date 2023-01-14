@@ -782,8 +782,8 @@ und der gemessenen Verbraucherblindleistung $Q_i^M$ (aus
 errechneten Werte ($P_i^C$ \& $Q_i^C$).
 
 \begin{table}[H]
-	\caption[Errechnete Werte für die Wirk- und Scheinleistungen bei allgemeiner Last]
-	{\footnotesize Errechnete Werte für die Wirk- und Scheinleistungen, sowie
+	\caption[Errechnete Werte für die Wirk- und Blindleistungen bei allgemeiner Last]
+	{\footnotesize Errechnete Werte für die Wirk- und Blindleistungen, sowie
 		gegenüberstellung mit dem gemessenen Wert bei allgemeiner Last, jeweils pro
 		Block:                                                                                        \\
 		1. Zeile \dots entsprechende Parameter bei Versuchsaufbau nach
@@ -815,10 +815,33 @@ errechneten Werte ($P_i^C$ \& $Q_i^C$).
 Schlussendlich kann mit den $P_{ges}$ und den gesamt $Q_{ges}$ die gesamte
 Scheinleistung mit Pythagoras berechnet werden.
 
+\begin{table}[H]
+	\caption[Errechnete Werte für die Scheinleistungen bei allgemeiner Last] { Errechnete
+		Werte für die Scheinleistungen, sowie gegenüberstellung mit dem gemessenen Wert
+		bei allgemeiner Last, jeweils pro Block:                        \\
+		1. Zeile $\dots$ entsprechende Parameter bei Versuchsaufbau nach
+		\autoref{fig:aufbau3}                                           \\
+		2. Zeile $\dots$ entsprechende Parameter bei Versuchsaufbau mit vertauschten
+		Außenleitern                                                    \\
+		3. Zeile $\dots$ entsprechende Parameter bei Versuchsaufbau bei modifizierter
+		Schaltung                                                       \\
+		$S_{ges}^C \dots$ Errechnete gesamte Scheinleistung in \si{\VA} \\
+		$S_{ges}^M \dots$ Gemessene gesamte Scheinleistung in \si{\VA}  \\
+	}\label{tab:scheinleistung}
+	\centering
+	\include{./tables/messreihe_aufgabe3_scheinleistung}
+\end{table}
+
+Nun wird werden die Messungen von der Standardschaltung, siehe
+\autoref{fig:aufbau3}, und der Messungen mit den Außenleitern L2 und L3
+vertauscht in einem Zeigerdiagramm dargestellt. Um die Phasenverschiebung der
+Spannungen zu finden wurde der Satz von Pythagoras verwendet, dies ist auch in
+\autoref{fig:zeigerSternReal} ersichtlich.
+
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width = 0.45\textwidth]{figures/zeigerSternReal.pdf}
-		\includegraphics[width = 0.45\textwidth]{figures/zeigerSternRealVertauscht.pdf}
+		\includegraphics[width = 0.48\textwidth]{figures/zeigerSternReal.pdf}
+		\includegraphics[width = 0.48\textwidth]{figures/zeigerSternRealVertauscht.pdf}
 	\end{center}
 	\caption[Zeigerdiagramme einer real-belastete Sternschaltung und dessen vertauschten
 		Leiter]{Diese Diagramme widerspiegeln die real-belastete Sternschaltung mit
@@ -854,19 +877,34 @@ Hier ist keine Auswertung von Nöten.
 
 \subsection{ohmsche Last in Wechselstromkreis}
 
-\subsection{Symmetrische Last in Dreieckschaltung}
+\subsection{Symmetrische Last in Dreieckschaltung vs in Sternschaltung}
+% • Bauen Sie weiterhin unter symmetrischer Last eine Sternschaltung nach Abb. 2 auf und
+% messen abermals die Verbraucherleistungen.
+% • Welche Unterschiede sind f¨ur die beiden Verkettungen zu beobachten?
 
-\subsection{Symmetrische Last in Sternschaltung}
+\subsection{Sternschaltung sym. vs asym. vs asym. mit Bruch}
+% • Welchen Unterschied k¨onnen Sie beim Vergleich der beiden Gesamtleistungen jeder Mes-
+% sung erkennen und worin begr¨undet sich dieser?
+% – Zeichnen Sie hierf¨ur auch zwei Zeigerdiagrame: einmal aller Str¨ome (mit I0) f¨ur
+% den unsymmetrischen Fall mit Strommessger¨at im Neutralleiter und einmal mit den
+% aufgenommenen Spannungen (mit U0) f¨ur den unsymmetrischen Fall mit Spannungs-
+% messger¨at im Neutralleiter .
+% – Vergleichen Sie die beiden gemessenen Werte mit den beiden sich aus der Zeichnung
 
-\subsection{Asymmetrische Last in Sternschaltung}
-
-\subsection{Asymmetrische Last in Sternschaltung und simulierten Kabelbruch}
-
-\subsection{Wirkleistungsmessung}
-
-\subsection{Blindleistungsmessung}
+\subsection{Allgemeine Last in Sternschaltung}
+% • Vertauschen Sie die Außenleiter L2 und L3 und notieren Sie die eventuell auftretende
+% Ver¨anderung (Was ist der Grund f¨ur diese Ver¨anderung?).
+% • Erstellen Sie zu den Messreihen (Standard + mit vertauschten Außenleiter) je ein Zei-
+% gerdiagramm f¨ur alle Str¨ome und Spannungen, die in der Schaltung auftreten. Dies kann
+% pro Messreihe entweder getrennt in ein Strom- und ein Spannungsdiagramm erfolgen,
+% oder beides zusammengefasst in ein Diagramm dargestellt werden.
+% • Errechnen Sie aus den gemessenen Leistungen die am gesamten Verbraucher abfallenden
 
 \subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
+% • Realisieren Sie mittels drei Spulen samt Eisenkern mit vorgeschalteten Heizwiderst¨anden
+% und einer horizontal gelagerten metallenen Drehscheibe eine rudiment¨are Asynchron-
+% Drehstrommaschine in Sternschaltung.
+% • Diskutieren Sie die prinzipielle Funktionsweise eines Asynchron- Drehstrommotors und
 
 Nach Absprache mit dem Betreuer war der bisherige Rekord für die maximale
 Drehzahl bisher 680 Umdrehungen pro Minute, was mit unserem Ergebnis von 1691
