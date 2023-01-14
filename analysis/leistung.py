@@ -307,6 +307,7 @@ def test_leistung_protokoll():
         "q3c": r"Q_3^{C}",
         "phi1": r"\phi_1",
         "phi2": r"\phi_2",
+        "U0": r"U_0",
         "Pges": r"P_{ges}^{M}",
         "Qges": r"Q_{ges}^{M}",
         "Pgesc": r"P_{ges}^{C}",
@@ -355,6 +356,7 @@ def test_leistung_protokoll():
         "q3": r"\si{\Var}",
         "phi1": r"\si{\degree}",
         "phi2": r"\si{\degree}",
+        "U0": r"\si{\volt}",
         "Pges": r"\si{\watt}",
         "Pgesc": r"\si{\watt}",
         "Qgesc": r"\si{\Var}",
@@ -621,28 +623,38 @@ def test_leistung_protokoll():
     # U3 = U3 * cmath.exp(cmath.pi * 7 / 6 * 1j)
     # TODO
 
-    P.data.U1 = P.data.U1 * np.exp((2 * np.pi / 3 - P.data.phi1) * 1j)
-    P.data.U2 = P.data.U2 * np.exp((-P.data.phi2) * 1j)
-    P.data.U3 = P.data.U3 * np.exp((4 * np.pi / 3 - P.data.phi3) * 1j)
     U1N = 400 / np.sqrt(3) * cmath.exp(cmath.pi / 2 * 1j)
     U2N = 400 / np.sqrt(3) * cmath.exp(cmath.pi * 11 / 6 * 1j)
     U3N = 400 / np.sqrt(3) * cmath.exp(cmath.pi * 7 / 6 * 1j)
-    print(
-        np.asarray(
-            [
-                abs(P.data.U1.values[2] - U1N),
-                abs(P.data.U2.values[2] - U2N),
-                abs(P.data.U3.values[2] - U3N),
-            ]
-        ).mean()
-    )
+
+    gamma1 = U1 * exp((2 * pi / 3 - phi1) * jj) - U1N
+    gamma2 = U2 * exp((-phi2) * jj) - U2N
+    gamma3 = U3 * exp((4 * pi / 3 - phi3) * jj) - U3N
+    P.resolve(gamma1)
+    P.resolve(gamma2)
+    P.resolve(gamma3)
+
+    print(gamma1)
+    P.data = P.data.u.com
+    U0 = (Abs(gamma1) + Abs(gamma2) + Abs(gamma3)) / 3
+    P.resolve(U0)
+    # U0 = 40.8 measured
+    print(40.8, VoltDigital(40.8))
+    print(U0.data)
+    P.data = P.data.u.sep
 
     Pges = p1 + p2 + p3
     # U0 = 4.45
-    U0 = 40.8
     P.resolve(I1)
     P.resolve(I2)
     P.resolve(I3)
+    I0 = I1 + I2 + I3
+    P.resolve(I0)
+    print(abs(P.data.I0), P.data.dI0)
+    print(P.data)
+    P.data.U1 = P.data.U1 * np.exp((2 * np.pi / 3 - P.data.phi1) * 1j)
+    P.data.U2 = P.data.U2 * np.exp((-P.data.phi2) * 1j)
+    P.data.U3 = P.data.U3 * np.exp((4 * np.pi / 3 - P.data.phi3) * 1j)
 
     U31 = U3 - U1
     U12 = U1 - U2
