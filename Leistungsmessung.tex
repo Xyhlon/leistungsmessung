@@ -18,7 +18,7 @@
 \DeclareSIUnit\VA{VA}
 
 \begin{document}
-%todo deckblatt
+
 \includepdf{./deckblatt.pdf}
 \tableofcontents
 \newpage
@@ -556,8 +556,7 @@ und Drahtdicke leicht verschieden sind.
 Die Anzahl der Umdrehungen wird dabei mithilfe eines digitalen Zählers
 bestimmt, der anhand eines Laserstrahls die Markierung auf der Metallscheibe
 wahrnimmt. Die maximale Drehzahl, die mithilfe des Aufbaus realisiert werden
-konnte war \SI{1691(2)}{\per\min} Umdrehungen.
-%todo per min nicht richtig
+konnte war \SI{1691(2)}{\per\minute} Umdrehungen.
 
 \section{Auswertung}\label{sec:auswertung}
 
@@ -602,8 +601,8 @@ $P$ zu fitten:
 	\caption[Spannungsabhängige Leistungskurve einer Glühbirne]{ Diese Graphik beinhaltet
 		den quadratischen Fit der gemessen Leistungswerte $P$ über die Spannung $U$
 		einer Glühbirne, die Werte sind aus \autoref{tab:werte_ohm} entnommen worden.
-		Hierbei ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ ist lineare
-		Fitparameter und $P_0$ ist der Ordinatenschnitt.
+		Hierbei ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ der lineare
+		Fitparameter und $P_0$ der Ordinatenschnitt.
 	}\label{fig:pUkennlinie}
 \end{figure}
 
@@ -614,11 +613,11 @@ $P$ zu fitten:
 	\caption[Stromabhängige Leistungskurve einer Glühbirne]{Diese Graphik beinhaltet den
 		quadratischen Fit der gemessen Leistungswerte $P$ über den Strom $I$ einer
 		Glühbirne, die Werte sind aus \autoref{tab:werte_ohm} entnommen worden. Hierbei
-		ist $d$ der gefittete Widerstandswert der Glühbirne, $c$ ist lineare
-		Fitparameter und $P_0$ ist der Ordinatenschnitt.
+		ist $b$ der gefittete Widerstandswert der Glühbirne, $a$ der lineare
+		Fitparameter und $P_0$ der Ordinatenschnitt.
 	}\label{fig:pIkennlinie}
 \end{figure}
-%todo erklärung von a und b
+
 
 
 \subsection{Symmetrische Last in Dreieckschaltung}\label{sec:ausw_dreieck}
@@ -891,6 +890,13 @@ vorgewärmt wurde ist dies jedoch kaum ersichtlich. Durch Höhere Leistung wird
 mit einer Verzögerung auch der Metalldraht in der Glühbirne erhitzt, welcher
 sich wie ein PTC verhält und bei höherer Temperatur an Widerstand zunimmt.
 
+Weil der Fit der Spannung insgesamt besser passt wird der entsprechende Fitparameter
+hier nochmals angeführt:
+
+\begin{align}
+	d = \SI{1.16(6)e3}{\ohm}
+\end{align}
+
 \subsection{Symmetrische Last in Dreieckschaltung vs in Sternschaltung}
 % • Bauen Sie weiterhin unter symmetrischer Last eine Sternschaltung nach Abb. 2 auf und
 % messen abermals die Verbraucherleistungen.
@@ -976,11 +982,10 @@ beim entsprechenden analogen Messgerät zurückzuführen sein.
 % • Diskutieren Sie die prinzipielle Funktionsweise eines Asynchron- Drehstrommotors und
 
 Nach Absprache mit dem Betreuer war der bisherige Rekord für die maximale
-Drehzahl bisher 680 Umdrehungen pro Minute, was mit unserem Ergebnis von \SI{1691(2)}{\per\min}
+Drehzahl bisher 680 Umdrehungen pro Minute, was mit unserem Ergebnis von \SI{1691(2)}{\per\minute}
 beachtlich gesteigert werden konnte. Dies wurde vor allem durch feine
 Anpassungen der Eisenkerne und auch eine Schmierung der Metallscheibe durch
 Seife erreicht.
-%todo per min
 
 \section{Zusammenfassung}\label{sec:zusammenfassung}
 
