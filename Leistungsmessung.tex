@@ -778,7 +778,10 @@ Weiteren wurden auch die gesamte Verbraucherleistung $P_{ges}$ und die gesamt
 Verbraucherblindleistung $Q_{ges}$ bestimmt. Einmal durch die Summation der
 gemessenen Verbraucherleistung $P_i^M$ und der gemessenen
 Verbraucherblindleistung $Q_i^M$ (aus \autoref{tab:werte_wirkleistung}) und
-einmal durch die Summation der errechneten Werte ($P_i^C$ \& $Q_i^C$).
+einmal durch die Summation der errechneten Werte ($P_i^M$ \& $Q_i^M$). Hier ist
+noch zu erwähnen, dass die Werte $Q_i^M$ durch den Faktor $\sqrt{3}$ dividiert
+wurden um den Fakt, dass die Spannung zwischen zwei Außenleitern gemessen wurde,
+zu kompensieren.
 
 \begin{table}[H]
 	\caption[Errechnete Werte für die Wirk- und Blindleistungen bei allgemeiner Last]
@@ -1033,7 +1036,7 @@ wobei $R_{fit}$ der durch Fitten bestimmte Widerstandswert der Glühbirne ist.
 	I_{0}^M        & = \SI{0.092(5)}{\ampere}
 \end{align*}
 
-wobei $U_0$ die Neutralleiterspannung beim Leiterbruch ist und $I_0$ der
+Wobei $U_0$ die Neutralleiterspannung beim Leiterbruch ist und $I_0$ der
 Neutralleiterstrom ist.
 
 \subsection{Allgemeine Last in Sternschaltung}
