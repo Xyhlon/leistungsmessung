@@ -580,15 +580,20 @@ Die Daten der Spannungen, Ströme und Leistungen wurde aus
 \autoref{tab:werte_ohm} entnommen, die Leistung $P$ wurde einmal mit der
 Spannung $U$ und einmal mit dem Strom $I$ gefittet.
 
-Folgende \autoref{eq:fitstrom} wurde verwendet um die stromabhängigkeit von $P$
+Folgende \autoref{eq:fitstrom} wurde verwendet um die Stromabhängigkeit von $P$
 zu fitten:
 \begin{equation}
 	P(I) = I^{2} b + I a + P_0
 	\label{eq:fitstrom}
 \end{equation}
 
-Zudem wurde, \autoref{eq:fitstrom}, verwendet um die spannungsabhängigkeit von
-$P$ zu fitten:
+% todo hier
+Hier ist es wichtig zu erwähnen, dass $P_0$ dem Bias der Fits entspricht und
+diesem nur das Symbol $P_0$ gegeben wurde, weil es die Einheit Watt hat. Denn
+bei der ohmschen Modellierung kann kein Energiefluss bei einer Spannung von
+$\SI{0}{\volt}$ stattfinden, da keine Potentialdifferenz vorhanden ist, welche
+einen Stromfluss verursachen könnte. Zudem wurde, \autoref{eq:fitstrom},
+verwendet um die Spannungsabhängigkeit von $P$ zu fitten:
 
 \begin{equation}
 	P(U) = \frac{U^{2}}{d} + U c + P_0
@@ -884,7 +889,7 @@ lässt sich das Verhalten der Leistung gut durch beide quadratischen Funktionen
 $P(I)$ (\autoref{eq:fitstrom}) und $P(U)$ (\autoref{eq:fitspannung})
 beschreiben. Bei der Betrachtung der Fitparameter des Fits ist klar
 ersichtlich, dass $P(U)$ das Verhalten physikalisch akkurater darstellt, da der
-Bais $P_0$ hier kleiner ist. Zudem ist ein leichter Trend in den Bildern zu
+Bias $P_0$ hier kleiner ist. Zudem ist ein leichter Trend in den Bildern zu
 erkennen, dass bei höherer Temperatur der Widerstandswert steigt. Da die Lampe
 vorgewärmt wurde ist dies jedoch kaum ersichtlich. Durch Höhere Leistung wird
 mit einer Verzögerung auch der Metalldraht in der Glühbirne erhitzt, welcher
@@ -977,6 +982,7 @@ Wert der Blindleistung $Q_3$ um den Faktor 2 von dem rechnerisch ermittelten
 unterscheidet. Dies kann zum Beispiel auf einen Skalenfehler beim
 entsprechenden analogen Messgerät zurückzuführen sein.
 
+% todo hier
 \paragraph{Anmerkung zur Bonusaufgabe}Dem oben genannten ist jedoch noch hinzuzufügen, dass durch die Schaltung der
 Bonusaufgabe die gesamte Wirkleistung um einen signifikanten Wert gestiegen
 ist, vergleiche die Werte der $P_{ges}^M$ in \autoref{tab:powerAufgabe3}. Dies
