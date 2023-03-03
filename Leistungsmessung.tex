@@ -506,17 +506,17 @@ Alle abgelesenen Werte der Messgeräte sind in der 3. Zeile in
 		Werte für die Bestimmung der Wirkleistung, bei den Bezeichnungen der Bauteile
 		ist zu beachten, dass sich Zeile 3 und 6 auf die Bonusaufgabe beziehen und
 		daher andere Bauteile verwendet werden.                                                   \\
-		1. Zeile \dots Aufbau für die Messung der Wirkleistung eines realen
+		1. Zeile \dots Aufbau für die Messung der Wirkleistung: eines realen
 		Verbrauchers                                                                              \\
-		2. Zeile \dots Aufbau für die Messung der Wirkleistung Wirkleistung eines
+		2. Zeile \dots Aufbau für die Messung der Wirkleistung: Wirkleistung eines
 		realen Verbrauchers mit vertauschten Außenleitern                                         \\
-		3. Zeile \dots Aufbau für die Messung der Wirkleistung Wirkleistung bei
+		3. Zeile \dots Aufbau für die Messung der Wirkleistung: Wirkleistung bei
 		modifizierter Schaltung                                                                   \\
-		4. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung eines
+		4. Zeile \dots Aufbau für die Messung der Wirkleistung: Blindleistung eines
 		realen Verbrauchers                                                                       \\
-		5. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung eines
+		5. Zeile \dots Aufbau für die Messung der Wirkleistung: Blindleistung eines
 		realen Verbrauchers mit vertauschten Außenleitern                                         \\
-		6. Zeile \dots Aufbau für die Messung der Wirkleistung Blindleistung bei
+		6. Zeile \dots Aufbau für die Messung der Wirkleistung: Blindleistung bei
 		modifizierter Schaltung                                                                   \\
 		$I_i \dots$ gemessener Strom am i-ten Strang in A                                         \\
 		$I_{31} \dots$ gemessener Strom zwischen Sternpunkt und Neutralleiter in A                \\
@@ -568,10 +568,9 @@ dieser Methode stammen von den Powerpointfolien von
 GUM~\cite{wolfgang_kessel_isobipm-gum_2004}. Für die Auswertung ist die
 Progammiersprache Python im speziellen die Pakete \verb#labtool-ex2#,
 \verb#pandas#, \verb#sympy#, \verb#lmfit# zur Hilfe genommen worden.
-\verb#lmfit# wurde für das Fitten verwendet, \verb#sympy# wurde für
-symbolische Manipulation verwendet und die restlichen Pakete für leichters
-Handhaben der Daten. Dies wurde aber alles durch \verb#labtool-ex2#
-abstrahiert.
+\verb#lmfit# wurde für das Fitten verwendet, \verb#sympy# wurde für symbolische
+Manipulation verwendet und die restlichen Pakete für leichters Handhaben der
+Daten. Dies wurde aber alles durch \verb#labtool-ex2# abstrahiert.
 
 Um höchstmögliche Genauigkeit zu garantieren wird erst bei der Darstellung der
 Wert in Tabellen gerundet.
@@ -780,8 +779,8 @@ gemessenen Verbraucherleistung $P_i^M$ und der gemessenen
 Verbraucherblindleistung $Q_i^M$ (aus \autoref{tab:werte_wirkleistung}) und
 einmal durch die Summation der errechneten Werte ($P_i^M$ \& $Q_i^M$). Hier ist
 noch zu erwähnen, dass die Werte $Q_i^M$ durch den Faktor $\sqrt{3}$ dividiert
-wurden um den Fakt, dass die Spannung zwischen zwei Außenleitern gemessen wurde,
-zu kompensieren.
+wurden um den Fakt, dass die Spannung zwischen zwei Außenleitern gemessen
+wurde, zu kompensieren.
 
 \begin{table}[H]
 	\caption[Errechnete Werte für die Wirk- und Blindleistungen bei allgemeiner Last]
@@ -974,9 +973,18 @@ beschriebene Verhalten ist in \autoref{fig:zeigerSternReal} zu sehen.
 
 Die errechneten Leistungen stimmen mit den gemessenen Werten immer überein,
 außer beim der Bonusaufgabe. Hier wird ersichtlich, dass sich der gemessene
-Wert der Blindleistung $Q_3$ um den Faktotor 2 von dem rechnerisch ermittelten
+Wert der Blindleistung $Q_3$ um den Faktor 2 von dem rechnerisch ermittelten
 unterscheidet. Dies kann zum Beispiel auf einen Skalenfehler beim
 entsprechenden analogen Messgerät zurückzuführen sein.
+
+\paragraph{Anmerkung zur Bonusaufgabe}Dem oben genannten ist jedoch noch hinzuzufügen, dass durch die Schaltung der
+Bonusaufgabe die gesamte Wirkleistung um einen signifikanten Wert gestiegen
+ist, vergleiche die Werte der $P_{ges}^M$ in \autoref{tab:powerAufgabe3}. Dies
+lässt sich zum Teil durch Kompensation der Blindleistungen vom Kondensator und
+der Spule am Zweiten Strang, siehe 2 \& 3. Zeile von $P_2^M$ in
+\autoref{tab:werte_wirkleistung}, erklären und zum Teil durch die Realität, der
+in dieser Schaltung hinzugefügten Bauteile, erklären (i.e. die Bauteile sind
+nicht ideal und haben somit auch einen Realen Widerstand).
 
 \subsection{Bau eines rudimentären Asynchron-Drehstrommotors}
 % • Realisieren Sie mittels drei Spulen samt Eisenkern mit vorgeschalteten Heizwiderst¨anden
